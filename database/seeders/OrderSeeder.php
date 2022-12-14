@@ -3,7 +3,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-class ProductSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,20 +14,14 @@ class ProductSeeder extends Seeder
     {
         //
         DB::table('orders')->insert([
-            'name' => 'Nguyen Thi Thao Tam',
-                'address' => 'Dong Ha',
-                'phone' => '123456789',
-                'email' => 'tam@gmail.com',
+             [   'customer_id'=>1,
                 'total' => 2211111,
                'date_at' => '2003/11/11'
         ],[
-            'name' => 'Nguyen Thi Thao Tam',
-            'address' => 'Dong Ha',
-            'phone' => '123456789',
-            'email' => 'tam@gmail.com',
+            'customer_id'=>2,
             'total' => 2211111444,
             'date_at' => '2003/11/01'
         ]
-    );
+    ]);
     }
 }
