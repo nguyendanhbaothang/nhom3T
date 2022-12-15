@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Eloquents;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
@@ -35,5 +36,6 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         return Product::orderBy('id', 'DESC')->get();
 
     }
+
 
 }
