@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $item->password = Hash::make('123456');
         $item->address = 'Quảng Trị';
         $item->phone  = "0901170243";
-        $item->image ='tam.jpg';
+        $item->image ='thang.jpg';
         $item->gender ='Nữ';
         $item->birthday ='1997/02/24';
         $item->group_id ='1';
