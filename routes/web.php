@@ -30,3 +30,4 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
 });
+    

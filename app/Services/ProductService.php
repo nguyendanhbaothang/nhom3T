@@ -17,7 +17,7 @@ class ProductService implements ProductServiceInterface
 
     /* Triển khai các phương thức trong PostServiceInterface */
     public function all($request){
-       
+
         return $this->productRepository->all($request);
     }
     public function find($id){
@@ -31,5 +31,15 @@ class ProductService implements ProductServiceInterface
     }
     public function destroy($id){
         return $this->productRepository->destroy($id);
+    }
+    public function trash($request)
+    {
+        return $this->productRepository->trash($request);
+    }
+    public function softdeletes($id){
+        return $this->productRepository->softdeletes($id);
+    }
+    public function restoredelete($id){
+        return $this->productRepository->restoredelete($id);
     }
 }
