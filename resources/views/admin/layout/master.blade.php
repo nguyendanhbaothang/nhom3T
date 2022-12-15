@@ -30,12 +30,11 @@
   <section class="section">
     <div class="container-fluid">
         @yield('content')
-     dffsdgfhgh
     </div>
     <!-- end container -->
   </section>
   @include('admin.layout.footer')
-    
+
 </main>
 
 {{-- @include('admin.header') --}}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,11 @@ Route::group(['prefix' => 'products'], function () {
     Route::put('/softdeletes/{id}', [ProductController::class, 'softdeletes'])->name('product.softdeletes');
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
+});
+
+
+//đơn hàng
+Route::prefix('order')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
 });
