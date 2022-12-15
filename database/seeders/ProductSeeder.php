@@ -20,7 +20,8 @@ class ProductSeeder extends Seeder
             'description' => 'Sản phẩm bán chạy nhất năm',
             'category_id' => 1,
             'image'=> 'thang.jpg',
-            'status' => 'Outstanding',
+            'status' => 1,
+            'product_hot' => 1,
         ]);
     }
 }

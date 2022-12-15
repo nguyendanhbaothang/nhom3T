@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
         /* Binding Repositories*/
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
+        
     }
 
     /**
