@@ -53,17 +53,18 @@
           </a>
           <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
-              <a href="settings.html"></a>
+              <a href=""></a>
+
             </li>
             <li>
-              <a href="projects.html">
+              <a href="">
                 <span class="text">
                   Projects <span class="pro-badge">Pro</span>
                 </span>
               </a>
             </li>
             <li>
-              <a href="chat.html">
+              <a href="">
                 <span class="text">
                   Chat <span class="pro-badge">Pro</span>
                 </span>
@@ -71,10 +72,10 @@
             </li>
           </ul>
         </li>
-       
+
 
         <li class="nav-item">
-          <a href="profile.html">
+          <a href="">
             <span class="icon">
               <svg
                 width="22"
@@ -94,7 +95,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="invoice.html">
+          <a href="">
             <span class="icon">
               <svg
                 width="22"
@@ -111,8 +112,24 @@
             <span class="text">Quản lí danh mục</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="task.html">
+
+
+
+
+
+
+
+
+        <li class="nav-item nav-item-has-children">
+          <a
+            href="#0"
+            class="collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#ddmenu_2"
+            aria-controls="ddmenu_2"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="icon">
               <svg
                 width="22"
@@ -122,17 +139,35 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M4.58341 8.70841L6.87508 12.8334H2.29175L4.58341 8.70841ZM2.75008 3.66675H6.41675V7.33341H2.75008V3.66675ZM4.58341 18.3334C5.06964 18.3334 5.53596 18.1403 5.87978 17.7964C6.22359 17.4526 6.41675 16.9863 6.41675 16.5001C6.41675 16.0139 6.22359 15.5475 5.87978 15.2037C5.53596 14.8599 5.06964 14.6667 4.58341 14.6667C4.09718 14.6667 3.63087 14.8599 3.28705 15.2037C2.94324 15.5475 2.75008 16.0139 2.75008 16.5001C2.75008 16.9863 2.94324 17.4526 3.28705 17.7964C3.63087 18.1403 4.09718 18.3334 4.58341 18.3334ZM8.25008 4.58341V6.41675H19.2501V4.58341H8.25008ZM8.25008 17.4167H19.2501V15.5834H8.25008V17.4167ZM8.25008 11.9167H19.2501V10.0834H8.25008V11.9167Z"
+                  d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z"
                 />
               </svg>
             </span>
-            <span class="text">
-              Quản lí sản phẩm
-            </span>
+            <span class="text"> Quản lí đơn hàng </span>
           </a>
+          <ul id="ddmenu_2" class="collapse dropdown-nav">
+            <li>
+              <a href=""></a>
+
+            </li>
+            <li>
+              <a href="{{Route('product.index')}}">
+                <span class="text">
+                  Sản phẩm <span class="pro-badge"></span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{Route('product.trash')}}">
+                <span class="text">
+                  Đã xóa <span class="pro-badge"></span>
+                </span>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a href="calendar.html">
+          <a href="">
             <span class="icon">
               <svg
                 width="22"
@@ -157,7 +192,7 @@
       <h3>PlainAdmin Pro</h3>
       <p>Get All Dashboards and 300+ UI Elements</p>
       <a
-        href="https://plainadmin.com/pro"
+        href=""
         target="_blank"
         rel="nofollow"
         class="main-btn primary-btn btn-hover"

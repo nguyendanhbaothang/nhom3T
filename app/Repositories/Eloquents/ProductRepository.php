@@ -88,7 +88,7 @@ public function destroy($id)
     {
         $products=Product::onlyTrashed()->findOrFail($id);
         $products->forceDelete();
-        return $products->save();
+        return $products->forceDelete();
 
     }
     public function trash()
@@ -103,13 +103,13 @@ public function destroy($id)
         $product->deleted_at = date("Y-m-d h:i:s");
         $product->save();
         return $product->save();
-        
+
     }
     public function restoredelete($id)
     {
         $product=Product::withTrashed()->where('id', $id);
         $product->restore();
-        return $product->save();
+        return $product->restore();
     }
 
 }

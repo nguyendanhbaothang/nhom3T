@@ -113,7 +113,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $this->productService->destroy($id);
-       
+
     }
 
 
@@ -125,7 +125,7 @@ class ProductController extends Controller
         $params = [
             'products' => $products
         ];
-        return view('admin.products.trash', $params);
+        return view('admin.product.trash', $params);
     }
     public function softdeletes($id){
         $this->productService->softdeletes($id);

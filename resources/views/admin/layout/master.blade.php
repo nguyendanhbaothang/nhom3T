@@ -25,8 +25,17 @@
 @include('admin.layout.sidebar')
 {{-- @include('admin.header') --}}
 <div class="overlay"></div>
-@include('admin.layout.main')
-@yield('content')
+{{-- @include('admin.layout.main')  --}}
+<section class="section">
+  <div class="container-fluid">
+    <div class="row">
+    <!-- ========== title-wrapper start ========== -->
+    @yield('content')
+    <!-- End Row -->
+  </div>
+</div>
+  <!-- end container -->
+</section>
 
 {{-- @include('admin.header') --}}
 <button class="option-btn">
