@@ -1,5 +1,6 @@
+@extends('admin.layout.master')
+@section('content')
 <main class="page-content">
-    
 <section class="wrapper">
     <div class="panel-panel-default">
         <div class="market-updates">
@@ -23,28 +24,26 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($items as $key=> $item)
+            @foreach ($orders as $key=> $order)
           <tr>
             <th scope="row">{{++$key}}</th>
-            <td>{{$item->customer->name}}</td>
-            <td>{{$item->customer->email}}</td>
-            <td>{{$item->customer->phone}}</td>
-            <td>{{$item->customer->address}}</td>
-            <td>{{$item->date_at}}</td>
-            <td>{{number_format($item->total)}}</td>
+            <td>{{$order->customer->name}}</td>
+            <td>{{$order->customer->email}}</td>
+            <td>{{$order->customer->phone}}</td>
+            <td>{{$order->customer->address}}</td>
+            <td>{{$order->date_at}}</td>
+            <td>{{number_format($order->total)}}</td>
             <td>
-                @if (Auth::user()->hasPermission('Order_view'))
-                <a  class="btn btn-info" href="{{route('order.detail',$item->id)}}">Chi tiết</a>
-                @endif
+                <a  class="btn btn-info" href="{{route('order.detail',$order->id)}}">Chi tiết</a>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
-      {{ $items->onEachSide(5)->links() }}
 </main>
 </div>
 </div>
 </div>
 </section>
 </main>
+@endsection

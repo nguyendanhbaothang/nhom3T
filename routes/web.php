@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\GroupController;
+=======
+use App\Http\Controllers\Admin\OrderController;
+>>>>>>> e4f64d3246589a22512ef69f810e7154a8f4969a
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +38,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
 });
+<<<<<<< HEAD
 // Route::resource('users',UserController::class);
 Route::group(['prefix' => 'groups'], function () {
     Route::get('/', [GroupController::class, 'index'])->name('group.index');
@@ -64,3 +69,12 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
    });
+=======
+
+
+//đơn hàng
+Route::prefix('order')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
+});
+>>>>>>> e4f64d3246589a22512ef69f810e7154a8f4969a
