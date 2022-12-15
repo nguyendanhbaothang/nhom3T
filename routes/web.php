@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::get('/', function () {
+    return view('admin.layout.master');
+});
 Route::group(['prefix' => 'products'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     Route::get('/create', [ProductController::class, 'create'])->name('product.create');
@@ -30,4 +32,3 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
 });
-    
