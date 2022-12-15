@@ -1,3 +1,5 @@
+@extends('admin.layout.main')
+@section('content')
 <h1>Danh sách sản phẩm</h1>
 <div class="container">
         {{-- @include('sweetalert::alert') --}}
@@ -66,3 +68,4 @@
         <div class="pagination float-right">
         </div>
     </div>
+@endsection
