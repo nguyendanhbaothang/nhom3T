@@ -30,7 +30,7 @@
   <section class="section">
     <div class="container-fluid">
         @yield('content')
-     
+     dffsdgfhgh
     </div>
     <!-- end container -->
   </section>
