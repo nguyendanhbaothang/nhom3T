@@ -6,9 +6,9 @@ interface ProductRepositoryInterface extends RepositoryInterface{
     function all($request);
     function store($request);
     function update($request, $id);
-    public function destroy($id);
-    public function trash();
-    public function softdeletes($id);
-    public function restoredelete($id);
+    function destroy($id);
+    function trash();
+    function softdeletes($id);
+    function restoredelete($id);
 
 }

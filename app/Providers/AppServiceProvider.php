@@ -10,6 +10,14 @@ use App\Services\ProductService;
 /* ProductRepository */
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\ProductRepository;
+
+/* OrderService */
+use App\Services\Interfaces\OrderServiceInterface;
+use App\Services\OrderService;
+
+/* OrderRepository */
+use App\Repositories\Interfaces\OrderRepositoryInterface;
+use App\Repositories\Eloquents\OrderRepository;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,7 +34,17 @@ class AppServiceProvider extends ServiceProvider
 
         /* Binding Repositories*/
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
-        
+
+
+
+
+        $this->app->singleton(OrderServiceInterface::class, OrderService::class);
+
+
+
+        /* Binding Repositories*/
+        $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
+
     }
 
     /**

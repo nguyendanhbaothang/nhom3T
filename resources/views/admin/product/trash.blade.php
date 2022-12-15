@@ -1,3 +1,5 @@
+@extends('admin.layout.master')
+@section('content')
 <main class="page-content">
     <h1>Danh sách sản phẩm</h1>
 
@@ -96,3 +98,4 @@ $(document).on('click', '.deleteIcon', function(e) {
     })
 });
 </script>
+@endsection

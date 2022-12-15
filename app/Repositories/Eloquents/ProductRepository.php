@@ -53,7 +53,6 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
             $product->image = $new_image;
             $data['product_image'] = $new_image;
         }
-        $product->save();
         return  $product->save();
     }
 
@@ -80,15 +79,13 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
     $data['product_image']=$new_image;
     }
-    $product->save();
 
     return $product->save();
 }
 public function destroy($id)
     {
         $products=Product::onlyTrashed()->findOrFail($id);
-        $products->forceDelete();
-        return $products->save();
+        return $products->forceDelete();
 
     }
     public function trash()
@@ -101,15 +98,13 @@ public function destroy($id)
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $product = Product::findOrFail($id);
         $product->deleted_at = date("Y-m-d h:i:s");
-        $product->save();
         return $product->save();
-        
+
     }
     public function restoredelete($id)
     {
         $product=Product::withTrashed()->where('id', $id);
-        $product->restore();
-        return $product->save();
+        return $product->restore();
     }
 
 }
