@@ -85,7 +85,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 public function destroy($id)
     {
         $products=Product::onlyTrashed()->findOrFail($id);
-        return $products->forceDelete();
+       return $products->forceDelete();
 
     }
     public function trash()
@@ -105,6 +105,16 @@ public function destroy($id)
     {
         $product=Product::withTrashed()->where('id', $id);
         return $product->restore();
+    }
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        $categories=Category::get();
+        $param = [
+            'product' => $product ,
+            'categories' => $categories
+        ];
+        return $param;
     }
 
 

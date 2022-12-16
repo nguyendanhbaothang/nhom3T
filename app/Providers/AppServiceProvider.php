@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 /* Product */
@@ -39,10 +40,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ProductServiceInterface::class, ProductService::class);
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
-         
+
         $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
-        
+
         $this->app->singleton(OrderServiceInterface::class, OrderService::class);
         $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
 
@@ -58,5 +59,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Paginator::useBootstrapFive();
+        Paginator::useBootstrapFour();
     }
 }
