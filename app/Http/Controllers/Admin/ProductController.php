@@ -39,29 +39,31 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $categories=Category::get();
-        // $param = [
-        //     'categories' => $categories
-        // ];
-        // return view('admin.product.add', $param);
+        $categories=Category::get();
+        $param = [
+            'categories' => $categories
+        ];
+        return view('admin.product.add', $param);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @param  \App\Http\Requests\StoreProductRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
         //
-        $this->productService->store($request);
+         $this->productService->store($request);
+        return redirect()->route('product.index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,20 +75,28 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $item = $this->productService->find($id);
+        $product = Product::find($id);
+        $categories=Category::get();
+        $param = [
+            'product' => $product ,
+            'categories' => $categories
+        ];
+        return view('admin.product.edit' , $param);
+
+        // $item = $this->productService->find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Http\Requests\UpdateProductRequest
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProductRequest $request, $id)
@@ -97,11 +107,35 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $this->productService->destroy($id);
+
     }
+
+
+
+
+    public function trash(Request $request){
+        $products = $this->productService->trash($request);
+
+        $params = [
+            'products' => $products
+        ];
+        return view('admin.product.trash', $params);
+    }
+    public function softdeletes($id){
+        $this->productService->softdeletes($id);
+        return redirect()->route('product.index');
+
+
+    }
+    public function restoredelete($id){
+        $this->productService->restoredelete($id);
+        return redirect()->route('product.trash');
+    }
+
 }

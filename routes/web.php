@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::get('/', function () {
+    return view('admin.layout.master');
+});
 Route::group(['prefix' => 'products'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     Route::get('/create', [ProductController::class, 'create'])->name('product.create');
@@ -31,6 +35,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
 });
+
 
 Route::group(['prefix' => 'categories'], function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
@@ -46,4 +51,22 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('category/restore/{id}',[CategoryController::class, 'restore'])->name('categories.restore');
 });
 
+//đơn hàng
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
+});
 
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/editpass/{id}', [UserController::class, 'editpass'])->name('user.editpass');
+    Route::put('/updatepass/{id}', [UserController::class, 'updatepass'])->name('user.updatepass');
+    Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
+    Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
+ });
