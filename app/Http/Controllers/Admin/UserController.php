@@ -93,7 +93,7 @@ class UserController extends Controller
             'message' => 'Đăng ký thành công!',
             'alert-type' => 'success'
         ];
-        return redirect()->route('users.index')->with($notification);
+        return redirect()->route('user.index')->with($notification);
     }
 
     /**
@@ -165,7 +165,7 @@ class UserController extends Controller
             'message' => 'Chỉnh Sửa Thành Công!',
             'alert-type' => 'success'
         ];
-        return redirect()->route('users.index')->with($notification);
+        return redirect()->route('user.index')->with($notification);
     }
 
     public function editpass($id){
@@ -198,7 +198,7 @@ class UserController extends Controller
                 'message' => 'Đổi mật khẩu thành công!',
                 'alert-type' => 'success'
             ];
-            return redirect()->route('users.index')->with($notification);
+            return redirect()->route('user.index')->with($notification);
 
         }else{
             $notification = [
@@ -221,7 +221,7 @@ class UserController extends Controller
                     'message' => 'Đổi mật khẩu thành công!',
                     'alert-type' => 'success'
                 ];
-                return redirect()->route('users.index')->with($notification);
+                return redirect()->route('user.index')->with($notification);
             }else{
 
                 $notification = [

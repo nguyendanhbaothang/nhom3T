@@ -16,7 +16,7 @@ border-radius:50%;
         <div class="table-agile-info">
             <div class="panel-panel-default">
                     <header class="page-title-bar">
-                        <h1 class="page-title">Sản phẩm</h1>
+                        {{-- <h1 class="page-title">Sản phẩm</h1> --}}
                         <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản user</a>
                     </header>
 
@@ -50,7 +50,7 @@ border-radius:50%;
                                 <tr>
                                     <th data-breakpoints="xs">Stt</th>
                                     {{-- <th data-breakpoints="xs">ID</th> --}}
-                                    <th>Avatar</th>
+                                    <th>Image</th>
                                     <th>Tên</th>
                                     <th>Phone</th>
                                     <th>Chức vụ</th>
@@ -66,15 +66,15 @@ border-radius:50%;
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->group->name }}</td>
                                         <td>
-                                            @if (Auth::user()->hasPermission('User_update'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_update'))
                                             <a href="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-primary">Sửa</a>
                                             @endif
-                                            @if (Auth::user()->hasPermission('User_forceDelete'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
                                                 id="{{ $user->id }}" class="btn btn-danger deleteIcon">Xóa</i></a>
                                             @endif
-                                            @if (Auth::user()->hasPermission('User_adminUpdatePass'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_adminUpdatePass'))
                                             <a href="{{ route('user.adminpass', $user->id) }}"
                                                 class="btn btn-info">Đổi mật khẩu</a>
                                             @endif
