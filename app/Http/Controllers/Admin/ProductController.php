@@ -136,9 +136,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $this->productService->update($request,$id);
+        return redirect()->route('product.index');
     }
     /**
      * Remove the specified resource from storage.
