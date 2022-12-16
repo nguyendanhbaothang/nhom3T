@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Eloquents;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
@@ -106,5 +107,6 @@ public function destroy($id)
         $product=Product::withTrashed()->where('id', $id);
         return $product->restore();
     }
+
 
 }

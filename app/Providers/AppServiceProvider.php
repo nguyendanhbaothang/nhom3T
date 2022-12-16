@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\Eloquents\CategoryRepository;
 use Illuminate\Support\ServiceProvider;
 /* ProducrService */
 use App\Services\Interfaces\ProductServiceInterface;
@@ -29,22 +30,13 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton(ProductServiceInterface::class, ProductService::class);
+        $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
 
 
 
         /* Binding Repositories*/
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
-
-
-
-
-        $this->app->singleton(OrderServiceInterface::class, OrderService::class);
-
-
-
-        /* Binding Repositories*/
-        $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
-
+        $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
     }
 
     /**
