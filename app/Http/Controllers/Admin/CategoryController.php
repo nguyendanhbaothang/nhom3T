@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
 use App\Services\Interfaces\CategoryServiceInterface;
-// use GuzzleHttp\Psr7\Request;
 
 class CategoryController extends Controller
 {
@@ -117,5 +113,14 @@ class CategoryController extends Controller
             $category = $this->categoryService->force_destroy( $id);
             return redirect()->route('categories.getTrashed');
 
+    }
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        if (!$search) {
+            return redirect()->route('categories.index');
+        }
+        $categories = Category::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
+        return view('admin.categories.index', compact('categories'));
     }
 }

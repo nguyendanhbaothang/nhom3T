@@ -42,6 +42,11 @@
     @endforeach
 
   </table>
+  <div class="col-6">
+    <div class="pagination float-right">
+        {{ $categories->appends(request()->query()) }}
+    </div>
+</div>
 </body>
 </html>
 
