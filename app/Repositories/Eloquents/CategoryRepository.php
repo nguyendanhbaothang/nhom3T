@@ -42,15 +42,15 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     }
     public function store($request){
         $category = new Category();
-            $category->name = $request->name;
-            return $category->save();
+         $category->name = $request->name;
+         return $category->save();
 
     }
     public function update($request,$id){
         $category = new Category();
         $category = Category::find($id);
         $category->name = $request->name;
-            return $category->save();
+        return $category->save();
 
     }
     public function getTrashed(){
@@ -61,12 +61,10 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     }
     public function restore($id){
         $category = $this->model->withTrashed()->findOrFail($id);
-        $category->restore();
-        return $category;
+        return  $category->restore();
     }
     public function force_destroy($id){
         $category = $this->model->onlyTrashed()->findOrFail($id);
-        $category->forceDelete();
-        return $category;
+        return $category->forceDelete();
     }
 }

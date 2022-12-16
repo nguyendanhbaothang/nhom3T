@@ -5,7 +5,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
-use App\Models\Category;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -86,7 +85,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 public function destroy($id)
     {
         $products=Product::onlyTrashed()->findOrFail($id);
-        return $products->forceDelete();
+       return $products->forceDelete();
 
     }
     public function trash()
