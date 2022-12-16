@@ -42,4 +42,8 @@ class ProductService implements ProductServiceInterface
     public function restoredelete($id){
         return $this->productRepository->restoredelete($id);
     }
+    public function edit($id){
+        return $this->productRepository->edit($id);
+    }
+
 }

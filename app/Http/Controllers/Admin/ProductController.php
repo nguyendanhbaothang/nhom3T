@@ -81,13 +81,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-        $product = Product::find($id);
-        $categories=Category::get();
-        $param = [
-            'product' => $product ,
-            'categories' => $categories
-        ];
-        return view('admin.product.edit' , $param);
+
+        $param =$this->productService->edit($id);
+        return view('admin.product.edit', $param );
 
         // $item = $this->productService->find($id);
     }

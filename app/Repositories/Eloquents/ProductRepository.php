@@ -106,5 +106,15 @@ public function destroy($id)
         $product=Product::withTrashed()->where('id', $id);
         return $product->restore();
     }
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        $categories=Category::get();
+        $param = [
+            'product' => $product ,
+            'categories' => $categories
+        ];
+        return $param;
+    }
 
 }
