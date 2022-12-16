@@ -112,7 +112,7 @@
         <li>
           <a href="{{ route('categories.index') }}">
             <span class="text">
-              Sản phẩm <span class="pro-badge">Pro</span>
+              Danh mục <span class="pro-badge">Pro</span>
             </span>
           </a>
         </li>
@@ -191,6 +191,28 @@
             </span>
           </a>
         </li>
+
+        <li class="nav-item">
+            <a href="{{ route('customers.index') }}">
+              <span class="icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.25 9.16675H6.41667V11.0001H8.25V9.16675ZM11.9167 9.16675H10.0833V11.0001H11.9167V9.16675ZM15.5833 9.16675H13.75V11.0001H15.5833V9.16675ZM17.4167 2.75008H16.5V0.916748H14.6667V2.75008H7.33333V0.916748H5.5V2.75008H4.58333C3.56583 2.75008 2.75 3.57508 2.75 4.58341V17.4167C2.75 17.903 2.94315 18.3693 3.28697 18.7131C3.63079 19.0569 4.0971 19.2501 4.58333 19.2501H17.4167C17.9029 19.2501 18.3692 19.0569 18.713 18.7131C19.0568 18.3693 19.25 17.903 19.25 17.4167V4.58341C19.25 4.09718 19.0568 3.63087 18.713 3.28705C18.3692 2.94324 17.9029 2.75008 17.4167 2.75008ZM17.4167 17.4167H4.58333V7.33342H17.4167V17.4167Z"
+                  />
+                </svg>
+              </span>
+              <span class="text">
+                Khách hàng <span class="pro-badge">Pro</span>
+              </span>
+            </a>
+          </li>
+
         <li class="nav-item">
           <a href="invoice.html">
             <span class="icon">

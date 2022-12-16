@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
+    Route::get('categories/search', [CategoryController::class, 'search'])->name('categories.search');
     Route::get('category/getTrashed',[CategoryController::class, 'getTrashed'])->name('categories.getTrashed');
     Route::delete('category/delete/{id}',[CategoryController::class, 'force_destroy'])->name('categories.delete');
     Route::get('category/restore/{id}',[CategoryController::class, 'restore'])->name('categories.restore');
@@ -70,5 +71,20 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
  });
+
 Route::post('login',[UserController::class,'login'])->name('admin.login');
 Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkLogin');
+
+
+ Route::group(['prefix' => 'customers'], function () {
+    Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/create', [CustomerControllerler::class, 'create'])->name('customers.create');
+    Route::post('/store', [CustomerController::class, 'store'])->name('customers.store');
+    Route::get('/show/{id}', [CustomerController::class, 'show'])->name('customers.show');
+    Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
+    Route::put('/update/{id}', [CustomerController::class, 'update'])->name('customers.update');
+    Route::delete('destroy/{id}', [CustomermerController::class, 'destroy'])->name('customers.destroy');
+
+
+});
+
