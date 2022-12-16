@@ -1,3 +1,6 @@
+@extends('admin.layout.master')
+@section('content')
+
 <main id="main">
     <h1>Thêm Danh Mục</h1>
     <form action="{{route('categories.store')}}" method="POST">
@@ -10,3 +13,5 @@
         <a href="{{route('categories.index')}}" class="btn btn-danger">Huỷ</a>
       </form>
       </main>
+      @endsection
+

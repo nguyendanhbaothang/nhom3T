@@ -1,3 +1,5 @@
+@extends('admin.layout.master')
+@section('content')
 <main id="main">
 
     <h1>Chỉnh sửa Danh Mục</h1>
@@ -13,3 +15,4 @@
 
       </form>
       </main>
+      @endsection
