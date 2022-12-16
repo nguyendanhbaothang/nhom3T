@@ -3,10 +3,13 @@
 <main id="main">
 <h1>Danh sách sản phẩm</h1>
 <div class="container">
-<table class="table">
+<table class="table table-striped table-hover">
     <a href="{{route('product.create')}}" class="btn btn-info">Thêm mới</a>
         <div class="col-6">
-
+            <form>
+                <a class="btn btn-sm btn-icon btn-warning" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Tìm nâng cao</a>
+                    @include('admin.product.modals.modalproductcolumns')
+                </form>
         </div>
         <thead>
             <tr>
@@ -32,8 +35,8 @@
                     <td>{{ $team->description }}</td>
                     <td>{{ $team->category->name }}</td>
                     <td>
-                        <img src="{{ asset('public/uploads/product/' . $team->image) }}" alt=""
-                            style="width: 50px">
+                        <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
+                            style="width: 100px">
                     </td>
 
                     <td>
@@ -76,6 +79,7 @@
     </table>
     <div class="col-6">
         <div class="pagination float-right">
+            {{ $products->appends(request()->query()) }}
         </div>
     </div>
 </main>

@@ -17,7 +17,7 @@
            <div class="col-12">
             <label class="form-label">Giá</label>
             <div class="row g-3">
-              <div class="col-lg-9">
+              <div class="col-lg-12">
                 <input type="text" class="form-control" name="price" placeholder="Giá">
               </div>
               <div class="col-lg-3">
@@ -29,7 +29,7 @@
           <div class="col-12">
             <label class="form-label">Số lượng</label>
             <div class="row g-3">
-              <div class="col-lg-9">
+              <div class="col-lg-12">
                 <input type="text" class="form-control" name="quantity" placeholder="Số lượng">
               </div>
               <div class="col-lg-3">
