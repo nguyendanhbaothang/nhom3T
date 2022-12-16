@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -36,8 +37,22 @@ Route::group(['prefix' => 'products'], function () {
 });
 
 
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/show/{id}', [CategoryController::class, 'show'])->name('categories.show');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    Route::get('category/getTrashed',[CategoryController::class, 'getTrashed'])->name('categories.getTrashed');
+    Route::delete('category/delete/{id}',[CategoryController::class, 'force_destroy'])->name('categories.delete');
+    Route::get('category/restore/{id}',[CategoryController::class, 'restore'])->name('categories.restore');
+});
+
 //đơn hàng
-Route::prefix('order')->group(function () {
+Route::prefix('orders')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('order.index');
     Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
 });
@@ -54,4 +69,4 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/updatepass/{id}', [UserController::class, 'updatepass'])->name('user.updatepass');
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
-   });
+ });
