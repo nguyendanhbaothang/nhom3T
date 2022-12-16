@@ -32,7 +32,6 @@ use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Services\CustomerService;
 use App\Services\Interfaces\CustomerServiceInterface;
 use App\Repositories\Eloquents\CustomerRepository;
-use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
