@@ -28,20 +28,20 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function all($request)
     {
-        echo __METHOD__;
+        // echo __METHOD__;
         $result = $this->model->all();
         return $result;
     }
 
     public function find($id)
     {
-        echo __METHOD__;
+        // echo __METHOD__;
         return $this->model->find($id);
     }
 
     public function store($data)
     {
-        echo __METHOD__;
+        // echo __METHOD__;
         return $this->model->store($data);
     }
 

@@ -66,15 +66,15 @@ border-radius:50%;
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->group->name }}</td>
                                         <td>
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_update'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
                                             <a href="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-primary">Sửa</a>
                                             @endif
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_forceDelete'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_forceDelete') || true)
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
                                                 id="{{ $user->id }}" class="btn btn-danger deleteIcon">Xóa</i></a>
                                             @endif
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_adminUpdatePass'))
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_adminUpdatePass') || true)
                                             <a href="{{ route('user.adminpass', $user->id) }}"
                                                 class="btn btn-info">Đổi mật khẩu</a>
                                             @endif

@@ -10,16 +10,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
+use App\Services\Interfaces\UserServiceInterface;
+
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $users = $this->userService->all($request);
+        // $users = User::all();
         // $users = User::search()->paginate(4);
         $param = [
             'users' => $users,
@@ -58,36 +67,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->address = $request->address;
-        $user->phone = $request->phone;
-        $user->birthday = $request->birthday;
-        $user->gender = $request->gender;
-        $user->group_id = $request->group_id;
-        // $file = $request->image;
-        if ($request->hasFile('image')) {
-            $get_image = $request->file('image');
-            $path = 'public/assets/images/user/';
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $user->image = $new_image;
-            $data['user_image'] = $new_image;
+        try {
+            $this->userService->store($request);
+            // logic after save
+        } catch (\Exception $e) {
+            //logic handle error
+            Log::error($e->getMessage());
         }
-        $user->save();
-
-        $data = [
-            'name' => $request->name,
-            'pass' => $request->password,
-        ];
-        // Mail::send('admin.mail.mail', compact('data'), function ($email) use($request) {
-        //     $email->subject('NowSaiGon');
-        //     $email->to($request->email, $request->name);
-        // });
+       
 
         $notification = [
             'message' => 'Đăng ký thành công!',
@@ -122,7 +109,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         $groups=Group::get();
         $param = [
             'user' => $user ,
@@ -140,7 +127,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         $user->name = $request->name;
         $user->email = $request->email;
         // $user->password = bcrypt($request->password);
@@ -170,7 +157,7 @@ class UserController extends Controller
 
     public function editpass($id){
         // $this->authorize('view', User::class);
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         $param =[
             'user'=>$user,
         ];
@@ -179,7 +166,7 @@ class UserController extends Controller
 
     public function adminpass($id){
         // $this->authorize('adminUpdatePass', User::class);
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         $param =[
             'user'=>$user,
         ];
@@ -188,10 +175,10 @@ class UserController extends Controller
 
     public function adminUpdatePass(Request $request, $id){
         // $this->authorize('adminUpdatePass', User::class);
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         if($request->renewpassword==$request->newpassword)
         {
-            $item = User::find($id);
+            $item = $this->userService->find($id);
             $item->password= bcrypt($request->newpassword);
             $item->save();
             $notification = [
@@ -251,7 +238,7 @@ class UserController extends Controller
             'sainhap' => '!',
         ];
 
-        $user = User::find($id);
+        $user = $this->userService->find($id);
         if($user->group->name!='Supper Admin'){
             $user->delete();
         }
