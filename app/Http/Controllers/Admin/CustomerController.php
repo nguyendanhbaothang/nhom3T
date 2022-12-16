@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    protected $customergoryService;
+    protected $customerService;
 
-    public function __construct(CustomerServiceInterface $customergoryService)
+    public function __construct(CustomerServiceInterface $customerService)
     {
-        $this->customergoryService = $customergoryService;
+        $this->customerService = $customerService;
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $items = $this->categoryService->all($request);
+        $items = $this->customerService->all($request);
         return view('admin.customers.index', compact('items'));
     }
 

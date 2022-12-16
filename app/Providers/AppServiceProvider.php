@@ -16,12 +16,23 @@ use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Services\CategoryService;
 use App\Services\Interfaces\CategoryServiceInterface;
 use App\Repositories\Eloquents\CategoryRepository;
-
 /* OrderService */
 use App\Services\Interfaces\OrderServiceInterface;
 use App\Services\OrderService;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Repositories\Eloquents\OrderRepository;
+
+/*User*/
+use App\Services\Interfaces\UserServiceInterface;
+use App\Services\UserService;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Eloquents\UserRepository;
+/* Customer */
+use App\Repositories\Interfaces\CustomerRepositoryInterface;
+use App\Services\CustomerService;
+use App\Services\Interfaces\CustomerServiceInterface;
+use App\Repositories\Eloquents\CustomerRepository;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +51,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(OrderServiceInterface::class, OrderService::class);
         $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
+
+
+        $this->app->singleton(UserServiceInterface::class, UserService::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+
+        $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
+        $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
 
     }
 

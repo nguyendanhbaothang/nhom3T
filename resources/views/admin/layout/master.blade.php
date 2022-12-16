@@ -27,6 +27,7 @@
 <div class="overlay"></div>
 <main class="main-wrapper">
   @include('admin.layout.header')
+  <br>
   <section class="section">
     <div class="container-fluid">
         @yield('content')

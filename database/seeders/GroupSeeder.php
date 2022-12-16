@@ -15,10 +15,13 @@ class GroupSeeder extends Seeder
     public function run()
     {
         DB::table('groups')->insert([
-            'name' => 'dong ho thong minh'
+            'name' => 'Admin'
         ]);
         DB::table('groups')->insert([
-            'name' => 'dong ho hublot'
+            'name' => 'Quản Lí'
+        ]);
+        DB::table('groups')->insert([
+            'name' => 'Nhân Viên'
         ]);
     }
 }
