@@ -42,6 +42,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         $product->quantity = $request->quantity;
         $product->description = $request->description;
         $product->category_id = $request->category_id;
+        $product->product_hot = $request->product_hot;
         $product->status = $request->status;
         if ($request->hasFile('image')) {
             $get_image = $request->file('image');
@@ -64,13 +65,14 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
     $product->description = $request->description;
     $product->category_id = $request->category_id;
     $product->status = $request->status;
+    $product->product_hot = $request->product_hot;
     $get_image=$request->image;
     if($get_image){
-        $path='public/uploads/product/'.$product->image;
+        $path='public/assets/product/'.$product->image;
         if(file_exists($path)){
             unlink($path);
         }
-    $path='public/uploads/product/';
+    $path='public/assets/product/';
     $get_name_image=$get_image->getClientOriginalName();
     $name_image=current(explode('.',$get_name_image));
     $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();

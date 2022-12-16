@@ -56,6 +56,7 @@ Route::group(['prefix' => 'categories'], function () {
 Route::prefix('orders')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('order.index');
     Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
+    Route::get('/xuatexcel', [OrderController::class, 'exportOrder'])->name('orders.xuat');
 });
 
 Route::group(['prefix' => 'users'], function () {
