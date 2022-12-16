@@ -22,6 +22,11 @@ use App\Services\OrderService;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Repositories\Eloquents\OrderRepository;
 
+/*User*/
+use App\Services\Interfaces\UserServiceInterface;
+use App\Services\UserService;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Eloquents\UserRepository;
 /* Customer */
 use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Services\CustomerService;
@@ -46,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(OrderServiceInterface::class, OrderService::class);
         $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
+
+
+        $this->app->singleton(UserServiceInterface::class, UserService::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
 
         $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
         $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);

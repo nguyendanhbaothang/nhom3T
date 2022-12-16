@@ -148,5 +148,7 @@
             </div>
         </div>
     </div>
+</section>
 </main>
 </section>
+@endsection

@@ -72,6 +72,9 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
  });
 
+Route::post('login',[UserController::class,'login'])->name('admin.login');
+Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkLogin');
+
 
  Route::group(['prefix' => 'customers'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
@@ -84,5 +87,4 @@ Route::group(['prefix' => 'users'], function () {
 
 
 });
-
 
