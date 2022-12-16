@@ -287,7 +287,7 @@ class UserController extends Controller
 
           $request->session()->regenerate();
 
-          return redirect()->route('admin.home');
+          return redirect('/');
       }
       // dd($request->all());
       return back()->withErrors([

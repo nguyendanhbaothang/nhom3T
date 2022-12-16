@@ -8,7 +8,7 @@
       <ul>
         <li class="nav-item nav-item-has-children">
           <a
-            href="#0"
+            href=""
             data-bs-toggle="collapse"
             data-bs-target="#ddmenu_1"
             aria-controls="ddmenu_1"
@@ -22,7 +22,7 @@
                 />
               </svg>
             </span>
-            <span class="text">Trang Chủ</span>
+            <span class="text">Dashboard</span>
           </a>
 
         </li>

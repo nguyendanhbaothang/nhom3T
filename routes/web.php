@@ -70,3 +70,5 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
  });
+Route::post('login',[UserController::class,'login'])->name('admin.login');
+Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkLogin');
