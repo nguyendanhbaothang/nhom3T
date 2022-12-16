@@ -65,7 +65,7 @@
 
                  <div class="col-12">
                   <label for="exampleInputEmail1" >Kích hoạt danh mục</label>
-                  <select name="kichhoat" class="form-select" id="inputGroupSelect02">
+                  <select name="status" class="form-select" id="inputGroupSelect02">
                   @if($product->status==0)
                       <option selected value="0">Kích hoạt<table></table></option>
                       <option value="1">Không kích hoạt</option>
@@ -77,8 +77,8 @@
                   </div>
 
                   <div class="col-12">
-                    <label for="exampleInputEmail1" >Kích hoạt danh mục</label>
-                    <select name="kichhoat" class="form-select" id="inputGroupSelect02">
+                    <label for="exampleInputEmail1" >Kích trạng thạis</label>
+                    <select name="product_hot" class="form-select" id="inputGroupSelect02">
                     @if($product->product_hot==0)
                         <option selected value="0">Nổi bật<table></table></option>
                         <option value="1">Không nổi bật</option>

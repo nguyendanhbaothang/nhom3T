@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 class OrderController extends Controller
 {
@@ -29,5 +33,7 @@ class OrderController extends Controller
         $items = $this->orderService->all($id);
         return view('admin.order.orderdetail',compact('items'));
     }
-
+    public function exportOrder(){
+        return Excel::download(new OrderExport, 'order.xlsx');
+    }
 }

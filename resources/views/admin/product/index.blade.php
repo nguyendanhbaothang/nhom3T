@@ -2,13 +2,13 @@
 @section('content')
 <main id="main">
 <h1>Danh sách sản phẩm</h1>
-<div class="col-12">
+<div class="container">
 <table class="table">
-    <a href="{{route('product.create')}}" class="btn btn-info">Add New</a>
-    <br>
-        <div class="col-6">
-            <form>
-                <a class="btn btn-sm btn-icon btn-warning" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Advanced Search</a>
+    <div class="col-6">
+        <form>
+                <a href="{{route('product.create')}}" class="btn btn-info">Thêm mới</a>
+                <a class="btn btn-sm btn-icon btn-warning" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Tìm nâng cao</a>
+
                     @include('admin.product.modals.modalproductcolumns')
                 </form>
         </div>

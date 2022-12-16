@@ -1,6 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
+    <a   class="btn btn-warning" href="{{route('orders.xuat')}}">Xuất</a>
 <section class="wrapper">
     <div class="panel-panel-default">
         <div class="market-updates">
