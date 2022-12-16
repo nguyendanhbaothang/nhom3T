@@ -5,7 +5,7 @@ use App\Models\Customer;
 use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
 
-class PostRepository extends EloquentRepository implements CustomerRepositoryInterface
+class CustomerRepository extends EloquentRepository implements CustomerRepositoryInterface
 {
     public function getModel()
     {
@@ -26,5 +26,11 @@ class PostRepository extends EloquentRepository implements CustomerRepositoryInt
     public function paginate($request){
         $result = $this->model->paginate();
         return $result;
+    }
+    public function all($request){
+        // echo __METHOD__;
+        // die();
+        // dd($this->model);
+        return Customer::orderBy('id', 'DESC')->paginate(1);
     }
 }

@@ -32,7 +32,7 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         // echo __METHOD__;
         // die();
         // dd($this->model);
-        return Category::orderBy('id', 'DESC')->get();
+        return Category::orderBy('id', 'DESC')->paginate(3);
 
     }
     public function find($id){
