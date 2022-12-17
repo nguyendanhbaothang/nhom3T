@@ -14,11 +14,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">Tên Sản Phẩm</th>
-                                    <th scope="col">Hình ảnh</th>
-                                    <th scope="col">GIá(Đồng)</th>
-                                    <th scope="col">Số Lượng</th>
-                                    <th scope="col">Tổng Tiền(Đồng)</th>
+                                    <th scope="col">Product's name</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Price(VND)</th>
+                                    <th scope="col">Quantily</th>
+                                    <th scope="col">Total Money(VND)</th>
                                 </tr>
                             </thead>
                             <tbody>

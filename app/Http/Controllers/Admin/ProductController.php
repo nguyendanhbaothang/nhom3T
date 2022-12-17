@@ -98,7 +98,7 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         //
          $this->productService->store($request);
@@ -136,7 +136,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $this->productService->update($request,$id);
         return redirect()->route('product.index');
