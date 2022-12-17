@@ -52,10 +52,12 @@ class UserController extends Controller
      */
     public function create()
     {
+        
         $groups = Group::get();
         $param = [
             'groups' => $groups,
         ];
+        
         return view('admin.users.add', $param);
     }
 
@@ -68,7 +70,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->userService->store($request);
+            // $this->userService->store($request);
+        $users = $this->userService->store($request);
+
             // logic after save
         } catch (\Exception $e) {
             //logic handle error

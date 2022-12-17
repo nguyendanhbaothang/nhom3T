@@ -26,7 +26,7 @@
 {{-- @include('admin.header') --}}
 <div class="overlay"></div>
 <main class="main-wrapper">
-  @include('admin.layout.header')
+  {{-- @include('admin.layout.header') --}}
   <br>
   <section class="section">
     <div class="container-fluid">
