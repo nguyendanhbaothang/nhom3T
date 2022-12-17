@@ -8,6 +8,9 @@
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input type="text" id="fname" name="name" class="form-control">
+            @error('name')
+            <div class="text text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <input type="submit" value="Lưu" class="btn btn-success">
         <a href="{{route('categories.index')}}" class="btn btn-danger">Huỷ</a>
