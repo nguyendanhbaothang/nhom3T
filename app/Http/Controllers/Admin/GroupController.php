@@ -19,12 +19,12 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::search()->paginate(4);;
-        $users= User::get();
+        $users = User::get();
         $param = [
             'groups' => $groups,
             'users' => $users
         ];
-        return view('admin.group.index', $param );
+        return view('admin.group.index', $param);
     }
 
     /**
@@ -48,8 +48,8 @@ class GroupController extends Controller
         $notification = [
             'addgroup' => 'Thêm Tên Quyền Thành Công!',
         ];
-        $group=new Group();
-        $group->name=$request->name;
+        $group = new Group();
+        $group->name = $request->name;
         $group->save();
         return redirect()->route('group.index')->with($notification);
     }
@@ -74,7 +74,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = Group::find($id);
-        return view('admin.group.edit', compact('group') );
+        return view('admin.group.edit', compact('group'));
     }
 
     /**
@@ -110,7 +110,7 @@ class GroupController extends Controller
 
     public function detail($id)
     {
-        $group=Group::find($id);
+        $group = Group::find($id);
 
         $current_user = Auth::user();
         $userRoles = $group->roles->pluck('id', 'name')->toArray();
@@ -127,16 +127,16 @@ class GroupController extends Controller
             'roles' => $roles,
             'group_names' => $group_names,
         ];
-        return view('admin.group.detail',$params);
+        return view('admin.group.detail', $params);
     }
 
-    public function group_detail(Request $request,$id)
+    public function group_detail(Request $request, $id)
     {
         $notification = [
             'message' => 'Cấp Quyền Thành Công!',
             'alert-type' => 'success'
         ];
-        $group= Group::find($id);
+        $group = Group::find($id);
         $group->roles()->detach();
         $group->roles()->attach($request->roles);
         return redirect()->route('group.index')->with($notification);;

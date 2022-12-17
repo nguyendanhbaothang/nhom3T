@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Customer;
@@ -23,11 +24,13 @@ class CustomerRepository extends EloquentRepository implements CustomerRepositor
         + Khai báo paginate() ở PostRepositoryInterface
         + Triển khai lại ở PostRepository
     */
-    public function paginate($request){
+    public function paginate($request)
+    {
         $result = $this->model->paginate();
         return $result;
     }
-    public function all($request){
+    public function all($request)
+    {
         // echo __METHOD__;
         // die();
         // dd($this->model);

@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Services\Interfaces\ProductServiceInterface;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 // use GuzzleHttp\Psr7\Request;
 
 class ProductController extends Controller
@@ -101,8 +104,15 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        try {
+            DB::beginTransaction();
          $this->productService->store($request);
-        return redirect()->route('product.index');
+            DB::commit();
+            return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('product.index')->with('error','Thêm thất bại!');
+        }
 
     }
 
@@ -138,8 +148,15 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
+        try {
+            DB::beginTransaction();
         $this->productService->update($request,$id);
-        return redirect()->route('product.index');
+        DB::commit();
+        return redirect()->route('product.index')->with('status','Sửa  thành công!');
+    } catch (Exception $e) {
+        DB::rollBack();
+        return redirect()->route('product.index')->with('error','Sửa thất bại!');
+    }
     }
     /**
      * Remove the specified resource from storage.
@@ -149,6 +166,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
         $this->productService->destroy($id);
         // return view('admin.product.trash');
     }
@@ -165,6 +183,6 @@ class ProductController extends Controller
     }
     public function restoredelete($id){
         $this->productService->restoredelete($id);
-        return redirect()->route('product.trash');
+        return redirect()->route('product.index')->with('status','Khôi phục thành công!' );
     }
 }

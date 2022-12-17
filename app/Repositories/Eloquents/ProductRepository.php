@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Category;
@@ -7,6 +8,7 @@ use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Aler;
 
 class ProductRepository extends EloquentRepository implements ProductRepositoryInterface
 {
@@ -26,16 +28,18 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         + Khai báo paginate() ở PostRepositoryInterface
         + Triển khai lại ở PostRepository
     */
-    public function paginate($request){
+    public function paginate($request)
+    {
         $result = $this->model->paginate();
         return $result;
     }
 
-    public function all($request){
+    public function all($request)
+    {
         return Product::orderBy('id', 'DESC')->get();
-
     }
-    public function store($request){
+    public function store($request)
+    {
         $product = new Product();
         $product->name = $request->name;
         $product->price = $request->price;
@@ -57,38 +61,38 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         return  $product->save();
     }
 
-    public function update($request,$id){
-    $product = Product::find($id);
-    $product->name = $request->name;
-    $product->price = $request->price;
-    $product->quantity = $request->quantity;
-    $product->description = $request->description;
-    $product->category_id = $request->category_id;
-    $product->status = $request->status;
-    $product->product_hot = $request->product_hot;
-    $get_image=$request->image;
-    if($get_image){
-        $path='public/assets/product/'.$product->image;
-        if(file_exists($path)){
-            unlink($path);
-        }
-    $path='public/assets/product/';
-    $get_name_image=$get_image->getClientOriginalName();
-    $name_image=current(explode('.',$get_name_image));
-    $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-    $get_image->move($path,$new_image);
-    $product->image=$new_image;
-
-    $data['product_image']=$new_image;
-    }
-
-    return $product->save();
-}
-public function destroy($id)
+    public function update($request, $id)
     {
-        $products=Product::onlyTrashed()->findOrFail($id);
-       return $products->forceDelete();
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+        $product->status = $request->status;
+        $product->product_hot = $request->product_hot;
+        $get_image = $request->image;
+        if ($get_image) {
+            $path = 'public/assets/product/' . $product->image;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            $path = 'public/assets/product/';
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.', $get_name_image));
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
+            $product->image = $new_image;
 
+            $data['product_image'] = $new_image;
+        }
+
+        return $product->save();
+    }
+    public function destroy($id)
+    {
+        $products = Product::onlyTrashed()->findOrFail($id);
+        return $products->forceDelete();
     }
     public function trash()
     {
@@ -101,23 +105,20 @@ public function destroy($id)
         $product = Product::findOrFail($id);
         $product->deleted_at = date("Y-m-d h:i:s");
         return $product->save();
-
     }
     public function restoredelete($id)
     {
-        $product=Product::withTrashed()->where('id', $id);
+        $product = Product::withTrashed()->where('id', $id);
         return $product->restore();
     }
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories=Category::get();
+        $categories = Category::get();
         $param = [
-            'product' => $product ,
+            'product' => $product,
             'categories' => $categories
         ];
         return $param;
     }
-
-
 }
