@@ -6,9 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Log;
-use RealRashid\SweetAlert\Facades\Aler;
+
 
 class ProductRepository extends EloquentRepository implements ProductRepositoryInterface
 {
@@ -36,7 +34,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
     public function all($request)
     {
-        return Product::orderBy('id', 'DESC')->get();
+        return Product::with('category')->orderBy('id', 'DESC')->get();
     }
     public function store($request)
     {
