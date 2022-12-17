@@ -7,14 +7,9 @@
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item nav-item-has-children">
-          <a
-            href=""
-            data-bs-toggle="collapse"
-            data-bs-target="#ddmenu_1"
-            aria-controls="ddmenu_1"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            <a href="{{ route('home') }}">
+
+         
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22">
                 <path
@@ -23,8 +18,8 @@
               </svg>
             </span>
             <span class="text">Dashboard</span>
-          </a>
 
+          </a>
         </li>
         <li class="nav-item nav-item-has-children">
           <a
