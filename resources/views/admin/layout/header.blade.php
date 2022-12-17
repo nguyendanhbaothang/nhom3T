@@ -14,8 +14,8 @@
             <div class="header-search d-none d-md-flex">
               <form  action="{{route('categories.search')}}" method="GET">
                 @csrf
-                <input type="text" name="search" placeholder="Search..." />
-                {{-- <button><i class="lni lni-search-alt"></i></button> --}}
+               <input type="text" name="search" placeholder="Search..." />
+                <button><i class="lni lni-search-alt"></i></button>
               </form>
             </div>
           </div>
