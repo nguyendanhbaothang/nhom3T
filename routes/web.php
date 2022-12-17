@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/cc', function () {
+    return view('admin.layout.home');
+});
 Route::get('/', function () {
     return view('admin.layout.master');
 });
