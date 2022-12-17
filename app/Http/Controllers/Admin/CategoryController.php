@@ -48,8 +48,19 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
 
+        try {
+          $this->categoryService->store($request );
+          return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+          return redirect()->route('categories.index');
+
+        }
+
+
+
         $this->categoryService->store($request);
         return redirect()->route('categories.index');
+
     }
 
     /**
@@ -85,8 +96,18 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
+
+        try {
+            $this->categoryService->update($request ,$id);
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.index');
+
+        }
+
         $this->categoryService->update($request, $id);
         return redirect()->route('categories.index');
+
     }
 
     /**
@@ -97,21 +118,45 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->categoryService->destroy($id);
-        return redirect()->route('categories.index');
+        try {
+            $this->categoryService->destroy($id);
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.index');
+
+        }
     }
     public function getTrashed()
     {
         $categories = $this->categoryService->getTrashed();
         return view('admin.categories.trash', compact('categories'));
     }
+
+    public function restore($id){
+        try {
+
     public function restore($id)
     {
+
         $this->categoryService->restore($id);
         return redirect()->route('categories.getTrashed');
+    } catch (\Exception $e) {
+        return redirect()->route('categories.getTrashed');
+
     }
+    }
+
+    public function force_destroy($id){
+        try {
+            $category = $this->categoryService->force_destroy( $id);
+            return redirect()->route('categories.getTrashed');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.getTrashed');
+        }
+
     public function force_destroy($id)
     {
+
 
         $category = $this->categoryService->force_destroy($id);
         return redirect()->route('categories.getTrashed');
