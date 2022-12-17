@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
-    <h1>Danh sách sản phẩm</h1>
+    <h1>Garbage can</h1>
 
     <div class="container">
 
@@ -11,12 +11,12 @@
             </div>
             <thead>
                 <tr>
-                    <th scope="col">Số thứ tự</th>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Thể loại</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Hiển thị</th>
-                    <th adta-breakpoints="xs">Quản lí</th>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Image</th>
+                    <th adta-breakpoints="xs">Action</th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -26,19 +26,19 @@
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $team->name }}</td>
                         <td>{{ $team->category->name }}</td>
-                        <td>{{ $team->amount }}</td>
+                        <td>{{ $team->quantity }}</td>
                         <td>
-                            <img src="{{ asset('public/uploads/product/' . $team->image) }}" alt=""
-                                style="width: 50px">
+                            <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
+                                style="width: 100px">
                         </td>
 
                         <td>
                             <form action="{{ route('product.restoredelete', $team->id) }}" method="POST">
                                 @csrf
                                 @method('put')
-                                    <button type="submit" class="btn btn-success">Khôi Phục</button>
+                                    <button type="submit" class="btn btn-success">Restore</button>
                                     <a  data-href="{{ route('product.destroy', $team->id) }}"
-                                        id="{{ $team->id }}" class="btn btn-danger deleteIcon">Xóa</a>
+                                        id="{{ $team->id }}" class="btn btn-danger deleteIcon">Delete</a>
                             </form>
                         </td>
                     </tr>

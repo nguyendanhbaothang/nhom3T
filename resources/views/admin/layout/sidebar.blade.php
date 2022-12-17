@@ -44,7 +44,7 @@
                 />
               </svg>
             </span>
-            <span class="text"> Quản lí sản phẩm </span>
+            <span class="text"> Product Management</span>
           </a>
           <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
@@ -53,14 +53,14 @@
             <li>
               <a href="{{ route('product.index') }}">
                 <span class="text">
-                  Sản phẩm <span class="pro-badge">Pro</span>
+                  Product <span class="pro-badge">Pro</span>
                 </span>
               </a>
             </li>
             <li>
               <a href="{{ route('product.trash') }}">
                 <span class="text">
-                  Thùng rác <span class="pro-badge">Pro</span>
+                    Garbage can <span class="pro-badge">Pro</span>
                 </span>
               </a>
             </li>
@@ -150,7 +150,7 @@
             />
           </svg>
         </span>
-        <span class="text">Đơn hàng </span>
+        <span class="text">Order </span>
       </a>
       <ul id="ddmenu_2" class="collapse dropdown-nav">
         <li>
@@ -159,7 +159,7 @@
         <li>
           <a href="{{ route('order.index') }}">
             <span class="text">
-              Xem đơn hàng <span class="pro-badge">Pro</span>
+                View Orders<span class="pro-badge">Pro</span>
             </span>
           </a>
         </li>
