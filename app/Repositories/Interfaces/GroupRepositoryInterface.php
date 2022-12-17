@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Interfaces;
 //RepositoryInterface cùng cấp, ko cần use
-interface UserRepositoryInterface extends RepositoryInterface{
+interface GroupRepositoryInterface extends RepositoryInterface{
     //function editpass($id);
     //function adminpass($id);
     //function adminUpdatePass($request, $id);

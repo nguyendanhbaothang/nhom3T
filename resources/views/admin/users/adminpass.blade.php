@@ -9,7 +9,7 @@
                     <div class="page-inner">
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
-                                <a href="{{ route('user.index') }}" class="w3-button w3-red">Quay Lại</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-success">Quay Lại</a>
                             </nav>
                             <h1 class="page-title">Thay đổi mật khẩu của {{ $user->name }}</h1>
                         </header>
@@ -43,8 +43,8 @@
                                 @enderror
                                 <br>
                                 <div class="text-center">
-                                    <button type="submit" class="w3-button w3-blue">Lưu mật khẩu</button>
-                                    <a href="{{ route('user.index') }}" class="w3-button w3-red">Hủy</a>
+                                    <button type="submit" class="btn btn-warning">Lưu mật khẩu</button>
+                                    <a href="{{ route('user.index') }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </form>
                         </div>
