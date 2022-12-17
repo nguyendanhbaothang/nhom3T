@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Order;
@@ -15,16 +16,17 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
     {
         return Order::class;
     }
-    public function all($request){
+    public function all($request)
+    {
         return Order::orderBy('id', 'DESC')->get();
-
     }
-    public function find($id){
-         $items=DB::table('orderdetail')
-        ->join('orders','orderdetail.order_id','=','orders.id')
-        ->join('products','orderdetail.product_id','=','products.id')
-        ->select('products.*', 'orderdetail.*','orders.id')
-        ->where('orders.id','=',$id)->get();
+    public function find($id)
+    {
+        $items = DB::table('orderdetail')
+            ->join('orders', 'orderdetail.order_id', '=', 'orders.id')
+            ->join('products', 'orderdetail.product_id', '=', 'products.id')
+            ->select('products.*', 'orderdetail.*', 'orders.id')
+            ->where('orders.id', '=', $id)->get();
         return $items->get($id);
     }
 }

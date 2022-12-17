@@ -3,6 +3,16 @@
 <main id="main">
 <h1>Prodduct</h1>
 <div class="container">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+       {{ session('status') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
 <table class="table">
     <div class="col-6">
         <form>

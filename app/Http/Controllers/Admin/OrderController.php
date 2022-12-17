@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -22,18 +23,27 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
-        $orders = $this->orderService->all($request);
-        return view('admin.order.index', compact('orders'));
+        try {
+            $orders = $this->orderService->all($request);
+            return view('admin.order.index', compact('orders'));
+        } catch (\Exception $e) {
+            Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+        }
     }
 
 
 
     public function find($id)
     {
-        $items = $this->orderService->all($id);
-        return view('admin.order.orderdetail',compact('items'));
+        try {
+            $items = $this->orderService->all($id);
+            return view('admin.order.orderdetail', compact('items'));
+        } catch (\Exception $e) {
+            Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+        }
     }
-    public function exportOrder(){
+    public function exportOrder()
+    {
         return Excel::download(new OrderExport, 'order.xlsx');
     }
 }

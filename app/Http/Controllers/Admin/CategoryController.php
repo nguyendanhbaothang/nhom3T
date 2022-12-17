@@ -48,9 +48,8 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
 
-          $this->categoryService->store($request );
-          return redirect()->route('categories.index');
-
+        $this->categoryService->store($request);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -74,7 +73,7 @@ class CategoryController extends Controller
     {
         //
         $item = $this->categoryService->find($id);
-        return view('admin.categories.edit',compact('item'));
+        return view('admin.categories.edit', compact('item'));
     }
 
     /**
@@ -86,9 +85,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $this->categoryService->update($request ,$id);
+        $this->categoryService->update($request, $id);
         return redirect()->route('categories.index');
-
     }
 
     /**
@@ -102,19 +100,21 @@ class CategoryController extends Controller
         $this->categoryService->destroy($id);
         return redirect()->route('categories.index');
     }
-    public function getTrashed(){
+    public function getTrashed()
+    {
         $categories = $this->categoryService->getTrashed();
-        return view('admin.categories.trash',compact('categories'));
+        return view('admin.categories.trash', compact('categories'));
     }
-    public function restore($id){
+    public function restore($id)
+    {
         $this->categoryService->restore($id);
         return redirect()->route('categories.getTrashed');
     }
-    public function force_destroy($id){
+    public function force_destroy($id)
+    {
 
-            $category = $this->categoryService->force_destroy( $id);
-            return redirect()->route('categories.getTrashed');
-
+        $category = $this->categoryService->force_destroy($id);
+        return redirect()->route('categories.getTrashed');
     }
     public function search(Request $request)
     {
