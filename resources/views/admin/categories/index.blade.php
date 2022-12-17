@@ -17,7 +17,7 @@
     @foreach ($categories as $key => $value )
     <tr>
         <td>
-            {{$key++ }}
+            {{++$key }}
          </td>
           <td>
             {{$value->name}}
