@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\CategoryServiceInterface;
@@ -43,8 +45,9 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
+
         try {
           $this->categoryService->store($request );
           return redirect()->route('categories.index');
@@ -52,6 +55,11 @@ class CategoryController extends Controller
           return redirect()->route('categories.index');
 
         }
+
+
+
+        $this->categoryService->store($request);
+        return redirect()->route('categories.index');
 
     }
 
@@ -76,7 +84,7 @@ class CategoryController extends Controller
     {
         //
         $item = $this->categoryService->find($id);
-        return view('admin.categories.edit',compact('item'));
+        return view('admin.categories.edit', compact('item'));
     }
 
     /**
@@ -86,8 +94,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
+
         try {
             $this->categoryService->update($request ,$id);
             return redirect()->route('categories.index');
@@ -95,6 +104,10 @@ class CategoryController extends Controller
             return redirect()->route('categories.index');
 
         }
+
+        $this->categoryService->update($request, $id);
+        return redirect()->route('categories.index');
+
     }
 
     /**
@@ -113,12 +126,18 @@ class CategoryController extends Controller
 
         }
     }
-    public function getTrashed(){
+    public function getTrashed()
+    {
         $categories = $this->categoryService->getTrashed();
-        return view('admin.categories.trash',compact('categories'));
+        return view('admin.categories.trash', compact('categories'));
     }
+
     public function restore($id){
         try {
+
+    public function restore($id)
+    {
+
         $this->categoryService->restore($id);
         return redirect()->route('categories.getTrashed');
     } catch (\Exception $e) {
@@ -126,6 +145,7 @@ class CategoryController extends Controller
 
     }
     }
+
     public function force_destroy($id){
         try {
             $category = $this->categoryService->force_destroy( $id);
@@ -134,6 +154,12 @@ class CategoryController extends Controller
             return redirect()->route('categories.getTrashed');
         }
 
+    public function force_destroy($id)
+    {
+
+
+        $category = $this->categoryService->force_destroy($id);
+        return redirect()->route('categories.getTrashed');
     }
     public function search(Request $request)
     {

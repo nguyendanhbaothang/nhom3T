@@ -3,6 +3,16 @@
 <main id="main">
 <h1>Prodduct</h1>
 <div class="container">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+       {{ session('status') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
 <table class="table">
     <div class="col-6">
         <form>
@@ -35,7 +45,9 @@
                     <td>{{ $team->price }}</td>
                     <td>{{ $team->quantity }}</td>
                     <td>{{ $team->description }}</td>
+                    @if($team->deleted_at !== null)
                     <td>{{ $team->category->name }}</td>
+                    @endif
                     <td>
                         <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
                             style="width: 100px">
