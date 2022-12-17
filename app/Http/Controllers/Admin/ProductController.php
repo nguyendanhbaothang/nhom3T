@@ -37,7 +37,7 @@ class ProductController extends Controller
 
         // return view('admin.product.index', compact('products'));
 
-        $products =Product::all();
+        $products =Product::with('category')->orderBy('id', 'DESC')->get()  ;
         $categories = Category::all();
         $key        = $request->key ?? '';
         $name      = $request->name ?? '';
@@ -109,7 +109,7 @@ class ProductController extends Controller
          $this->productService->store($request);
             DB::commit();
             return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công!');
-        } catch (Exception $e) {
+        } catch (Exception) {
             DB::rollBack();
             return redirect()->route('product.index')->with('error','Thêm thất bại!');
         }

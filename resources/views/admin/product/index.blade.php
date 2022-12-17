@@ -45,7 +45,9 @@
                     <td>{{ $team->price }}</td>
                     <td>{{ $team->quantity }}</td>
                     <td>{{ $team->description }}</td>
+                    @if($team->deleted_at !== null)
                     <td>{{ $team->category->name }}</td>
+                    @endif
                     <td>
                         <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
                             style="width: 100px">
