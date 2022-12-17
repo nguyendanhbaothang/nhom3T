@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.layout.home');
+        $totalProduct = Product::count();
+        $totalCategory = Category::count();
+        $totalOrder = Order::count();
+        $totalUser = User::count();
+        return view('admin.layout.home', compact('totalProduct','totalCategory','totalOrder','totalUser'));
     }
 }

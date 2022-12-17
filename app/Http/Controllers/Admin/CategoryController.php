@@ -45,9 +45,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
+        try {
           $this->categoryService->store($request );
           return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+          return redirect()->route('categories.index');
+
+        }
 
     }
 
@@ -84,9 +88,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->categoryService->update($request ,$id);
-        return redirect()->route('categories.index');
+        try {
+            $this->categoryService->update($request ,$id);
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.index');
 
+        }
     }
 
     /**
@@ -97,21 +105,34 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->categoryService->destroy($id);
-        return redirect()->route('categories.index');
+        try {
+            $this->categoryService->destroy($id);
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.index');
+
+        }
     }
     public function getTrashed(){
         $categories = $this->categoryService->getTrashed();
         return view('admin.categories.trash',compact('categories'));
     }
     public function restore($id){
+        try {
         $this->categoryService->restore($id);
         return redirect()->route('categories.getTrashed');
+    } catch (\Exception $e) {
+        return redirect()->route('categories.getTrashed');
+
+    }
     }
     public function force_destroy($id){
-
+        try {
             $category = $this->categoryService->force_destroy( $id);
             return redirect()->route('categories.getTrashed');
+        } catch (\Exception $e) {
+            return redirect()->route('categories.getTrashed');
+        }
 
     }
     public function search(Request $request)
