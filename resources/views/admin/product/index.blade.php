@@ -43,9 +43,10 @@
                     <th scope="row">{{ $key + 1 }}</th>
                     <td>{{ $team->name }}</td>
                     <td>{{ $team->price }}</td>
-                                @if($team->deleted_at == null)
+                    @if($team->category->deleted_at == null)
                     <td>{{ $team->category->name }}</td>
                     @endif
+
                     <td>
                         <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
                             style="width: 100px">

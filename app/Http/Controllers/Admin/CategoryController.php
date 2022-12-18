@@ -50,9 +50,9 @@ class CategoryController extends Controller
 
         try {
             $this->categoryService->store($request);
-            return redirect()->route('categories.index');
-        } catch (\Exception $e) {
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('status','Thêm sản phẩm thành công!');
+        } catch (\Exception) {
+            return redirect()->route('categories.index')->with('error','Thêm thất bại!');
         }
     }
 
@@ -92,9 +92,9 @@ class CategoryController extends Controller
 
         try {
             $this->categoryService->update($request, $id);
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('status','Sửa  thành công!');
         } catch (\Exception $e) {
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('error','Sửa thất bại!');
         }
     }
 
@@ -108,9 +108,9 @@ class CategoryController extends Controller
     {
         try {
             $this->categoryService->destroy($id);
-            return redirect()->route('categories.index');
-        } catch (\Exception $e) {
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('status','Chuyển vào thùng rác thành công!' );
+        } catch (\Exception ) {
+            return redirect()->route('categories.index')->with('error','Chuyển vào thùng rác thất bại!' );
         }
     }
     public function getTrashed()
@@ -124,9 +124,9 @@ class CategoryController extends Controller
     {
         try {
             $this->categoryService->restore($id);
-            return redirect()->route('categories.getTrashed');
+            return redirect()->route('categories.getTrashed')->with('status','Khôi phục thành công!' );
         } catch (\Exception $e) {
-            return redirect()->route('categories.getTrashed');
+            return redirect()->route('categories.getTrashed')->with('error','Khôi phục không thành công!' );
         }
     }
 
@@ -134,19 +134,11 @@ class CategoryController extends Controller
     {
         try {
             $category = $this->categoryService->force_destroy($id);
-            return redirect()->route('categories.getTrashed');
+            return redirect()->route('categories.getTrashed')->with('status','Xóa thành công!' );
         } catch (\Exception $e) {
-            return redirect()->route('categories.getTrashed');
+            return redirect()->route('categories.getTrashed')->with('error','Xóa không thành công!' );
         }
     }
-
-    // public function force_destroy($id)
-    // {
-
-
-    //     $category = $this->categoryService->force_destroy($id);
-    //     return redirect()->route('categories.getTrashed');
-    // }
     public function search(Request $request)
     {
         $search = $request->input('search');

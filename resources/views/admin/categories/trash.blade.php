@@ -1,29 +1,20 @@
 @extends('admin.layout.master')
 @section('content')
-{{-- <main id="main" class="main">
-    <div class="pagetitle">
-        <h1 class="mb-1">Thùng rác</h1>
-            <a href="{{route('categories.index')}}">Quay lại</a></li>
-
-      </div>
-<div class="card">
-  <div class="card-body">
-    @if (Session::has('success'))
-    <p class="text-success"><i class="fa fa-check" aria-hidden="true"></i>
-        {{ Session::get('success') }}
-    </p>
+@if (session('status'))
+<div class="alert alert-success" role="alert">
+   {{ session('status') }}
+</div>
 @endif
-@if (Session::has('error'))
-    <p class="text-danger"><i class="bi bi-x-circle"></i>
-        {{ Session::get('error') }}
-    </p>
-@endif --}}
+@if (session('error'))
+<div class="alert alert-danger" role="alert">
+   {{ session('error') }}
+</div>
+@endif
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Tên danh mục</th>
-          {{-- <th scope="col">The number of products</th> --}}
           <th scope="col">Tuỳ chỉnh</th>
         </tr>
       </thead>
@@ -32,7 +23,6 @@
         <tr>
           <th scope="row">{{$key + 1}}</th>
           <td>{{$category->name}}</td>
-          {{-- <td>{{$category->products->count()}}</td> --}}
           <td>
             <form action="{{ route('categories.delete', $category->id) }}" method="post" >
                 @method('DELETE')
