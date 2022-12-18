@@ -188,40 +188,53 @@
               <span class="text">
               Customer <span class="pro-badge">Pro</span>
               </span>
-              
            </a>
         </li>
         <li class="nav-item nav-item-has-children">
-         <a href="{{route('group.index')}}">
-
-      
-         <span class="icon">
-           <svg width="22" height="22" viewBox="0 0 22 22">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
-               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-               <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-            </svg>
-         </span>
-         <span class="text">Danh Sách</span>
-
-       </a>
-     </li>
-     <li class="nav-item nav-item-has-children">
-      <a href="{{route('group.create')}}">
-
-   
-      <span class="icon">
-        <svg width="22" height="22" viewBox="0 0 22 22">
-         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
-            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-          </svg>
-      </span>
-      <span class="text">Tạo Chức Vụ</span>
-
-    </a>
-  </li>
-
+            <a
+               href="#0"
+               class="collapsed"
+               data-bs-toggle="collapse"
+               data-bs-target="#ddmenu_2"
+               aria-controls="ddmenu_2"
+               aria-expanded="false"
+               aria-label="Toggle navigation"
+               >
+               <span class="icon">
+                  <svg
+                     width="22"
+                     height="22"
+                     viewBox="0 0 22 22"
+                     fill="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                     >
+                     <path
+                        d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z"
+                        />
+                  </svg>
+               </span>
+               <span class="text">Group</span>
+            </a>
+            <ul id="ddmenu_2" class="collapse dropdown-nav">
+               <li>
+                  <a href=""></a>
+               </li>
+               <li>
+                  <a href="{{ route('group.index') }}">
+                  <span class="text">
+                  Group <span class="pro-badge">Pro</span>
+                  </span>
+                  </a>
+               </li>
+               <li>
+                  <a href="{{ route('group.create') }}">
+                  <span class="text">
+                  Tạo chức vụ <span class="pro-badge">Pro</span>
+                  </span>
+                  </a>
+               </li>
+            </ul>
+         </li>
      </ul>
   </nav>
 </aside>
