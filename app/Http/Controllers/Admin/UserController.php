@@ -266,7 +266,7 @@ class UserController extends Controller
 
           $request->session()->regenerate();
 
-          return redirect('/');
+      return view('admin.layout.home');
       }
       // dd($request->all());
       return back()->withErrors([
