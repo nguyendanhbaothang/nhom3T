@@ -9,8 +9,7 @@
       href="{{asset('assets/images/favicon.svg')}}"
       type="image/x-icon"
     />
-    <title>CLOCK SHOPS</title>
-
+    <title>3T SHOPS</title>
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/LineIcons.css')}}" />
@@ -23,24 +22,16 @@
   </head>
   <body>
 @include('admin.layout.sidebar')
-{{-- @include('admin.header') --}}
 <div class="overlay"></div>
 <main class="main-wrapper">
-  {{-- @include('admin.layout.header') --}}
   <br>
   <section class="section">
     <div class="container-fluid">
         @yield('content')
     </div>
-    <!-- end container -->
   </section>
   @include('admin.layout.footer')
-
 </main>
-
-{{-- @include('admin.header') --}}
-
-
   <!-- ========= All Javascript files linkup ======== -->
   <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assets/js/Chart.min.js')}}"></script>
