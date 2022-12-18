@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -28,9 +29,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cc', function () {
     return view('admin.layout.home');
 });
-// Route::get('/', function () {
-//     return view('admin.layout.master');
-// });
+
 
 Route::group(['prefix' => 'products'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -86,7 +85,7 @@ Route::post('login',[UserController::class,'login'])->name('admin.login');
 Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkLogin');
 
 
- Route::group(['prefix' => 'customers'], function () {
+Route::group(['prefix' => 'customers'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('/create', [CustomerControllerler::class, 'create'])->name('customers.create');
     Route::post('/store', [CustomerController::class, 'store'])->name('customers.store');
@@ -97,4 +96,15 @@ Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkL
 
 
 });
+Route::group(['prefix' => 'groups'], function () {
+    Route::get('/', [GroupController::class, 'index'])->name('group.index');
+    Route::get('/create', [GroupController::class, 'create'])->name('group.create');
+    Route::post('/store', [GroupController::class, 'store'])->name('group.store');
+    Route::get('/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
+    Route::put('/update/{id}', [GroupController::class, 'update'])->name('group.update');
+    Route::delete('destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+    // trao quyền
+    Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
+    Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
+   });
 

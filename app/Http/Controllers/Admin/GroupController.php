@@ -6,25 +6,43 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\Interfaces\GroupServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\DB;
+
+
 
 class GroupController extends Controller
 {
+    protected $groupService;
+
+    public function __construct(GroupServiceInterface $groupService)
+    {
+        $this->groupService = $groupService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($request)
     {
-        $groups = Group::search()->paginate(4);;
-        $users = User::get();
+
+        
+        
+        $group = $this->groupService->all($request);
+        $users= User::get();
+
         $param = [
-            'groups' => $groups,
-            'users' => $users
+            'group' => $group,
+            'users' => $users,
         ];
+
         return view('admin.group.index', $param);
+
     }
 
     /**
@@ -34,6 +52,7 @@ class GroupController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Group::class);
         return view('admin.group.add');
     }
 
@@ -45,13 +64,19 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $this->groupService->store($request->all());
+            Session::flash('success', config('define.store.succes'));
+            return redirect()->route('group.index');
+        } catch (\Exception $e) {
+            Session::flash('error', config('define.store.error'));
+            Log::error('message:'. $e->getMessage());
+            return redirect()->route('group.index');
+        }
         $notification = [
             'addgroup' => 'Thêm Tên Quyền Thành Công!',
         ];
-        $group = new Group();
-        $group->name = $request->name;
-        $group->save();
-        return redirect()->route('group.index')->with($notification);
+
     }
 
     /**
@@ -73,8 +98,23 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::find($id);
-        return view('admin.group.edit', compact('group'));
+        $user = Group::find($id);
+        // $this->authorize('update', Group::class);
+        $current_user = Auth::user();
+        $userRoles = $user->roles->pluck('id', 'name')->toArray();
+        $roles = Role::all()->toArray();
+        $group_names = [];
+        foreach ($roles as $role) {
+            $group_names[$role['group_name']][] = $role;
+        }
+        $params = [
+            'user' => $user,
+            'userRoles' => $userRoles,
+            'roles' => $roles,
+            'group_names' => $group_names,
+        ];
+        return view('admin.group.edit',$params);
+
     }
 
     /**
@@ -86,14 +126,20 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $group = Group::find($id);
-        $group->name = $request->name;
-        $group->save();
+        try {
+            $item = $this->groupService->update( $id, $request->roles);
+            Session::flash('success', config('define.update.succes'));
+            return redirect()->route('group.index');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Session::flash('error', config('define.update.error'));
+            return redirect()->route('group.index');
+        }
         $notification = [
-            'message' => 'Chỉnh Sửa Thành Công!',
+            'message' => 'Câp Nhật Thành Công!',
             'alert-type' => 'success'
         ];
-        return redirect()->route('group.index')->with($notification);
+        // return redirect()->route('group.index')->with($notification);
     }
 
     /**
@@ -104,8 +150,20 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        $group = Group::find($id);
-        $group->delete();
+        // $this->authorize('delete', Group::class);
+        try {
+            $user = $this->groupService->destroy($id);
+            Session::flash('success', config('define.recycle.succes'));
+            return redirect()->route('group.index');
+        } catch (\Exception $e) {
+            Log::error('message:'. $e->getMessage());
+            Session::flash('error', config('define.recycle.error'));
+            return redirect()->route('group.index');
+        }
+        $notification = [
+            'message' => 'Xoá Thành Công!',
+            'alert-type' => 'success'
+        ];
     }
 
     public function detail($id)

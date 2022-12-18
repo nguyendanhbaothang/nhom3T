@@ -34,37 +34,37 @@ class UserService implements UserServiceInterface
     public function destroy($id){
         return $this->userRepository->destroy($id);
     }
-    public function editpass($id){
-        return $this->userRepository->editpass($id);
+    // public function editpass($id){
+    //     return $this->userRepository->editpass($id);
 
-    }
-    public function adminpass($id){
-        return $this->userRepository->adminpass($id);
+    // }
+    // public function adminpass($id){
+    //     return $this->userRepository->adminpass($id);
         
-    }
-    public function adminUpdatePass($request, $id){
-        return $this->userRepository->adminUpdatePass($request,$id);
+    // }
+    // public function adminUpdatePass($request, $id){
+    //     return $this->userRepository->adminUpdatePass($request,$id);
 
-    }
-    public function updatepass($request){
-        return $this->userRepository->updatepass($request);
+    // }
+    // public function updatepass($request){
+    //     return $this->userRepository->updatepass($request);
 
-    }
-    public function viewLogin(){
-        return $this->userRepository->viewLogin();
+    // }
+    // public function viewLogin(){
+    //     return $this->userRepository->viewLogin();
 
-    }
-    public function viewRegister(){
-        return $this->userRepository->viewRegister();
+    // }
+    // public function viewRegister(){
+    //     return $this->userRepository->viewRegister();
 
-    }
-    public function logout($request){
-        return $this->userRepository->logout($request);
+    // }
+    // public function logout($request){
+    //     return $this->userRepository->logout($request);
         
-    }
-    public function register($request){
-        return $this->userRepository->register($request);
+    // }
+    // public function register($request){
+    //     return $this->userRepository->register($request);
 
-    }
+    // }
 
 }

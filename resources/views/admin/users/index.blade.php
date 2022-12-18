@@ -19,16 +19,6 @@ border-radius:50%;
                         {{-- <h1 class="page-title">Sản phẩm</h1> --}}
                         <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản user</a>
                     </header>
-
-                    {{-- <button data-swal-toast-template="#my-template">
-                        Trigger toast
-                      </button>
-
-                      <template id='my-template'>
-                        <swal-title>Hey!</swal-title>
-                      </template> --}}
-
-
                     <hr>
                     <div class="panel-heading">
                       <h3> Nhân sự</h3>
@@ -66,9 +56,13 @@ border-radius:50%;
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->group->name }}</td>
                                         <td>
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
+                                            {{-- @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
                                             <a href="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-primary">Sửa</a>
+                                            @endif --}}
+                                            @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
+                                            <a data-href="{{ route('user.edit', $user->id) }}"
+                                                id="{{ $user->id }}" class="btn btn-primary deleteIcon">Sửa</i></a>
                                             @endif
                                             @if (Auth::user() && Auth::user()->hasPermission('User_forceDelete') || true)
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
@@ -128,7 +122,7 @@ border-radius:50%;
                     Swal.fire({
                         icon: 'error',
                         title: 'Tuổi...?',
-                        text: 'Tuổi gì đòi xóa Supper Admin!',
+                        text: 'Tuổi gì đòi xóa Admin!',
                     })
                 }
             })
