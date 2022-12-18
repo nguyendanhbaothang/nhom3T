@@ -1,14 +1,12 @@
 <?php
 namespace App\Services\Interfaces;
+// use App\Services\ServiceInterface;
 /*
 ServiceInterface nằm cùng cấp, ko cần use
 */
 interface GroupServiceInterface extends ServiceInterface{
-    // public function editpass($id);
-    // public function adminpass($id);
-    // public function adminUpdatePass($request, $id);
-    // public function updatepass($request);
-    // public function logout($request);
-    // public function register($request);
+    // public function detail($id);
+    // public function group_detail($request, $id);
+    
 
 }

@@ -55,9 +55,9 @@
                     </div>
                     <div class="form-actions">
                         {{-- @if (Auth::user()->hasPermission('Position_update')) --}}
-                        <button class="w3-button w3-blue" type="submit">Duyệt</button>
+                        <button class="btn btn-danger" type="submit">Duyệt</button>
                         {{-- @endif --}}
-                        <a href="{{ route('group.index') }}" class="w3-button w3-red"
+                        <a href="{{ route('group.index') }}" class="btn btn-warning"
                                         type="submit">Hủy</a>
                     </div>
                 </div>

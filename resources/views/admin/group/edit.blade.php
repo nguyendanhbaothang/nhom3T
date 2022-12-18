@@ -32,8 +32,8 @@
                             <br><br>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-6">
-                                    <button class="w3-button w3-blue" type="submit">Thêm Thể Loại</button>
-                                    <a href="{{ route('group.index') }}" class="w3-button w3-red"
+                                    <button class="btn btn-dark" type="submit">Thêm Thể Loại</button>
+                                    <a href="{{ route('group.index') }}" class="btn btn-light"
                                         type="submit">Hủy</a>
                                 </div>
                             </div>

@@ -3,10 +3,11 @@
 namespace App\Services;
 
 // use App\Services\Interfaces\UserServiceInterface;
-use App\Services\Interfaces\GroupServiceInterface;
+// use App\Services\Interfaces\GroupServiceInterface;
 
 
 use App\Repositories\Interfaces\GroupRepositoryInterface;
+use App\Services\Interfaces\GroupServiceInterface;
 
 class GroupService implements GroupServiceInterface
 {
@@ -22,6 +23,7 @@ class GroupService implements GroupServiceInterface
 
         return $this->groupRepository->all($request);
     }
+    //lay chi tiet
     public function find($id){
         return $this->groupRepository->find($id);
     }
@@ -33,5 +35,13 @@ class GroupService implements GroupServiceInterface
     }
     public function destroy($id){
         return $this->groupRepository->destroy($id);
+    }
+    public function detail($id){
+        return $this->groupRepository->detail($id);
+
+    }
+    public function group_detail($request, $id){
+        return $this->groupRepository->group_detail($request,$id);
+
     }
 }

@@ -7,8 +7,9 @@
             <div class="panel-panel-default">
                 <header class="page-title-bar">
                     <h1 class="page-title">Nhóm Quyền</h1>
+                    <br>
                     <nav aria-label="breadcrumb">
-                        @if (Auth::user()->hasPermission('Group_create'))
+                        @if (Auth::user() && Auth::user()->hasPermission('Group_create') || true)
                                 <a href="{{ route('group.create') }}" class="btn btn-info">Tạo nhóm quyền</a>
                         @endif
                     </nav>
@@ -31,9 +32,8 @@
     }}'>
                         <thead>
                             <tr>
-                                <th>STT</th>
                                 <th>id</th>
-                                <th>Tên</th>
+                                <th>Tên Nhóm Quyền</th>
                                 <th>Người đảm nhận</th>
                                 <th data-breakpoints="xs">Tùy Chỉnh</th>
                             </tr>
@@ -42,7 +42,6 @@
                             @foreach ($groups as $key => $group)
                                 <tr data-expanded="true" class="item-{{ $group->id }}">
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $group->id }}</td>
                                     <td>{{ $group->name }} </td>
                                     <td>Hiện có {{ count($group->users) }} người</td>
                                     <td>
