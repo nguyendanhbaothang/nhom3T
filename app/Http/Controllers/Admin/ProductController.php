@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Exports\ProductExport;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\User;
 use App\Services\Interfaces\ProductServiceInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+
 // use GuzzleHttp\Psr7\Request;
 
 class ProductController extends Controller
@@ -125,7 +128,9 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        $item = $this->productService->find($id);
+        $product = $this->productService->find($id);
+        $users= User::all();
+        return view('admin.product.detail',compact('product', 'users'));
     }
 
     /**
@@ -184,5 +189,8 @@ class ProductController extends Controller
     public function restoredelete($id){
         $this->productService->restoredelete($id);
         return redirect()->route('product.index')->with('status','Khôi phục thành công!' );
+    }
+    public function exportExcel(){
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 }
