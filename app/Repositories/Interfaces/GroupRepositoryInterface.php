@@ -4,6 +4,10 @@ namespace App\Repositories\Interfaces;
 interface GroupRepositoryInterface extends RepositoryInterface{
     // public function all($request);
     // public function update($id, $data);
+    // public function detail($id);
+    // public function group_detail($request, $id);
+
+
 
     //function editpass($id);
     //function adminpass($id);

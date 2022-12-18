@@ -33,6 +33,12 @@ use App\Services\CustomerService;
 use App\Services\Interfaces\CustomerServiceInterface;
 use App\Repositories\Eloquents\CustomerRepository;
 
+/*Group*/
+use App\Repositories\Interfaces\GroupRepositoryInterface;
+use App\Services\GroupService;
+use App\Services\Interfaces\GroupServiceInterface;
+use App\Repositories\Eloquents\GroupRepository;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -57,6 +63,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
         $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
+
+        $this->app->singleton(GroupServiceInterface::class, GroupService::class);
+        $this->app->singleton(GroupRepositoryInterface::class, GroupRepository::class);
 
     }
 
