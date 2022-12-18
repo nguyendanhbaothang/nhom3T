@@ -2,12 +2,20 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-<style>
-
-</style>
+<h1>Categories</h1>
 <main id="main">
 <body>
 <table  class="table">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+       {{ session('status') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
 <a href="{{route('categories.create')}}" class="btn btn-success">Thêm mới</a>
     <tr>
     <th>id</th>
