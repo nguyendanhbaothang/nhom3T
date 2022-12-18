@@ -43,6 +43,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::put('/softdeletes/{id}', [ProductController::class, 'softdeletes'])->name('product.softdeletes');
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
+    Route::get('/xuatexcel', [ProductController::class, 'exportExcel'])->name('product.xuat');
 });
 
 
