@@ -30,15 +30,19 @@ class GroupController extends Controller
      */
     public function index($request)
     {
+
         
         
         $group = $this->groupService->all($request);
         $users= User::get();
+
         $param = [
             'group' => $group,
             'users' => $users,
         ];
-        return view('admin.group.index',compact($param) );
+
+        return view('admin.group.index', $param);
+
     }
 
     /**
@@ -72,6 +76,7 @@ class GroupController extends Controller
         $notification = [
             'addgroup' => 'Thêm Tên Quyền Thành Công!',
         ];
+
     }
 
     /**
@@ -109,6 +114,7 @@ class GroupController extends Controller
             'group_names' => $group_names,
         ];
         return view('admin.group.edit',$params);
+
     }
 
     /**
@@ -162,7 +168,7 @@ class GroupController extends Controller
 
     public function detail($id)
     {
-        $group=Group::find($id);
+        $group = Group::find($id);
 
         $current_user = Auth::user();
         $userRoles = $group->roles->pluck('id', 'name')->toArray();
@@ -179,16 +185,16 @@ class GroupController extends Controller
             'roles' => $roles,
             'group_names' => $group_names,
         ];
-        return view('admin.group.detail',$params);
+        return view('admin.group.detail', $params);
     }
 
-    public function group_detail(Request $request,$id)
+    public function group_detail(Request $request, $id)
     {
         $notification = [
             'message' => 'Cấp Quyền Thành Công!',
             'alert-type' => 'success'
         ];
-        $group= Group::find($id);
+        $group = Group::find($id);
         $group->roles()->detach();
         $group->roles()->attach($request->roles);
         return redirect()->route('group.index')->with($notification);;

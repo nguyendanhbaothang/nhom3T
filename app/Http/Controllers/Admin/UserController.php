@@ -36,7 +36,8 @@ class UserController extends Controller
         return view('admin.users.index', $param);
     }
 
-    public function showAdmin(){
+    public function showAdmin()
+    {
 
         $admins = User::get();
         $param = [
@@ -78,7 +79,7 @@ class UserController extends Controller
             //logic handle error
             Log::error($e->getMessage());
         }
-       
+
 
         $notification = [
             'message' => 'Đăng ký thành công!',
@@ -96,13 +97,13 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $param =[
-            'user'=>$user,
+        $param = [
+            'user' => $user,
         ];
 
 
         // $productshow-> show();
-        return view('admin.users.profile',  $param );
+        return view('admin.users.profile',  $param);
     }
 
     /**
@@ -114,12 +115,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->userService->find($id);
-        $groups=Group::get();
+        $groups = Group::get();
         $param = [
-            'user' => $user ,
+            'user' => $user,
             'groups' => $groups
         ];
-        return view('admin.users.edit' , $param);
+        return view('admin.users.edit', $param);
     }
 
     /**
@@ -147,39 +148,40 @@ class UserController extends Controller
         return redirect()->route('user.index')->with($notification);
     }
 
-    public function editpass($id){
+    public function editpass($id)
+    {
         // $this->authorize('view', User::class);
         $user = $this->userService->find($id);
-        $param =[
-            'user'=>$user,
+        $param = [
+            'user' => $user,
         ];
         return view('admin.users.editpass', $param);
     }
 
-    public function adminpass($id){
+    public function adminpass($id)
+    {
         // $this->authorize('adminUpdatePass', User::class);
         $user = $this->userService->find($id);
-        $param =[
-            'user'=>$user,
+        $param = [
+            'user' => $user,
         ];
         return view('admin.users.adminpass', $param);
     }
 
-    public function adminUpdatePass(Request $request, $id){
+    public function adminUpdatePass(Request $request, $id)
+    {
         // $this->authorize('adminUpdatePass', User::class);
         $user = $this->userService->find($id);
-        if($request->renewpassword==$request->newpassword)
-        {
+        if ($request->renewpassword == $request->newpassword) {
             $item = $this->userService->find($id);
-            $item->password= bcrypt($request->newpassword);
+            $item->password = bcrypt($request->newpassword);
             $item->save();
             $notification = [
                 'message' => 'Đổi mật khẩu thành công!',
                 'alert-type' => 'success'
             ];
             return redirect()->route('user.index')->with($notification);
-
-        }else{
+        } else {
             $notification = [
                 'sainhap' => 'Bạn nhập mật khẩu không trùng khớp!',
                 'alert-type' => 'error'
@@ -190,18 +192,17 @@ class UserController extends Controller
 
     public function updatepass(Request $request)
     {
-        if($request->renewpassword==$request->newpassword)
-        {
+        if ($request->renewpassword == $request->newpassword) {
             if ((Hash::check($request->password, Auth::user()->password))) {
-                $item=User::find(Auth()->user()->id);
-                $item->password= bcrypt($request->newpassword);
+                $item = User::find(Auth()->user()->id);
+                $item->password = bcrypt($request->newpassword);
                 $item->save();
                 $notification = [
                     'message' => 'Đổi mật khẩu thành công!',
                     'alert-type' => 'success'
                 ];
                 return redirect()->route('user.index')->with($notification);
-            }else{
+            } else {
 
                 $notification = [
                     'saipass' => '!',
@@ -209,13 +210,12 @@ class UserController extends Controller
                 ];
                 return back()->with($notification);
             }
-        }else{
+        } else {
             $notification = [
                 'sainhap' => '!',
             ];
             return back()->with($notification);
         }
-
     }
 
     /**
@@ -231,15 +231,15 @@ class UserController extends Controller
         ];
 
         $user = $this->userService->find($id);
-        if($user->group->name!='Supper Admin'){
+        if ($user->group->name != 'Supper Admin') {
             $user->delete();
-        }
-        else{
+        } else {
             return dd(__METHOD__);
         }
     }
 
     //Hiển Thị Đăng Nhập
+
   public function viewLogin()
   {
 
@@ -305,13 +305,14 @@ class UserController extends Controller
       } catch (\Exception $e) {
           Log::error("message:".$e->getMessage());
       }
+
     }
 
     public function logout(Request $request)
     {
-      Auth::logout();
-      $request->session()->invalidate();
-      $request->session()->regenerateToken();
-      return redirect()->route('login');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

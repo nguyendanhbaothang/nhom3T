@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Repositories\Eloquents;
+
 use Illuminate\Support\Facades\Log;
 
 use App\Models\User;
@@ -24,12 +26,14 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         + Khai báo paginate() ở PostRepositoryInterface
         + Triển khai lại ở PostRepository
     */
-    public function paginate($request){
+    public function paginate($request)
+    {
         $result = $this->model->paginate();
         return $result;
     }
 
-    public function store($request){
+    public function store($request)
+    {
         $user = new $this->model;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -61,6 +65,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         //     $email->to($request->email, $request->name);
         // });
     }
+
     public function update($request, $id){
         $user = $this->userService->find($id);
         $user->name = $request->name;
@@ -85,3 +90,4 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         $user->save();
     }
 }
+

@@ -3,6 +3,16 @@
 <main id="main">
 <h1>Prodduct</h1>
 <div class="container">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+       {{ session('status') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
 <table class="table">
     <div class="col-6">
         <form>
@@ -11,6 +21,8 @@
                 <a class="btn btn-sm btn-icon btn-warning" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Advanced search</a>
 
                     @include('admin.product.modals.modalproductcolumns')
+        <a href="{{route('product.xuat')}}" class="btn btn-warning">Xuất Exports </a>
+
                 </form>
         </div>
         <thead>
@@ -18,8 +30,6 @@
                 <th scope="col">STT</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Description</th>
                 <th scope="col">Category</th>
                 <th scope="col">Image</th>
                 <th scope="col">Status</th>
@@ -33,9 +43,9 @@
                     <th scope="row">{{ $key + 1 }}</th>
                     <td>{{ $team->name }}</td>
                     <td>{{ $team->price }}</td>
-                    <td>{{ $team->quantity }}</td>
-                    <td>{{ $team->description }}</td>
+                                @if($team->deleted_at == null)
                     <td>{{ $team->category->name }}</td>
+                    @endif
                     <td>
                         <img src="{{ asset('public/assets/product/' . $team->image) }}" alt=""
                             style="width: 100px">
@@ -57,7 +67,7 @@
                     </td>
                     <td>
                         <form action="{{ route('product.softdeletes', $team->id) }}" method="POST">
-
+                            <a class="btn btn-info" href="{{ route('product.show', $team->id) }}">Show</a>
                             <a href="{{ route('product.edit', $team->id) }}"
                                 class="btn btn-primary">Edit</a>
                             @csrf

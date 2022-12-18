@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Repositories\Interfaces\RepositoryInterface;
@@ -47,11 +48,11 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function update($data, $id)
     {
-        return $this->model->where('id',$id)->update($data);
+        return $this->model->where('id', $id)->update($data);
     }
 
     public function destroy($id)
     {
-        return $this->model->where('id',$id)->delete();
+        return $this->model->where('id', $id)->delete();
     }
 }

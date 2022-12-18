@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Exports\ProductExport;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\User;
 use App\Services\Interfaces\ProductServiceInterface;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+
 // use GuzzleHttp\Psr7\Request;
 
 class ProductController extends Controller
@@ -34,7 +40,7 @@ class ProductController extends Controller
 
         // return view('admin.product.index', compact('products'));
 
-        $products =Product::all();
+        $products =Product::with('category')->orderBy('id', 'DESC')->get()  ;
         $categories = Category::all();
         $key        = $request->key ?? '';
         $name      = $request->name ?? '';
@@ -101,8 +107,15 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        try {
+            DB::beginTransaction();
          $this->productService->store($request);
-        return redirect()->route('product.index');
+            DB::commit();
+            return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công!');
+        } catch (Exception) {
+            DB::rollBack();
+            return redirect()->route('product.index')->with('error','Thêm thất bại!');
+        }
 
     }
 
@@ -115,7 +128,9 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        $item = $this->productService->find($id);
+        $product = $this->productService->find($id);
+        $users= User::all();
+        return view('admin.product.detail',compact('product', 'users'));
     }
 
     /**
@@ -138,8 +153,15 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
+        try {
+            DB::beginTransaction();
         $this->productService->update($request,$id);
-        return redirect()->route('product.index');
+        DB::commit();
+        return redirect()->route('product.index')->with('status','Sửa  thành công!');
+    } catch (Exception $e) {
+        DB::rollBack();
+        return redirect()->route('product.index')->with('error','Sửa thất bại!');
+    }
     }
     /**
      * Remove the specified resource from storage.
@@ -149,6 +171,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
         $this->productService->destroy($id);
         // return view('admin.product.trash');
     }
@@ -165,6 +188,9 @@ class ProductController extends Controller
     }
     public function restoredelete($id){
         $this->productService->restoredelete($id);
-        return redirect()->route('product.trash');
+        return redirect()->route('product.index')->with('status','Khôi phục thành công!' );
+    }
+    public function exportExcel(){
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 }

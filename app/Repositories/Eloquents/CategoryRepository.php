@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Category;
@@ -23,47 +24,51 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         + Khai báo paginate() ở PostRepositoryInterface
         + Triển khai lại ở PostRepository
     */
-    public function paginate($request){
+    public function paginate($request)
+    {
         $result = $this->model->paginate();
         return $result;
     }
 
-    public function all($request){
+    public function all($request)
+    {
         // echo __METHOD__;
         // die();
         // dd($this->model);
         return Category::orderBy('id', 'DESC')->paginate(3);
-
     }
-    public function find($id){
+    public function find($id)
+    {
         $category = Category::find($id);
         return $category;
-
     }
-    public function store($request){
+    public function store($request)
+    {
         $category = new Category();
-         $category->name = $request->name;
-         return $category->save();
-
+        $category->name = $request->name;
+        return $category->save();
     }
-    public function update($request,$id){
+    public function update($request, $id)
+    {
         $category = new Category();
         $category = Category::find($id);
         $category->name = $request->name;
         return $category->save();
-
     }
-    public function getTrashed(){
+    public function getTrashed()
+    {
         $query = $this->model->onlyTrashed();
         $query->orderBy('id', 'desc');
         $category = $query->paginate(5);
         return $category;
     }
-    public function restore($id){
+    public function restore($id)
+    {
         $category = $this->model->withTrashed()->findOrFail($id);
         return  $category->restore();
     }
-    public function force_destroy($id){
+    public function force_destroy($id)
+    {
         $category = $this->model->onlyTrashed()->findOrFail($id);
         return $category->forceDelete();
     }
