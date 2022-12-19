@@ -51,129 +51,87 @@
           <!-- ========== title-wrapper end ========== -->
           <div class="row">
             <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30"  style="background-color: rgb(179, 179, 240)">
-                <div class="icon purple">
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Product</h6>
-                  <h3 class="text-bold mb-10"><h1>{{$totalProduct}}</h1></h3>
-                  <p class="text-sm text-success">
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30" style="background-color: rgb(92, 223, 179)">
-                <div class="icon success">
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Category</h6>
-                  <h3 class="text-bold mb-10"><h1>{{$totalCategory}}</h1></h3>
-                  <p class="text-sm text-success">
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30" style="background-color: rgb(248, 237, 136)">
-                <div class="icon primary">
-                </div>
-                <div class="content">
-                  <h6 class="mb-10">Order</h6>
-                  <h3 class="text-bold mb-10"><h1>{{$totalOrder}}</h1></h3>
-                  <p class="text-sm text-danger">
-                  </p>
-                </div>
-              </div>
-              <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <div class="icon-card mb-30" style="background-color: rgb(236, 125, 105)">
-                <div class="icon orange">
+                <div class="icon-card mb-30" style="background-color: rgb(136, 226, 248)">
+                  <div class="icon primary">
+                  </div>
+                  <div class="content">
+                    <h6 class="mb-10">Product</h6>
 
+                    <h3 class="text-bold mb-10"><h1>{{$totalProduct}}</h1></h3>
+                    <a href="{{ route('product.index') }}" class="mb-10">View</a>
+                    <p class="text-sm text-danger">
+                    </p>
+                  </div>
                 </div>
-                <div class="content">
-                  <h6 class="mb-10">User</h6>
-                  <h3 class="text-bold mb-10"><h1>{{$totalUser}}</h1></h3>
-                  <p class="text-sm text-danger">
-                  </p>
-                </div>
+                <!-- End Icon Cart -->
               </div>
-              <!-- End Icon Cart -->
-            </div>
+            <!-- End Col -->
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="icon-card mb-30" style="background-color: rgb(243, 84, 84)">
+                  <div class="icon primary">
+                  </div>
+                  <div class="content">
+                    <h6 class="mb-10">Category</h6>
+
+                    <h3 class="text-bold mb-10"><h1>{{$totalCategory}}</h1></h3>
+                    <a href="{{ route('categories.index') }}" class="mb-10">View</a>
+                    <p class="text-sm text-danger">
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Cart -->
+              </div>
+            <!-- End Col -->
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="icon-card mb-30" style="background-color: rgb(238, 231, 135)">
+                  <div class="icon primary">
+                  </div>
+                  <div class="content">
+                    <h6 class="mb-10">Order</h6>
+
+                    <h3 class="text-bold mb-10"><h1>{{$totalOrder}}</h1></h3>
+                    <a href="{{ route('order.index') }}" class="mb-10">View</a>
+                    <p class="text-sm text-danger">
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Cart -->
+              </div>
+            <!-- End Col -->
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="icon-card mb-30" style="background-color: rgb(140, 248, 136)">
+                  <div class="icon primary">
+                  </div>
+                  <div class="content">
+                    <h6 class="mb-10">User</h6>
+
+                    <h3 class="text-bold mb-10"><h1>{{$totalUser}}</h1></h3>
+                    <a href="{{ route('user.index') }}" class="mb-10">View</a>
+                    <p class="text-sm text-danger">
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Cart -->
+              </div>
+              <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="icon-card mb-30" style="background-color: rgb(248, 167, 244)">
+                  <div class="icon primary">
+                  </div>
+                  <div class="content">
+                    <h6 class="mb-10">Customer</h6>
+
+                    <h3 class="text-bold mb-10"><h1>{{$totalCustomer}}</h1></h3>
+                    <a href="{{ route('customers.index') }}" class="mb-10">View</a>
+                    <p class="text-sm text-danger">
+                    </p>
+                  </div>
+                </div>
+                <!-- End Icon Cart -->
+              </div>
             <!-- End Col -->
           </div>
           <!-- End Row -->
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="card-style mb-30">
-                <div class="title d-flex flex-wrap justify-content-between">
-                  <div class="left">
-                    <h6 class="text-medium mb-10">Yearly Stats</h6>
-                    <h3 class="text-bold">$245,479</h3>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Yearly</option>
-                          <option value="">Monthly</option>
-                          <option value="">Weekly</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <canvas
-                    id="Chart1"
-                    style="width: 100%; height: 400px"
-                  ></canvas>
-                </div>
-                <!-- End Chart -->
-              </div>
-            </div>
-            <!-- End Col -->
-            <div class="col-lg-5">
-              <div class="card-style mb-30">
-                <div
-                  class="title d-flex flex-wrap align-items-center justify-content-between"
-                >
-                  <div class="left">
-                    <h6 class="text-medium mb-30">Sales/Revenue</h6>
-                  </div>
-                  <div class="right">
-                    <div class="select-style-1">
-                      <div class="select-position select-sm">
-                        <select class="light-bg">
-                          <option value="">Yearly</option>
-                          <option value="">Monthly</option>
-                          <option value="">Weekly</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- end select -->
-                  </div>
-                </div>
-                <!-- End Title -->
-                <div class="chart">
-                  <canvas
-                    id="Chart2"
-                    style="width: 100%; height: 400px"
-                  ></canvas>
-                </div>
-                <!-- End Chart -->
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
+
           <!-- End Row -->
 
           <!-- End Row -->
