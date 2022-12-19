@@ -17,7 +17,6 @@ class ProductService implements ProductServiceInterface
 
     /* Triển khai các phương thức trong PostServiceInterface */
     public function all($request){
-
         return $this->productRepository->all($request);
     }
     public function find($id){

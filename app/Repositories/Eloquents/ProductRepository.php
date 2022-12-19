@@ -34,6 +34,38 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
     public function all($request)
     {
+        $products = Product::with('category')->orderBy('id', 'DESC')->get();
+        $categories = Category::all();
+        $key        = $request->key ?? '';
+        $name      = $request->name ?? '';
+        $price      = $request->price ?? '';
+        $category_id       = $request->category_id ?? '';
+
+        $id         = $request->id ?? '';
+        $query = Product::query(true);
+
+        if ($name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+        if ($price) {
+            $query->where('price', 'LIKE', '%' . $price . '%');
+        }
+        if ($category_id) {
+            $query->where('category_id', 'LIKE', '%' . $category_id . '%');
+        }
+
+        if ($id) {
+            $query->where('id', $id);
+        }
+        if ($key) {
+            $query->orWhere('id', $key);
+            $query->orWhere('name', 'LIKE', '%' . $key . '%');
+            $query->orWhere('price', 'LIKE', '%' . $key . '%');
+            $query->orWhere('category_id', 'LIKE', '%' . $key . '%');
+        }
+
+        $products = $query->paginate(5);
+        return $products;
         return Product::with('category')->orderBy('id', 'DESC')->get();
     }
     public function store($request)
