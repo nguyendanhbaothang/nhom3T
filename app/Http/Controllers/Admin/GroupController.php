@@ -30,18 +30,8 @@ class GroupController extends Controller
      */
     public function index(Request $request)
     {
-
-        
-        
-        $groups = $this->groupService->all($request);
-        $users= User::get();
-
-        $param = [
-            'groups' => $groups,
-            'users' => $users,
-        ];
-
-        return view('admin.group.index', $param);
+        $groups = $this->groupService->paginate($request);
+        return view('admin.group.index',compact('groups'));
 
     }
 
@@ -65,14 +55,19 @@ class GroupController extends Controller
     {
         try {
             $this->groupService->store($request->all());
-            return redirect()->route('group.index')->with('success', config('define.store.succes'));
+            $notification = [
+                'addgroup' => 'Thêm Tên Quyền Thành Công!',
+            ];
+            return redirect()->route('group.index')->with($notification);
         } catch (\Exception $e) {
             Log::error('message:'. $e->getMessage());
-            return redirect()->route('group.index')->with('error', config('define.store.error'));
+            $notification = [
+                'message' => 'có lỗi xảy ra!',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('group.index')->with($notification);
         }
-        $notification = [
-            'addgroup' => 'Thêm Tên Quyền Thành Công!',
-        ];
+        
 
     }
 
@@ -96,22 +91,8 @@ class GroupController extends Controller
     public function edit($id)
     {
 
-        $group = Group::find($id);
-        // $this->authorize('update', Group::class);
-        $current_user = Auth::user();
-        $userRoles = $group->roles->pluck('id', 'name')->toArray();
-        $roles = Role::all()->toArray();
-        $group_names = [];
-        foreach ($roles as $role) {
-            $group_names[$role['group_name']][] = $role;
-        }
-        $params = [
-            'group' => $group,
-            'userRoles' => $userRoles,
-            'roles' => $roles,
-            'group_names' => $group_names,
-        ];
-        return view('admin.group.edit',$params);
+        $group = $this->groupService->find($id);
+        return view('admin.group.edit', compact('group'));
 
     }
 
@@ -125,17 +106,22 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $this->groupService->update( $id, $request->roles);
-            return redirect()->route('group.index')->with('success',config('define.update.success'));
+            $this->groupService->update( $id, $request);
+            $notification = [
+                'message' => 'Câp Nhật Thành Công!',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('group.index')->with($notification);
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('group.index')->with('error', config('define.update.error'));
+            $notification = [
+                'message' => 'có lỗi xảy ra!',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('group.index')->with($notification);
         }
-        $notification = [
-            'message' => 'Câp Nhật Thành Công!',
-            'alert-type' => 'success'
-        ];
+        
         // return redirect()->route('group.index')->with($notification);
     }
 
@@ -149,38 +135,64 @@ class GroupController extends Controller
     {
         // $this->authorize('delete', Group::class);
         try {
-            $user = $this->groupService->destroy($id);
-            return redirect()->route('group.index')->with('success', config('define.recycle.succes'));
+            $this->groupService->destroy($id);
+            $notification = [
+                'message' => 'Đã chuyển vào thùng rác!',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('group.index')->with($notification);
         } catch (\Exception $e) {
             Log::error('message:'. $e->getMessage());
-            return redirect()->route('group.index')->with('error', config('define.recycle.error'));
+            $notification = [
+                'message' => 'có lỗi xảy ra!',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('group.index')->with($notification);
         }
-        $notification = [
-            'message' => 'Xoá Thành Công!',
-            'alert-type' => 'success'
-        ];
+        
     }
-
-    public function detail($id)
+    public function forceDelete($id)
     {
-        $group = Group::find($id);
-
-        $current_user = Auth::user();
-        $userRoles = $group->roles->pluck('id', 'name')->toArray();
-        // dd($userRoles);
-        $roles = Role::all()->toArray();
-        $group_names = [];
-        /////lấy tên nhóm quyền
-        foreach ($roles as $role) {
-            $group_names[$role['group_name']][] = $role;
+        // $this->authorize('forceDelete', Group::class);
+        try {
+            $this->groupService->forceDelete($id);
+            $notification = [
+                'message' => 'Nhóm quyền đã bị xóa!',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('group.garbage')->with($notification);
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            $notification = [
+                'message' => 'có lỗi xảy ra!',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('group.garbage')->with($notification);
         }
-        $params = [
-            'group' => $group,
-            'userRoles' => $userRoles,
-            'roles' => $roles,
-            'group_names' => $group_names,
-        ];
-        return view('admin.group.detail', $params);
+    }
+    public function restore($id)
+    {
+        try {
+            // $this->authorize('restore', Group::class);
+            $this->groupService->restore($id);
+            $notification = [
+                'message' => 'Khôi phục thành công!',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('group.garbage')->with($notification);
+        } catch (\Exception $e) {
+            Log::error('message:' . $e->getMessage());
+            $notification = [
+                'message' => 'có lỗi xảy ra!',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('group.garbage')->with($notification);
+        }
+    }
+    public function Garbage()
+    {
+        $groups = $this->groupService->Garbage();
+        return view('admin.layout.trash');
     }
 
     public function group_detail(Request $request, $id)
@@ -189,9 +201,14 @@ class GroupController extends Controller
             'message' => 'Cấp Quyền Thành Công!',
             'alert-type' => 'success'
         ];
-        $group = Group::find($id);
-        $group->roles()->detach();
-        $group->roles()->attach($request->roles);
-        return redirect()->route('group.index')->with($notification);;
+        $this->groupService->group_detail($id, $request);
+        return redirect()->route('group.index')->with($notification);
     }
+    public function detail($id)
+    {
+
+        $group =  $this->groupService->detail($id);
+        return view('admin.group.detail', $group);
+    }
+    
 }

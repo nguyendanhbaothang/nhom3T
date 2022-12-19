@@ -19,6 +19,11 @@ class GroupService implements GroupServiceInterface
     }
 
     /* Triển khai các phương thức trong PostServiceInterface */
+    public function paginate($request){
+       
+        return $this->groupRepository->paginate($request);
+    }
+
     public function all($request){
 
         return $this->groupRepository->all($request);
@@ -30,18 +35,21 @@ class GroupService implements GroupServiceInterface
     public function store($request){
         return $this->groupRepository->store($request);
     }
+    // public function edit($id){
+    //     return $this->groupRepository->edit($id);
+    // }
     public function update($request, $id){
         return $this->groupRepository->update($request,$id);
     }
     public function destroy($id){
         return $this->groupRepository->destroy($id);
     }
-    public function detail($id){
-        return $this->groupRepository->detail($id);
+    // public function detail($id){
+    //     return $this->groupRepository->detail($id);
 
-    }
-    public function group_detail($request, $id){
-        return $this->groupRepository->group_detail($request,$id);
+    // }
+    // public function group_detail($request, $id){
+    //     return $this->groupRepository->group_detail($request,$id);
 
-    }
+    // }
 }

@@ -89,5 +89,9 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         }
         $user->save();
     }
+    public function destroy($id)
+    {
+        
+    }
 }
 

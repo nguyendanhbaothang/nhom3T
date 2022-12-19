@@ -35,7 +35,7 @@
                                 <th>id</th>
                                 <th>Tên Nhóm Quyền</th>
                                 <th>Người đảm nhận</th>
-                                <th data-breakpoints="xs">Tùy Chỉnh</th>
+                                <th data-breakpoints="xs">Action</th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
@@ -67,7 +67,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $groups->appends(request()->query()) }}
+                    {{ $group->appends(request()->query()) }}
                 </div>
             </div>
     </section>

@@ -103,6 +103,9 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
     Route::put('/update/{id}', [GroupController::class, 'update'])->name('group.update');
     Route::delete('destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+    Route::delete('/xoa-luon/{id}', [GroupController::class, 'forceDelete'])->name('group.forceDelete');
+    Route::get('/thung-rac', [GroupController::class, 'Garbage'])->name('group.garbage');
+    Route::get('/tai-su-dung/{id}', [GroupController::class, 'restore'])->name('group.restore');
     // trao quyền
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
