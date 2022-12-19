@@ -46,6 +46,14 @@
   <script src="{{asset('assets/js/datatable.js')}}"></script>
   <script src="{{asset('assets/js/Sortable.min.js')}}"></script>
   <script src="{{asset('assets/js/main.js')}}"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+  <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 
 </body>
 </html>

@@ -33,13 +33,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        //
-
         // $products = $this->productService->all($request);
-
-
         // return view('admin.product.index', compact('products'));
 
+        
         $products =Product::with('category')->orderBy('id', 'DESC')->get()  ;
         $categories = Category::all();
         $key        = $request->key ?? '';

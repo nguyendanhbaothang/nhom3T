@@ -53,7 +53,7 @@
               </div>
                <div class="col-12">
                  <label class="form-label">Sự mô tả</label>
-                 <textarea class="form-control" placeholder="Mô tả"  name="description" rows="4" cols="4">{{$product->description}}</textarea>
+                 <textarea class="form-control" placeholder="Mô tả" id="editor"  name="description" rows="4" cols="4">{{$product->description}}</textarea>
                  @error('description')
                  <div class="text text-danger">{{ $message }}</div>
                  @enderror
