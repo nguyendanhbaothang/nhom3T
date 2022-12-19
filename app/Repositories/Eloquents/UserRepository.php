@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
 
+
 class UserRepository extends EloquentRepository implements UserRepositoryInterface
 {
     public function getModel()
@@ -67,10 +68,13 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     }
 
     public function update($request, $id){
-        $user = $this->userService->find($id);
+        // echo __METHOD__;die();
+        $user = $this->find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        // $user->password = bcrypt($request->password);
+        if($request->password){
+            $user->password = bcrypt($request->password);
+        }
         $user->address = $request->address;
         $user->phone = $request->phone;
         $user->birthday = $request->birthday;
@@ -79,7 +83,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         $file = $request->image;
         if ($request->hasFile('image')) {
             $get_image = $request->file('image');
-            $path = 'public/assets/images/user/';
+            $path = 'assets/images/user/';
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.', $get_name_image));
             $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();

@@ -99,7 +99,6 @@
                                 <div class="col-sm-3 com-w3ls">
                                     <section class="panel">
                                         <div class="gallery-grid">
-                                            <br>
                                             <a class="example-image-link"
                                                 href="{{ asset('assets/images/user/' . $user->image) }}"
                                                 data-lightbox="example-set"
@@ -110,6 +109,7 @@
                                                     <h4>Xem Avt</h4>`
                                                 </div>
                                             </a>
+                                            <br>
                                         </div>
                                         <div class="panel-body">
                                             <h3>{{ $user->name }}</h3>
@@ -140,11 +140,7 @@
                                         </div>
                                     </section>
                                 </div>
-                                <div class="col-sm-9 com-w3ls">
-                                    <section class="panel">
-                                        <div class="gallery-grid">
-                                            <div class="panel-body">
-                                                <ul class="nav nav-pills nav-stacked labels-info ">
+
                                                     <li>
                                                         <h3>Tên: {{ $user->name }}</h3>
                                                     </li>
@@ -170,20 +166,7 @@
                                                     <li>
                                                         <h3>Đã tham gia: {{ $user->created_at }}</h3>
                                                     </li>
-                                                </ul>
-                                                <br>
-                                                <br>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-
-
-                                    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-                                        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
-
-
+         
                             </div>
                         </div>
                     </table>

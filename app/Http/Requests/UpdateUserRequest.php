@@ -25,12 +25,12 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'email' => 'required',
-                'password' => 'required',
+                // 'password' => 'required',
                 'name' => 'required',
                 'phone' => 'required',
                 'gender' => 'required',
                 'group_id' => 'required',
-                'image' => 'required',
+                // 'image' => 'required',
                 'address' => 'required',
                 'birthday' => 'required',
         ];
