@@ -36,8 +36,8 @@ class ProductController extends Controller
         // $products = $this->productService->all($request);
         // return view('admin.product.index', compact('products'));
 
-        
-        $products =Product::with('category')->orderBy('id', 'DESC')->get()  ;
+        $this->authorize('viewAny', Product::class);
+        $products = Product::with('category')->orderBy('id', 'DESC')->get();
         $categories = Category::all();
         $key        = $request->key ?? '';
         $name      = $request->name ?? '';
@@ -55,8 +55,8 @@ class ProductController extends Controller
         }
         if ($category_id) {
             $query->where('category_id', 'LIKE', '%' . $category_id . '%');
-
         }
+
         if ($id) {
             $query->where('id', $id);
         }
@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         $products = $query->paginate(5);
 
-       $params = [
+        $params = [
             'f_id'        => $id,
             'f_name'     => $name,
             'f_price'     => $price,
@@ -88,7 +88,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories=Category::get();
+        $this->authorize('create', Product::class);
+        $categories = Category::get();
         $param = [
             'categories' => $categories
         ];
@@ -106,14 +107,13 @@ class ProductController extends Controller
         //
         try {
             DB::beginTransaction();
-         $this->productService->store($request);
+            $this->productService->store($request);
             DB::commit();
-            return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công!');
+            return redirect()->route('product.index')->with('status', 'Thêm sản phẩm thành công!');
         } catch (Exception) {
             DB::rollBack();
-            return redirect()->route('product.index')->with('error','Thêm thất bại!');
+            return redirect()->route('product.index')->with('error', 'Thêm thất bại!');
         }
-
     }
 
     /**
@@ -124,10 +124,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->authorize('view', Product::class);
         $product = $this->productService->find($id);
-        $users= User::all();
-        return view('admin.product.detail',compact('product', 'users'));
+        $users = User::all();
+        return view('admin.product.detail', compact('product', 'users'));
     }
 
     /**
@@ -138,8 +138,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $param =$this->productService->edit($id);
-        return view('admin.product.edit', $param );
+
+        $this->authorize('update', Product::class);
+        $param = $this->productService->edit($id);
+        return view('admin.product.edit', $param);
     }
     /**
      * Update the specified resource in storage.
@@ -152,13 +154,13 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-        $this->productService->update($request,$id);
-        DB::commit();
-        return redirect()->route('product.index')->with('status','Sửa  thành công!');
-    } catch (Exception $e) {
-        DB::rollBack();
-        return redirect()->route('product.index')->with('error','Sửa thất bại!');
-    }
+            $this->productService->update($request, $id);
+            DB::commit();
+            return redirect()->route('product.index')->with('status', 'Sửa  thành công!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('product.index')->with('error', 'Sửa thất bại!');
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -168,26 +170,33 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
+        $this->authorize('forceDelete', Product::class);
         $this->productService->destroy($id);
         // return view('admin.product.trash');
     }
-    public function trash(Request $request){
+    public function trash(Request $request)
+    {
+        $this->authorize('viewtrash', Product::class);
         $products = $this->productService->trash($request);
         $params = [
             'products' => $products
         ];
         return view('admin.product.trash', $params);
     }
-    public function softdeletes($id){
+    public function softdeletes($id)
+    {
+        $this->authorize('delete', Product::class);
         $this->productService->softdeletes($id);
         return redirect()->route('product.index');
     }
-    public function restoredelete($id){
+    public function restoredelete($id)
+    {
+        $this->authorize('restore', Product::class);
         $this->productService->restoredelete($id);
-        return redirect()->route('product.index')->with('status','Khôi phục thành công!' );
+        return redirect()->route('product.index')->with('status', 'Khôi phục thành công!');
     }
-    public function exportExcel(){
+    public function exportExcel()
+    {
         return Excel::download(new ProductExport, 'products.xlsx');
     }
 }

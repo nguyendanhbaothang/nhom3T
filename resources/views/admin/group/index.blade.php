@@ -49,17 +49,17 @@
                                         <form action="{{ route('group.destroy', $group->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            {{-- @if (Auth::user()->hasPermission('Group_update')) --}}
+                                            @if (Auth::user()->hasPermission('Group_update'))
                                             <a class="btn btn-primary " href="{{route('group.detail', $group->id)}}">Trao Quyền</a>
-                                            {{-- @endif --}}
-                                            {{-- @if (Auth::user()->hasPermission('Group_update')) --}}
+                                            @endif
+                                            @if (Auth::user()->hasPermission('Group_update'))
                                             <a href="{{ route('group.edit', $group->id) }}"
                                                 class="btn btn-warning">Sửa</a>
-                                            {{-- @endif --}}
-                                                {{-- @if (Auth::user()->hasPermission('Group_forcedelete ')) --}}
+                                            @endif
+                                                @if (Auth::user()->hasPermission('Group_forcedelete '))
                                                 <a data-href="{{ route('group.destroy', $group->id) }}"
                                                     id="{{ $group->id }}" class="btn btn-danger sm deleteIcon">Xóa</a>
-                                                {{-- @endif --}}
+                                                @endif
                                         </form>
 
                                     </td>
@@ -67,7 +67,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $group->appends(request()->query()) }}
+                    {{ $groups->appends(request()->query()) }}
                 </div>
             </div>
     </section>

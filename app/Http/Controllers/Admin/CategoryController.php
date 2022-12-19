@@ -25,6 +25,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         //
+        $this->authorize('viewAny', Category::class);
         $categories = $this->categoryService->all($request);
         return view('admin.categories.index', compact('categories'));
     }
@@ -36,6 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Category::class);
         return view('admin.categories.create');
     }
 
@@ -75,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->authorize('update', Category::class);
         $item = $this->categoryService->find($id);
         return view('admin.categories.edit', compact('item'));
     }
@@ -106,6 +108,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Category::class);
         try {
             $this->categoryService->destroy($id);
             return redirect()->route('categories.index')->with('status','Chuyển vào thùng rác thành công!' );
@@ -122,6 +125,7 @@ class CategoryController extends Controller
 
     public function restore($id)
     {
+        $this->authorize('restore',Category::class);
         try {
             $this->categoryService->restore($id);
             return redirect()->route('categories.getTrashed')->with('status','Khôi phục thành công!' );
@@ -132,6 +136,7 @@ class CategoryController extends Controller
 
     public function force_destroy($id)
     {
+        $this->authorize('forceDelete', Category::class);
         try {
             $category = $this->categoryService->force_destroy($id);
             return redirect()->route('categories.getTrashed')->with('status','Xóa thành công!' );

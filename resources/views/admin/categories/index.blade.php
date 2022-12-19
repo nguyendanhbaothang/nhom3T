@@ -16,7 +16,9 @@
        {{ session('error') }}
     </div>
     @endif
+    @if(Auth::user()->hasPermission('Category_create'))
 <a href="{{route('categories.create')}}" class="btn btn-success">Thêm mới</a>
+@endif
     <tr>
     <th>id</th>
     <th>Tên danh mục</th>
@@ -31,17 +33,18 @@
             {{$value->name}}
          </td>
          <td>
-
-                 {{-- <a href="{{ route('categories.show', $value->id) }}"
-                    class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-eye-fill"></i></a> --}}
-                <a href="{{ route('categories.edit', $value->id) }}"
-                    ><i
+            @if (Auth::user()->hasPermission('Category_update'))
+                <a href="{{ route('categories.edit', $value->id) }}">
+                    <i
                         class="btn btn-primary">Chỉnh sửa</i></a>
+                        @endif
                         <form onclick="return confirm('Bạn có chắc chắn muốn xoá không?')" action="{{ route('categories.destroy', $value->id) }}"
                             style="display:inline"  method="post">
-                <button
+                            @if (Auth::user()->hasPermission('Category_delete'))
+                            <button
                     type="submit"
                         class="btn btn-danger">Xoá</button>
+                        @endif
                 @csrf
                 @method('DELETE')
             </form>

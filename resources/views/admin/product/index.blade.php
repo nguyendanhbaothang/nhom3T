@@ -16,9 +16,11 @@
 <table class="table">
     <div class="col-6">
         <form>
+            @if(Auth::user()->hasPermission('Product_create'))
                 <a href="{{route('product.create')}}" class="btn btn-info">Add new
                 </a>
-                <a class="btn btn-sm btn-icon btn-warning" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Advanced search</a>
+             @endif
+                <a class="btn btn-success" type="button" name="key" value="{{ $f_key }}" data-bs-toggle="modal" data-bs-target="#basicModal">Advanced search</a>
 
                     @include('admin.product.modals.modalproductcolumns')
         <a href="{{route('product.xuat')}}" class="btn btn-warning">Xuất Exports </a>
@@ -65,13 +67,19 @@
                     </td>
                     <td>
                         <form action="{{ route('product.softdeletes', $team->id) }}" method="POST">
+                            @if (Auth::user()->hasPermission('Product_view'))
                             <a class="btn btn-info" href="{{ route('product.show', $team->id) }}">Show</a>
+                            @endif
+                            @if (Auth::user()->hasPermission('Product_update'))
                             <a href="{{ route('product.edit', $team->id) }}"
                                 class="btn btn-primary">Edit</a>
+                                @endif
                             @csrf
                             @method('PUT')
+                            @if (Auth::user()->hasPermission('Product_delete'))
                             <button type="submit" class="btn btn-danger"
                                 onclick="return confirm('Chuyên vào thùng rác')">Delete</button>
+                                @endif
                                 <p class="text-success">
                                 <div > <i class="fa fa-check"
                                         aria-hidden="true"></i>

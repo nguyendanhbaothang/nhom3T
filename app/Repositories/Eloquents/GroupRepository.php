@@ -17,7 +17,7 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
     }
     public function paginate($request)
     {
-        $result = $this->model->paginate();
+        $result = $this->model->paginate(3);
         return $result;
     }
 
@@ -39,7 +39,7 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
     }
     public function update($request, $id)
     {
-        $group = new $this->model;
+        // $group = new $this->model;
         $group = $this->model->find($id);
         $group->name = $request->name;
         return $group->save();

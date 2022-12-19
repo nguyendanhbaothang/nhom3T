@@ -44,12 +44,12 @@ class GroupService implements GroupServiceInterface
     public function destroy($id){
         return $this->groupRepository->destroy($id);
     }
-    // public function detail($id){
-    //     return $this->groupRepository->detail($id);
+    public function detail($id){
+        return $this->groupRepository->detail($id);
 
-    // }
-    // public function group_detail($request, $id){
-    //     return $this->groupRepository->group_detail($request,$id);
+    }
+    public function group_detail($request, $id){
+        return $this->groupRepository->group_detail($request,$id);
 
-    // }
+    }
 }

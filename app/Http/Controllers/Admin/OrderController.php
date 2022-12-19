@@ -23,6 +23,7 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Order::class);
         try {
             $orders = $this->orderService->all($request);
             return view('admin.order.index', compact('orders'));
@@ -35,6 +36,7 @@ class OrderController extends Controller
 
     public function find($id)
     {
+        $this->authorize('view', Order::class);
         try {
             $items = $this->orderService->all($id);
             return view('admin.order.orderdetail', compact('items'));
