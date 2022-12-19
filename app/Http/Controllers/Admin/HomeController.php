@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -17,6 +18,7 @@ class HomeController extends Controller
         $totalCategory = Category::count();
         $totalOrder = Order::count();
         $totalUser = User::count();
-        return view('admin.layout.home', compact('totalProduct','totalCategory','totalOrder','totalUser'));
+        $totalCustomer = Customer::count();
+        return view('admin.layout.home', compact('totalProduct','totalCategory','totalOrder','totalUser','totalCustomer'));
     }
 }

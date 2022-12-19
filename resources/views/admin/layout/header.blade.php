@@ -34,30 +34,38 @@
               <!-- filter end -->
               <!-- profile start -->
               <div class="profile-box ml-15">
-                 <div class="profile-info">
+                <button
+                  class="dropdown-toggle bg-transparent border-0"
+                  type="button"
+                  id="profile"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <div class="profile-info">
                     <div class="info">
-                       <h3>SHOP 3T</h3>
-                       <div class="image">
-                          <img
-                             src="{{asset('assets/images/profile/profile-image.png')}}"
-                             alt=""
-                             />
-                          <span class="status"></span>
-                       </div>
+                      <h6>{{ auth()->user()->name }}</h6>
+                      <div class="image">
+                        <img src="{{asset('assets/images/user/'. auth()->user()->image)}}" class="user-img" alt="">
+                        <span class="status"></span>
+                      </div>
                     </div>
-                 </div>
-                 <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                  </svg>
-                    {{-- <a href="{{route('admin.checkLogin')}}"></i> Sign Out </a> --}}
+                  </div>
+                  <i class="lni lni-chevron-down"></i>
+                </button>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="profile"
+                >
+
+
+                  <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                     <a  href="{{ route('logout') }}"onclick="event.preventDefault();
-                    this.closest('form').submit();"><i class="fa fa-key"></i> Đăng xuất</a>
+                    this.closest('form').submit();"><i class="fa fa-key"></i> Logout</a>
                     </form>
-                 </li>
+                  </li>
+                </ul>
               </div>
               <!-- profile end -->
            </div>

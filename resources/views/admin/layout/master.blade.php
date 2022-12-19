@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}" />
   </head>
   <body>
-@include('admin.layout.sidebar')
-<div class="overlay"></div>
-<main class="main-wrapper">
+
+      @include('admin.layout.sidebar')
+      <div class="overlay"></div>
+      <main class="main-wrapper">
+    @include('admin.layout.header')
   <br>
   <section class="section">
     <div class="container-fluid">
