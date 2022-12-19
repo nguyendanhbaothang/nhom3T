@@ -22,7 +22,7 @@
             <tbody id="myTable">
 
                 @foreach ($products as $key => $team)
-                    <tr>
+                    <tr class="item-{{ $team->id }}">
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $team->name }}</td>
                         <td>{{ $team->category->name }}</td>
@@ -36,9 +36,13 @@
                             <form action="{{ route('product.restoredelete', $team->id) }}" method="POST">
                                 @csrf
                                 @method('put')
+                                @if (Auth::user()->hasPermission('Product_restore'))
                                     <button type="submit" class="btn btn-success">Restore</button>
+                                    @endif
+                                    @if (Auth::user()->hasPermission('Product_forceDelete'))
                                     <a  data-href="{{ route('product.destroy', $team->id) }}"
                                         id="{{ $team->id }}" class="btn btn-danger deleteIcon">Delete</a>
+                                    @endif
                             </form>
                         </td>
                     </tr>
@@ -86,7 +90,7 @@ $(document).on('click', '.deleteIcon', function(e) {
                         'success'
                     )
                     $('.item-' + id).remove();
-                    window.location.reload();
+                    // window.location.reload();
                 },
             });
             Swal.fire({

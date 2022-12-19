@@ -9,7 +9,7 @@
                     <div class="page-inner">
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
-                                <a href="{{ route('user.index') }}" class="w3-button w3-red">Quay Lại</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-dark">Quay Lại</a>
                             </nav>
                             <h1 class="page-title">Thay đổi thông tin</h1>
                         </header>
@@ -33,19 +33,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="tf1">Mật Khẩu<abbr
-                                                            name="Trường bắt buộc">*</abbr></label>
-                                                    <input name="password" type="password" class="form-control"
-                                                        value="{{ $user->password }}">
-                                                    <small id="" class="form-text text-muted"></small>
-                                                    @error('password')
-                                                        <div class="text text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                    <br>
-                                                </div>
-                                            </div> --}}
+
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label for="tf1">Họ Và Tên<abbr
@@ -116,7 +104,7 @@
                                                 @endif
                                             </div>
                                             <div class="form-group has-warning">
-                                                <label class="col-lg-3 control-label">image</label>
+                                                <label class="col-lg-3 control-label">Image</label>
                                                 <div class="col-lg-4">
                                                     <input accept="image/*" type='file' value="{{ $user->image }}" id="inputFile" name="image" /><br>
                                                     <img type="hidden" width="90px" height="90px" id="blah1"
@@ -146,8 +134,8 @@
                                         </div>
                                         <div class="form-actions">
                                             <br><br><br><br>
-                                            <button class="w3-button w3-blue" type="submit">Lưu thay đổi</button>
-                                            <a class="w3-button w3-red" href="{{ route('user.index') }}">Hủy</a>
+                                            <button class="btn btn-danger" type="submit">Lưu thay đổi</button>
+                                            <a class="btn btn-warning" href="{{ route('user.index') }}">Hủy</a>
                                         </div>
                                     </div>
                             </form>

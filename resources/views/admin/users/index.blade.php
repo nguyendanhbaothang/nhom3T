@@ -51,28 +51,19 @@ border-radius:50%;
                                 @foreach ($users as $key => $user)
                                     <tr data-expanded="true" class="item-{{ $user->id }}">
                                         <td>{{  ++$key }}</td>
-                                        <td><a href="{{ route('user.show', $user->id) }}"><img id="avt" src="{{asset('public/assets/images/user/' . $user->image)}}" alt=""></a></td>
+                                        <td><a href="{{ route('user.show', $user->id) }}"><img id="avt" src="{{asset('assets/images/user/' . $user->image)}}" alt=""></a></td>
                                         <td><a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->group->name }}</td>
                                         <td>
-                                            {{-- @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
+                                            @if (Auth::user()->hasPermission('User_update'))
                                             <a href="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-primary">Sửa</a>
-                                            @endif --}}
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_update') || true)
-                                            <a data-href="{{ route('user.edit', $user->id) }}"
-                                                id="{{ $user->id }}" class="btn btn-primary deleteIcon">Sửa</i></a>
                                             @endif
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_forceDelete') || true)
+                                            @if (Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
                                                 id="{{ $user->id }}" class="btn btn-danger deleteIcon">Xóa</i></a>
                                             @endif
-                                            @if (Auth::user() && Auth::user()->hasPermission('User_adminUpdatePass') || true)
-                                            <a href="{{ route('user.adminpass', $user->id) }}"
-                                                class="btn btn-info">Đổi mật khẩu</a>
-                                            @endif
-
                                         </td>
                                     </tr>
                                 @endforeach

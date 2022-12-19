@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
 use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
@@ -30,6 +32,7 @@ class GroupController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny',Group::class);
         $groups = $this->groupService->paginate($request);
         return view('admin.group.index',compact('groups'));
 
@@ -42,6 +45,7 @@ class GroupController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Group::class);
         return view('admin.group.add');
     }
 
@@ -51,10 +55,10 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGroupRequest $request)
     {
         try {
-            $this->groupService->store($request->all());
+            $this->groupService->store($request);
             $notification = [
                 'addgroup' => 'Thêm Tên Quyền Thành Công!',
             ];
@@ -90,7 +94,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-
+        $this->authorize('update',Group::class);
         $group = $this->groupService->find($id);
         return view('admin.group.edit', compact('group'));
 
@@ -103,10 +107,10 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGroupRequest $request, $id)
     {
         try {
-            $this->groupService->update( $id, $request);
+            $this->groupService->update( $request, $id);
             $notification = [
                 'message' => 'Câp Nhật Thành Công!',
                 'alert-type' => 'success'
@@ -140,14 +144,14 @@ class GroupController extends Controller
                 'message' => 'Đã chuyển vào thùng rác!',
                 'alert-type' => 'success'
             ];
-            return redirect()->route('group.index')->with($notification);
+            // return redirect()->route('group.index')->with($notification);
         } catch (\Exception $e) {
             Log::error('message:'. $e->getMessage());
             $notification = [
                 'message' => 'có lỗi xảy ra!',
                 'alert-type' => 'error'
             ];
-            return redirect()->route('group.index')->with($notification);
+            // return redirect()->route('group.index')->with($notification);
         }
         
     }

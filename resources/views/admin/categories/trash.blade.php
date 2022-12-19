@@ -27,12 +27,18 @@
             <form action="{{ route('categories.delete', $category->id) }}" method="post" >
                 @method('DELETE')
                 @csrf
+                @if (Auth::user()->hasPermission('Product_restore'))
+
                 <a onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này không?');"
                     style='color:rgb(52,136,245)' class='btn'
                     href="{{ route('categories.restore', $category->id) }}"><i
                     class='btn btn-primary'>khôi phục</i></a>
+                    @endif
+                    @if (Auth::user()->hasPermission('Product_forceDelete'))
                 <button onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');"
                     class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xoá</i></button>
+                    @endif
+
             </form>
           </td>
         </tr>

@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body"> <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Tên sản phẩm</label>
+                    <label class="">Name Product</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="name"
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Giá</label>
+                    <label class="">Price</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="price"
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Mã sản phẩm</label>
+                    <label class="">Id Product</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="id"
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class=""> danh mục</label>
+                    <label class="">Category</label>
                 </div>
                 <div class="col-lg-12">
                     <select name="category_id" id="" class="form-control">
@@ -49,7 +49,7 @@
 
             </div>
             <div class="modal-footer"> <button type="submit" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Áp dụng</button></div>
+                    data-bs-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Search</button></div>
         </div>
     </div>
 </div>

@@ -119,22 +119,18 @@
                                                 </li>
                                             </ul>
                                             <div class="text-center">
-
-                                                {{-- showmodal --}}
-                                                {{-- <button class="btn btn-info me-1 edit-btn" data-id="' + value.id + '">Edit</button> --}}
-
-
                                                 @if(Auth::user()->id == $user->id || Auth::user()->hasPermission('User_update'))
                                                 <a class="btn mini btn-default" href="{{ route('user.edit', $user->id) }}">
                                                     <i class="fa fa-cog"> Thông tin</i>
                                                 </a>
                                                 @endif
+                                                <br>
                                                 @if(Auth::user()->id == $user->id)
                                                 <a class="btn mini btn-default" href="{{ route('user.editpass', Auth::user()->id) }}">
                                                     <i class="fa fa-cog"> Mật Khẩu </i>
                                                 </a>
                                                 @endif
-
+                                                <br>
                                                 @if (Auth::user()->hasPermission('User_adminUpdatePass'))
                                                 <a class="btn mini btn-default" href="{{ route('user.adminpass', $user->id) }}">
                                                     <i class="fa fa-cog">Mật khẩu*</i>
