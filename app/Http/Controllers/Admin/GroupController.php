@@ -60,7 +60,8 @@ class GroupController extends Controller
         try {
             $this->groupService->store($request);
             $notification = [
-                'addgroup' => 'Thêm Tên Quyền Thành Công!',
+                'message' => 'Thêm Tên Quyền Thành Công!',
+                'alert-type' => 'success'
             ];
             return redirect()->route('group.index')->with($notification);
         } catch (\Exception $e) {

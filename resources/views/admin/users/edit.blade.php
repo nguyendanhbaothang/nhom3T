@@ -14,6 +14,15 @@
                             <h1 class="page-title">Thay đổi thông tin</h1>
                         </header>
                         <div class="page-section">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
@@ -99,6 +108,15 @@
                                                     <option value="Nữ">Nữ</option>
                                                     <option value="Khác">Khác</option>
                                                 </select>
+                                                @if ('gender')
+                                                    <p style="color:red">{{ $errors->first('gender') }}</p>
+                                                @endif
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label class="control-label" >Mật Khẩu<abbr
+                                                        name="Trường bắt buộc">*</abbr></label>
+                                                        <input name="password"
+                                                        type="text" class="form-control" value="{{ $user->password }}">
                                                 @if ('gender')
                                                     <p style="color:red">{{ $errors->first('gender') }}</p>
                                                 @endif

@@ -78,12 +78,12 @@
 
     <script>
         @php
-       if(Session::has('addgroup')){
+       if(Session::has('message')){
        @endphp
        Swal.fire({
-            icon: 'success',
-            title: 'Tạo quyền xong rồi nhé!',
-            text: "Cấp quyền ngay nhé",
+            icon: '{{ Session::get("alert-type") }}',
+            title: '{{ Session::get("message") }}',
+            text: "",
             showClass: {
             popup: 'swal2-show'
                 }
