@@ -3,10 +3,12 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\GroupController;
+// use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +26,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/cc', function () {
-    return view('admin.layout.home');
-});
+
+// Route::get('/', [UserController::class, 'viewLogin'])->name('login');
+Route::get('login', [UserController::class, 'viewLogin'])->name('login');
+
+Route::post('handdle-login', [UserController::class, 'login'])->name('handdle-login');
+
+Route::middleware(['auth','revalidate'])->group(function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 Route::group(['prefix' => 'products'], function () {
@@ -81,9 +89,6 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
  });
 
-Route::post('login',[UserController::class,'login'])->name('admin.login');
-Route::get('checkLogin',[UserController::class,'viewLogin'])->name('admin.checkLogin');
-
 
 Route::group(['prefix' => 'customers'], function () {
     Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
@@ -109,5 +114,7 @@ Route::group(['prefix' => 'groups'], function () {
     // trao quyền
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
-   });
+});
 
+
+});

@@ -21,6 +21,9 @@ class GroupSeeder extends Seeder
             'name' => 'Quản Lí'
         ]);
         DB::table('groups')->insert([
+            'name' => 'Giám Đốc'
+        ]);
+        DB::table('groups')->insert([
             'name' => 'Nhân Viên'
         ]);
     }

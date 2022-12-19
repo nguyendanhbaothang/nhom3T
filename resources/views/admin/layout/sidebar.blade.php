@@ -188,7 +188,6 @@
               <span class="text">
               Customer <span class="pro-badge">Pro</span>
               </span>
-              
            </a>
         </li>
       <li class="nav-item nav-item-has-children">

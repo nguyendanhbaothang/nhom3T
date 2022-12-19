@@ -93,9 +93,6 @@
         @endphp
     </script>
     <script>
-
-
-
         $(document).on('click', '.deleteIcon', function(e) {
             // e.preventDefault();
             let id = $(this).attr('id');
