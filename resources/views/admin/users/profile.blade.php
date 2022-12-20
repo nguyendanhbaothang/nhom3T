@@ -18,7 +18,7 @@
             <div class="panel-panel-default">
                 <header class="page-title-bar">
 
-                    <h1 class="page-title">Thông tin</h1>
+                    <h1 class="page-title">Information</h1>
                 </header>
                  <!-- Modal -->
                  <div style="color: red" class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
@@ -31,27 +31,27 @@
                             <div class="modal-body">
                                 <form id="id">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Họ Và Tên</label>
+                                        <label for="exampleInputEmail1" class="form-label">Name</label>
                                         <input type="text" name="name" class="form-control" id="up_first_name" aria-describedby="emailHelp">
                                         <span style="color: red;" id="upfirst_name_error"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
+                                        <label for="exampleInputEmail1" class="form-label">Phone</label>
                                         <input type="text" name="phone" class="form-control" id="up_first_name" aria-describedby="emailHelp">
                                         <span style="color: red;" id="upfirst_name_error"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Giới tính</label>
+                                        <label for="exampleInputEmail1" class="form-label">Gender</label>
                                         <input type="text" name="gender" class="form-control" id="up_first_name" aria-describedby="emailHelp">
                                         <span style="color: red;" id="upfirst_name_error"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Ngày sinh</label>
+                                        <label for="exampleInputEmail1" class="form-label">Birthday</label>
                                         <input type="text" name="	birthday" class="form-control" id="up_first_name" aria-describedby="emailHelp">
                                         <span style="color: red;" id="upfirst_name_error"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Địa chỉ</label>
+                                        <label for="exampleInputPassword1" class="form-label">Address</label>
                                         <input type="text" name="last_name" class="form-control" id="up_last_name">
                                         <span style="color: red;" id="uplast_name_error"></span>
                                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="btnok">Lưu</button>
+                                <button type="button" class="btn btn-primary" id="btnok">Save</button>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                                 <img id="avtshow" src="{{ asset('assets/images/user/' . $user->image) }}"
                                                     alt="" />
                                                 <div class="captn">
-                                                    <h4>Xem Avt</h4>`
+                                                    <h4>Show Avt</h4>`
                                                 </div>
                                             </a>
                                             <br>
@@ -121,19 +121,19 @@
                                             <div class="text-center">
                                                 @if(Auth::user()->id == $user->id || Auth::user()->hasPermission('User_update'))
                                                 <a class="btn mini btn-default" href="{{ route('user.edit', $user->id) }}">
-                                                    <i class="fa fa-cog"> Thông tin</i>
+                                                    <i class="fa fa-cog"> Information</i>
                                                 </a>
                                                 @endif
                                                 <br>
                                                 @if(Auth::user()->id == $user->id)
                                                 <a class="btn mini btn-default" href="{{ route('user.editpass', Auth::user()->id) }}">
-                                                    <i class="fa fa-cog"> Mật Khẩu </i>
+                                                    <i class="fa fa-cog"> Password </i>
                                                 </a>
                                                 @endif
                                                 <br>
                                                 @if (Auth::user()->hasPermission('User_adminUpdatePass'))
                                                 <a class="btn mini btn-default" href="{{ route('user.adminpass', $user->id) }}">
-                                                    <i class="fa fa-cog">Mật khẩu*</i>
+                                                    <i class="fa fa-cog">Password*</i>
                                                 </a>
                                                 @endif
                                             </div>
@@ -142,7 +142,7 @@
                                 </div>
 
                                                     <li>
-                                                        <h3>Tên: {{ $user->name }}</h3>
+                                                        <h3>Name: {{ $user->name }}</h3>
                                                     </li>
                                                     <hr>
                                                     <li>
@@ -150,23 +150,23 @@
                                                     </li>
 
                                                     <li>
-                                                        <h3>Số điện thoại: {{ $user->phone }}</h3>
+                                                        <h3>Phone: {{ $user->phone }}</h3>
                                                     </li>
                                                     <hr>
                                                     <li>
-                                                        <h3>Địa chỉ: {{ $user->address }}</h3>
+                                                        <h3>Address: {{ $user->address }}</h3>
                                                     </li>
                                                     <li>
-                                                        <h3>Giới tính: {{ $user->gender }}</h3>
+                                                        <h3>Gender: {{ $user->gender }}</h3>
                                                     </li>
                                                     <li>
-                                                        <h3>Ngày sinh: {{ $user->birthday }}</h3>
+                                                        <h3>Birthday: {{ $user->birthday }}</h3>
                                                     </li>
                                                     <hr>
                                                     <li>
-                                                        <h3>Đã tham gia: {{ $user->created_at }}</h3>
+                                                        <h3>Joined: {{ $user->created_at }}</h3>
                                                     </li>
-         
+
                             </div>
                         </div>
                     </table>

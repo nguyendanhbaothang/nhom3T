@@ -17,11 +17,11 @@ border-radius:50%;
             <div class="panel-panel-default">
                     <header class="page-title-bar">
                         {{-- <h1 class="page-title">Sản phẩm</h1> --}}
-                        <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản user</a>
+                        <a href="{{ route('user.create') }}" class="btn btn-info">Register account user</a>
                     </header>
                     <hr>
                     <div class="panel-heading">
-                      <h3> Nhân sự</h3>
+                      <h3> User</h3>
                     </div>
                     <div>
                         <table class="table" ui-jq="footable"
@@ -41,10 +41,10 @@ border-radius:50%;
                                     <th data-breakpoints="xs">Stt</th>
                                     {{-- <th data-breakpoints="xs">ID</th> --}}
                                     <th>Image</th>
-                                    <th>Tên</th>
+                                    <th>Name</th>
                                     <th>Phone</th>
-                                    <th>Chức vụ</th>
-                                    <th data-breakpoints="xs">Tùy Chỉnh</th>
+                                    <th>Position</th>
+                                    <th data-breakpoints="xs">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="myTable">
@@ -58,11 +58,11 @@ border-radius:50%;
                                         <td>
                                             @if (Auth::user()->hasPermission('User_update'))
                                             <a href="{{ route('user.edit', $user->id) }}"
-                                                class="btn btn-primary">Sửa</a>
+                                                class="btn btn-primary">Edit</a>
                                             @endif
                                             @if (Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
-                                                id="{{ $user->id }}" class="btn btn-danger deleteIcon">Xóa</i></a>
+                                                id="{{ $user->id }}" class="btn btn-danger deleteIcon">Delete</i></a>
                                             @endif
                                         </td>
                                     </tr>

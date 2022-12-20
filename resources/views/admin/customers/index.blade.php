@@ -8,17 +8,17 @@
                 <main id="main" class="main">
                     <div class="pagetitle">
                         <hr>
-                        <h1>Danh Sách Khách hàng</h1>
+                        <h1>List customer</h1>
                         <hr>
                     </div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Tên Khách Hàng</th>
-                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Address</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Số Điện Thoại</th>
+                                <th scope="col">Phone</th>
                             </tr>
                         </thead>
                         <tbody>
