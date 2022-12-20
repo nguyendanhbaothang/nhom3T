@@ -56,5 +56,15 @@ class UserService implements UserServiceInterface
     public function register($request){
         return $this->userRepository->register($request);
     }
+    public function trash($request)
+    {
+        return $this->userRepository->trash($request);
+    }
+    public function softdeletes($id){
+        return $this->userRepository->softdeletes($id);
+    }
+    public function restoredelete($id){
+        return $this->userRepository->restoredelete($id);
+    }
 
 }

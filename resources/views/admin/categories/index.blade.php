@@ -2,7 +2,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-<h1>Categories</h1>
+<h1>Category</h1>
 <main id="main">
 <body>
 <table  class="table">
@@ -20,7 +20,7 @@
 <a href="{{route('categories.create')}}" class="btn btn-success">Add</a>
 @endif
     <tr>
-    <th>id</th>
+    <th>STT</th>
     <th>Name</th>
     <th>Action</th>
     </tr>

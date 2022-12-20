@@ -98,9 +98,53 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         }
         $user->save();
     }
+    // public function destroy($id)
+    // {
+
+    // }
+    // public function trash($request)
+    // {
+    //     return User::onlyTrashed()->get();
+    // }
+    // public function restore($id)
+    // {
+    //     $user = $this->model->withTrashed()->findOrFail($id);
+    //     try {
+    //         $user->restore();
+    //         return true;
+    //     } catch (\Exception $e) {
+    //         Log::error($e->getMessage());
+    //         return false;
+    //     }
+    //     return $user;
+    // }
+    // public function force_destroy($id)
+    // {
+    //     $user = $this->model->onlyTrashed()->findOrFail($id);
+    //     $user->forceDelete();
+    //     return $user;
+    // }
     public function destroy($id)
     {
+        $user = User::onlyTrashed()->findOrFail($id);
+        return $user->forceDelete();
+    }
+    public function trash()
+    {
+        return User::onlyTrashed()->get();
+    }
 
+    public function softdeletes($id)
+    {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $user = User::findOrFail($id);
+        $user->deleted_at = date("Y-m-d h:i:s");
+        return $user->save();
+    }
+    public function restoredelete($id)
+    {
+        $user = User::withTrashed()->where('id', $id);
+        return $user->restore();
     }
 }
 

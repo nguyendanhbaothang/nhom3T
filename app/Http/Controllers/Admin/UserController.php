@@ -224,27 +224,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $this->authorize('forceDelete', Product::class);
-        $notification = [
-            'sainhap' => '!',
-        ];
-
-        $user = $this->userService->find($id);
-        if ($user->group->name != 'Supper Admin') {
-            $user->delete();
-        } else {
-            return dd(__METHOD__);
-        }
-    }
-
     //Hiển Thị Đăng Nhập
 
   public function viewLogin()
@@ -300,5 +279,30 @@ class UserController extends Controller
     public function viewquenmatkhau()
     {
         return view('admin.forgotpassword.forgotpassword');
+    }
+    public function destroy($id)
+    {
+        $this->authorize('forceDelete', User::class);
+        $this->userService->destroy($id);
+        // return view('admin.product.trash');
+    }
+
+    public function trash(Request $request)
+    {
+        // $this->authorize('viewtrash', User::class);
+        $users = $this->userService->trash($request);
+        return view('admin.users.trash', compact('users'));
+    }
+    public function softdeletes($id)
+    {
+        // $this->authorize('delete', User::class);
+        $this->userService->softdeletes($id);
+        return redirect()->route('user.index');
+    }
+    public function restoredelete($id)
+    {
+        // $this->authorize('restore', User::class);
+        $this->userService->restoredelete($id);
+        return redirect()->route('user.index')->with('status', 'Khôi phục thành công!');
     }
 }

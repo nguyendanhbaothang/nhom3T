@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->importRoles();
         $this->importRole();
         $this->importRoles1();
+        $this->importRoles2();
         $this->importGroupRole();
     }
     public function importRoles()
@@ -59,7 +60,21 @@ class DatabaseSeeder extends Seeder
     }
     public function importRoles1()
     {
-        $groups = ['User','Group'];
+        $groups = ['Group'];
+        $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore'];
+        foreach ($groups as $group) {
+            foreach ($actions as $action) {
+                DB::table('roles')->insert([
+                    'name' => $group . '_' . $action,
+                    'group_name' => $group,
+
+                ]);
+            }
+        }
+    }
+    public function importRoles2()
+    {
+        $groups = ['User'];
         $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore', 'forceDelete','viewtrash','adminUpdatePass'];
         foreach ($groups as $group) {
             foreach ($actions as $action) {
@@ -73,7 +88,7 @@ class DatabaseSeeder extends Seeder
     }
     public function importGroupRole()
     {
-        for ($i = 1; $i <= 38; $i++) {
+        for ($i = 1; $i <= 35; $i++) {
             DB::table('group_role')->insert([
                 'group_id' => 1,
                 'role_id' => $i,

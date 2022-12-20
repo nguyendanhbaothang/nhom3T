@@ -19,7 +19,7 @@
                             @csrf
                             <div class="card">
                                 <div class="card-body">
-                                    <legend>Thông tin cơ bản</legend>
+                                    <legend>Info</legend>
                                     <div class="row">
 
                                         <div class="col-lg-6">
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="tf1">Mật Khẩu<abbr
+                                                <label for="tf1">Password<abbr
                                                         name="Trường bắt buộc">*</abbr></label>
                                                 <input name="password" type="text" class="form-control"
                                                     value="{{ old('password') }}">
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="tf1">Họ Và Tên<abbr
+                                                <label for="tf1">Name<abbr
                                                         name="Trường bắt buộc">*</abbr></label>
                                                 <input name="name" type="text" class="form-control"
                                                     value="{{ old('name') }}">
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="tf1">Số Điện Thoại<abbr
+                                                <label for="tf1">Phone<abbr
                                                         name="Trường bắt buộc">*</abbr></label> <input name="phone"
                                                     type="number" class="form-control" value="{{ old('phone') }}">
                                                 <small id="" class="form-text text-muted"></small>
@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="tf1">Ngày sinh<abbr
+                                                <label for="tf1">Birthday<abbr
                                                         name="Trường bắt buộc">*</abbr></label> <input name="birthday"
                                                     type="date" class="form-control" value="{{ old('birthday') }}">
                                                 <small id="" class="form-text text-muted"></small>
@@ -82,10 +82,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-4">
-                                            <label class="control-label" for="flatpickr01">Chức Vụ<abbr
+                                            <label class="control-label" for="flatpickr01"> Position<abbr
                                                     name="Trường bắt buộc">*</abbr></label>
                                             <select name="group_id" id="" class="form-control">
-                                                <option value="">--Vui lòng chọn--</option>
+                                                <option value="">--Please Choose--</option>
                                                 @foreach ($groups as $group)
                                                     <option value="{{ $group->id }}">{{ $group->name }}</option>
                                                 @endforeach
@@ -95,13 +95,12 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-4">
-                                            <label class="control-label" for="flatpickr01">Giới Tính<abbr
+                                            <label class="control-label" for="flatpickr01">Gender<abbr
                                                     name="Trường bắt buộc">*</abbr></label>
                                             <select name="gender" id="" class="form-control">
-                                                <option value="">--Vui lòng chọn--</option>
-                                                <option value="Nam">Nam</option>
-                                                <option value="Nữ">Nữ</option>
-                                                <option value="Khác">Khác</option>
+                                                <option value="">--Please Choose--</option>
+                                                <option value="Nam">Genteman</option>
+                                                <option value="Nữ">Lady</option>
                                                 {{-- @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach --}}
@@ -111,7 +110,7 @@
                                             @endif
                                         </div>
                                         <div class="form-group has-warning">
-                                            <label class="col-lg-3 control-label">image</label>
+                                            <label class="col-lg-3 control-label">Image</label>
                                             <div class="col-lg-4">
                                                 <input accept="image/*" type='file' id="inputFile"
                                                     name="image" /><br>
@@ -127,7 +126,7 @@
                                         {{-- địa chỉ --}}
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="tf1">Địa chỉ<abbr
+                                                <label for="tf1">Address<abbr
                                                         name="Trường bắt buộc">*</abbr></label> <input name="address"
                                                     type="text" class="form-control" value="{{ old('address') }}">
                                                 <small id="" class="form-text text-muted"></small>
@@ -141,8 +140,8 @@
                                     </div>
                                     <div class="form-actions">
                                         <br><br><br><br>
-                                        <button class="btn btn-primary" type="submit">Đăng ký</button>
-                                        <a class="btn btn-danger" href="{{ route('user.index') }}">Hủy</a>
+                                        <button class="btn btn-primary" type="submit">Registration</button>
+                                        <a class="btn btn-danger" href="{{ route('user.index') }}">Cancel</a>
                                     </div>
                                 </div>
                         </form>

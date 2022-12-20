@@ -9,9 +9,9 @@
                     <div class="page-inner">
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
-                                <a href="{{ route('user.index') }}" class="btn btn-success">Quay Lại</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-success">Back</a>
                             </nav>
-                            <h1 class="page-title">Thay đổi mật khẩu của {{ $user->name }}</h1>
+                            <h1 class="page-title">Change password of {{ $user->name }}</h1>
                         </header>
                         <hr>
                         <div class="page-section">
@@ -22,7 +22,7 @@
                                 @csrf
                                 <br>
                                 <div class="form-group has-warning">
-                                    <label class="col-sm-3 control-label col-lg-3" for="newPassword">Mật khẩu mới</label>
+                                    <label class="col-sm-3 control-label col-lg-3" for="newPassword">New password</label>
                                     <div class="col-lg-6">
                                         <input name="newpassword" type="password" class="form-control" id="newPassword">
                                     </div>
@@ -32,8 +32,7 @@
                                 @enderror
                                 <br>
                                 <div class="form-group has-warning">
-                                    <label class="col-sm-3 control-label col-lg-3" for="renewPassword">Nhập lại mật khẩu
-                                        mới</label>
+                                    <label class="col-sm-3 control-label col-lg-3" for="renewPassword">Return new password </label>
                                     <div class="col-lg-6">
                                         <input name="renewpassword" type="password" class="form-control" id="renewPassword">
                                     </div>
@@ -43,8 +42,8 @@
                                 @enderror
                                 <br>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-warning">Lưu mật khẩu</button>
-                                    <a href="{{ route('user.index') }}" class="btn btn-danger">Hủy</a>
+                                    <button type="submit" class="btn btn-warning">Save Password</button>
+                                    <a href="{{ route('user.index') }}" class="btn btn-danger">Cancel</a>
                                 </div>
                             </form>
                         </div>
