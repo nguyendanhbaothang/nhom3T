@@ -26,7 +26,7 @@
                                             <div class="form-group">
                                                 <label for="tf1">Email<abbr name="Trường bắt buộc">*</abbr></label>
                                                 <input name="email" type="text" class="form-control"
-                                                    value="{{ old('email') }}"> 
+                                                    value="{{ old('email') }}">
                                                 <small id="" class="form-text text-muted"></small>
                                                 @error('email')
                                                     <div class="text text-danger">{{ $message }}</div>

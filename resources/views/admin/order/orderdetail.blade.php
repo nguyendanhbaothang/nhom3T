@@ -7,8 +7,8 @@
                 <div class="container">
                     <main id="main" class="main">
                         <div class="pagetitle">
-                            <h1>Chi tiết đơn hàng</h1>
-                            <a class="btn btn-primary" href="{{ route('order.index') }}">Đơn hàng</a>
+                            <h1>Orderdetail</h1>
+                            <a class="btn btn-primary" href="{{ route('order.index') }}">Order</a>
                         </div>
                         <table class="table table-bordered">
                             <thead>
