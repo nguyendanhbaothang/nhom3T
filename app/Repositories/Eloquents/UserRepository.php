@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class UserRepository extends EloquentRepository implements UserRepositoryInterface
 {
@@ -35,6 +36,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
 
     public function store($request)
     {
+
         $user = new $this->model;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -44,7 +46,6 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         $user->birthday = $request->birthday;
         $user->gender = $request->gender;
         $user->group_id = $request->group_id;
-        // $file = $request->image;
         if ($request->hasFile('image')) {
             $get_image = $request->file('image');
             $path = 'assets/images/user/';
@@ -55,16 +56,20 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             $user->image = $new_image;
             $data['user_image'] = $new_image;
         }
+
         $user->save();
 
         $data = [
             'name' => $request->name,
             'pass' => $request->password,
         ];
-        // Mail::send('admin.mail.mail', compact('data'), function ($email) use($request) {
-        //     $email->subject('NowSaiGon');
-        //     $email->to($request->email, $request->name);
-        // });
+        Mail::send('admin.emails.user', compact('data'), function ($email) use($user) {
+            $email->subject('3T Shop');
+            $email->to($user->email, $user->name);
+        });
+        return true;
+
+    return $user;
     }
 
     public function update($request, $id){
@@ -95,7 +100,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     }
     public function destroy($id)
     {
-        
+
     }
 }
 

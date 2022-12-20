@@ -118,3 +118,5 @@ Route::group(['prefix' => 'groups'], function () {
 
 
 });
+Route::post('/email', [UserController::class, 'quenmatkhau'])->name('quenmatkhau');
+Route::get('/form', [UserController::class, 'viewquenmatkhau'])->name('view.quenmatkhau');

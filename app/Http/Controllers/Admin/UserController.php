@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Customer;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 use App\Services\Interfaces\UserServiceInterface;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -274,5 +277,28 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login');
 
+    }
+    public function quenmatkhau(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            $pass = Str::random(8);
+            $user->password = bcrypt($pass);
+            $user->save();
+            $data = [
+                'name' => $user->name,
+                'pass' => $pass,
+                'email' => $user->email,
+            ];
+            Mail::send('admin.emails.password', compact('data'), function ($email) use ($user) {
+                $email->subject('Shop 3T');
+                $email->to($user->email, $user->name);
+            });
+        }
+        return redirect()->route('login');
+    }
+    public function viewquenmatkhau()
+    {
+        return view('admin.forgotpassword.forgotpassword');
     }
 }

@@ -30,7 +30,7 @@
 	</div>
     <button class="btn submits sign-up">Đăng nhập<i class="fa fa-user-plus" ></i></button>
 	<div class="col-12">
-	   <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+	   <p class="small mb-0">Don't have account? <a href="{{route('view.quenmatkhau')}}">Create an account</a></p>
 	</div>
  </form>
 
