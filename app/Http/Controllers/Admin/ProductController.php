@@ -170,6 +170,8 @@ class ProductController extends Controller
     }
     public function exportExcel()
     {
+        $this->authorize('viewexport', Product::class);
+
         return Excel::download(new ProductExport, 'products.xlsx');
     }
 }

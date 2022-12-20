@@ -11,5 +11,8 @@ interface UserServiceInterface extends ServiceInterface{
     public function login($request);
     public function logout($request);
     public function register($request);
+    public function trash($request);
+    public function softdeletes($id);
+    public function restoredelete($id);
 
 }

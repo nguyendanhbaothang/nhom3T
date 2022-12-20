@@ -25,7 +25,6 @@
                                     <tr>
                                         <th scope="row">{{ ++$key }}</th>
                                         <td>{{ $item->name }}</td>
-                                        <th>
                                         <td>{{ number_format($item->price) }} VND</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ number_format($item->total) }} VND</td>

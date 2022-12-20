@@ -34,6 +34,7 @@ class OrderPolicy
        return $user->hasPermission('Order_view');
        //
     }
+    
 
     /**
      * Determine whether the user can create models.

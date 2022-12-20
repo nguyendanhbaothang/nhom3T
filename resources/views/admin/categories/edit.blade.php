@@ -2,7 +2,7 @@
 @section('content')
 <main id="main">
 
-    <h1>Chỉnh sửa Danh Mục</h1>
+    <h1>Edit Category</h1>
     <form action="{{route('categories.update',$item->id)}}" method="POST">
         @method('PUT')
         @csrf
@@ -14,7 +14,7 @@
             @enderror
         </div>
         <input type="submit" value="Cập nhật" class="btn btn-primary">
-        <a href="{{route('categories.index')}}" class="btn btn-danger">Huỷ</a>
+        <a href="{{route('categories.index')}}" class="btn btn-danger">Cancel</a>
 
       </form>
       </main>

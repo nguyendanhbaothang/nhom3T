@@ -8,7 +8,7 @@
         <div class="market-updates">
             <div class="container">
     <div class="pagetitle">
-        <h1>Chức Vụ</h1>
+        <h1>Position</h1>
 
     </div>
     <div class="page-section">
@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <hr>
                     <div class="form-group">
-                        <label for="tf1">Tên Quyền:</label> {{$group->name}}
+                        <label for="tf1">Permission Name:</label> {{$group->name}}
                     </div><br>
                     <div class="form-group">
                         <label  class="w3-button w3-blue">{{ __('Cấp toàn bộ quyền') }}
@@ -30,7 +30,7 @@
                             @foreach ($group_names as $group_name => $roles)
                                 <div class="col-lg-6">
                                     <div class="list-group-header" style="color:rgb(2, 6, 249) ;">
-                                        <h5> Nhóm: {{ __($group_name) }}</h5>
+                                        <h5> Group: {{ __($group_name) }}</h5>
                                         {{-- <label class="form-check form-switch ">{{ __('CheckAll') }}
                                             <input  type="checkbox" id="checkAll" class="form-check-input"
                                                 value="Quyền hạn">
@@ -58,7 +58,7 @@
                         <button class="btn btn-danger" type="submit">Duyệt</button>
                         {{-- @endif --}}
                         <a href="{{ route('group.index') }}" class="btn btn-warning"
-                                        type="submit">Hủy</a>
+                                        type="submit">Cancel</a>
                     </div>
                 </div>
             </div>

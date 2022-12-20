@@ -32,7 +32,7 @@
     }}'>
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>ID</th>
                                 <th>Group name</th>
                                 <th>Undertaker</th>
                                 <th data-breakpoints="xs">Action</th>
@@ -58,7 +58,7 @@
                                             @endif
                                                 @if (Auth::user()->hasPermission('Group_forcedelete '))
                                                 <a data-href="{{ route('group.destroy', $group->id) }}"
-                                                    id="{{ $group->id }}" class="btn btn-danger sm deleteIcon">Xóa</a>
+                                                    id="{{ $group->id }}" class="btn btn-danger sm deleteIcon">Delete</a>
                                                 @endif
                                         </form>
 

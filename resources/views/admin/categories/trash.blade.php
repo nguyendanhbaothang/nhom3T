@@ -13,7 +13,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">STT</th>
           <th scope="col">Name</th>
           <th scope="col">Action</th>
         </tr>
