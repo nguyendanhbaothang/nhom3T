@@ -79,6 +79,7 @@ class CategoryController extends Controller
     {
         $this->authorize('update', Category::class);
         $item = $this->categoryService->find($id);
+        // dd($item);
         return view('admin.categories.edit', compact('item'));
     }
 

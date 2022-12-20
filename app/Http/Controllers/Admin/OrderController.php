@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Support\Facades\DB;
@@ -38,11 +41,12 @@ class OrderController extends Controller
     {
         $this->authorize('view', Order::class);
         try {
-            $items = $this->orderService->all($id);
+            $items = $this->orderService->find($id);
             return view('admin.order.orderdetail', compact('items'));
         } catch (\Exception $e) {
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }
+        return view('admin.order.orderdetail',compact('items'));
     }
     public function exportOrder()
     {

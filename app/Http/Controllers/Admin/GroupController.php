@@ -72,7 +72,7 @@ class GroupController extends Controller
             ];
             return redirect()->route('group.index')->with($notification);
         }
-        
+
 
     }
 
@@ -126,7 +126,7 @@ class GroupController extends Controller
             ];
             return redirect()->route('group.index')->with($notification);
         }
-        
+
         // return redirect()->route('group.index')->with($notification);
     }
 
@@ -138,7 +138,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        // $this->authorize('delete', Group::class);
+        $this->authorize('delete', Group::class);
         try {
             $this->groupService->destroy($id);
             $notification = [
@@ -154,11 +154,11 @@ class GroupController extends Controller
             ];
             // return redirect()->route('group.index')->with($notification);
         }
-        
+
     }
     public function forceDelete($id)
     {
-        // $this->authorize('forceDelete', Group::class);
+        $this->authorize('forceDelete', Group::class);
         try {
             $this->groupService->forceDelete($id);
             $notification = [
@@ -177,8 +177,8 @@ class GroupController extends Controller
     }
     public function restore($id)
     {
+        $this->authorize('restore', Group::class);
         try {
-            // $this->authorize('restore', Group::class);
             $this->groupService->restore($id);
             $notification = [
                 'message' => 'Khôi phục thành công!',
@@ -215,5 +215,5 @@ class GroupController extends Controller
         $group =  $this->groupService->detail($id);
         return view('admin.group.detail', $group);
     }
-    
+
 }

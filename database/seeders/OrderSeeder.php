@@ -15,11 +15,11 @@ class OrderSeeder extends Seeder
         //
         DB::table('orders')->insert([
              [   'customer_id'=>1,
-                'total' => 2211111,
+                'total' => 200000000,
                'date_at' => '2003/11/11'
         ],[
             'customer_id'=>2,
-            'total' => 2211111444,
+            'total' => 200000000,
             'date_at' => '2003/11/01'
         ]
     ]);

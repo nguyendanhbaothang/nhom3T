@@ -9,8 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $table = 'products';
     public function category()
     {
         return $this->belongsTo(Category::class)->withTrashed();
+    }
+    public function orderdetail(){
+        return $this->hasMany(OrderDetail::class, 'product_id','id');
     }
 }

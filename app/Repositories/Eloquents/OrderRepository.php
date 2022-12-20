@@ -26,7 +26,7 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
             ->join('orders', 'orderdetail.order_id', '=', 'orders.id')
             ->join('products', 'orderdetail.product_id', '=', 'products.id')
             ->select('products.*', 'orderdetail.*', 'orders.id')
-            ->where('orders.id', '=', $id)->get();
-        return $items->get($id);
+            ->where('orders.id', '=', $id)->paginate(5);
+        return $items;
     }
 }

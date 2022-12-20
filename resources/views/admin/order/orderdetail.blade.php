@@ -14,10 +14,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">Product's name</th>
-                                    <th scope="col">Image</th>
+                                    <th scope="col">Name Product</th>
                                     <th scope="col">Price(VND)</th>
-                                    <th scope="col">Quantily</th>
+                                    <th scope="col">Quantity</th>
                                     <th scope="col">Total Money(VND)</th>
                                 </tr>
                             </thead>
@@ -25,11 +24,11 @@
                                 @foreach ($items as $key => $item)
                                     <tr>
                                         <th scope="row">{{ ++$key }}</th>
-                                        <td>{{ $item->customer->name }}</td>
-                                        <td>{{$item->customer->image}}</td>
-                                        <td>{{number_format($item->price)}}</td>
-                                        <td>{{$item->quantity}}</td>
-                                        <td>{{ number_format($item->total) }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <th>
+                                        <td>{{ number_format($item->price) }} VND</td>
+                                        <td>{{ $item->quantity }}</td>
+                                        <td>{{ number_format($item->total) }} VND</td>
                                     </tr>
                                 @endforeach
                             </tbody>

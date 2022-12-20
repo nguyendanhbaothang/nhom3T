@@ -33,7 +33,7 @@
             <td>{{$order->customer->phone}}</td>
             <td>{{$order->customer->address}}</td>
             <td>{{$order->date_at}}</td>
-            <td>{{number_format($order->total)}}</td>
+            <td>{{number_format($order->total)}} VND</td>
             <td>
                 <a  class="btn btn-info" href="{{route('order.detail',$order->id)}}">See details</a>
             </td>
