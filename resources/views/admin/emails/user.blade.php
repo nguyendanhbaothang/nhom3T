@@ -25,8 +25,8 @@
               <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
                 <tr>
                   <td style="padding:0 0 36px 0;color:#153643;">
-                    @if(isset($params['name']))
-                    <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;"><h2>Kính chào: <i>{{ $params['name'] }}</i></h2></h1>
+                    @if(isset($data['name']))
+                    <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;"><h2>Kính chào: <i>{{ $data['name'] }}</i></h2></h1>
                     @endif
 
                 </td>
@@ -47,8 +47,8 @@
                         <td style="width:260px;padding:0;vertical-align:top;color:#153643;">
                           <p style="margin:0 0 14px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><img src="https://img4.thuthuatphanmem.vn/uploads/2020/08/28/background-chao-mung-powerpoint_090351149.jpg" alt="" width="260" style="height:auto;display:block;" /></p>
                           <p style="margin:0 0 -110px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><i>*Hãy dùng mật khẩu này để truy cập tài khoản của bạn.</i><br><br>
-                            @if(isset($params['password']))
-                            <a href="#" style="color:#ee4c50;text-decoration:underline;"><b style="color: blue"><i>Mật khẩu: </i></b>{{ $params['password'] }}<br></a>
+                            @if(isset($data['pass']))
+                            <a href="#" style="color:#ee4c50;text-decoration:underline;"><b style="color: blue"><i>Mật khẩu: </i></b>{{ $data['pass'] }}<br></a>
                             @endif
                         </td>
                       </tr>
@@ -63,9 +63,9 @@
             <table>
                 <tr>
                     <td colspan="2">
-                        <i style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><br><a href="#" style="color:#ee4c50;text-decoration:underline;">Email: <a href="mailto:maixuancuong2906@gamil.com" style="color:rgb(17,85,204)"
+                        <i style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><br><a href="#" style="color:#ee4c50;text-decoration:underline;">Email: <a href="mailto:nguyendanhbaothang9a@gamil.com" style="color:rgb(17,85,204)"
                             target="_blank">nguyendanhbaothang9a@gmail.com</a></a></i>
-                            <i style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><br><a href="#" style="color:#ee4c50;text-decoration:underline;">Phone: <a href="tel:0843442357" style="color:rgb(17,85,204)"
+                            <i style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><br><a href="#" style="color:#ee4c50;text-decoration:underline;">Phone: <a href="tel:0392292507" style="color:rgb(17,85,204)"
                                 target="_blank">+84 83442357</a></a></i><br>
                             <br><i>Địa Chỉ: </i><i>133 Lý Thường Kiệt-thành phố Đông Hà-tỉnh Quảng Trị|<a href="https://www.google.com/maps/place/133+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+%C4%90%C3%B4ng+H%E1%BA%A3i,+%C4%90%C3%B4ng+H%C3%A0,+Qu%E1%BA%A3ng+Tr%E1%BB%8B,+Vi%E1%BB%87t+Nam/@16.802374,107.1092616,17z/data=!3m1!4b1!4m5!3m4!1s0x3140e584960ba903:0x5c5e139c80555b93!8m2!3d16.8023689!4d107.1114503"
                                 style="color:rgb(17,85,204)" target="_blank">Xem bản đồ</a></i>
