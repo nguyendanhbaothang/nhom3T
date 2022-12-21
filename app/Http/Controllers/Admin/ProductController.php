@@ -145,7 +145,6 @@ class ProductController extends Controller
     {
         $this->authorize('forceDelete', Product::class);
         $this->productService->destroy($id);
-        // return view('admin.product.trash');
     }
     public function trash(Request $request)
     {
@@ -160,18 +159,16 @@ class ProductController extends Controller
     {
         $this->authorize('delete', Product::class);
         $this->productService->softdeletes($id);
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status', 'Chuyển vào thùng rác thành công!');
     }
     public function restoredelete($id)
     {
         $this->authorize('restore', Product::class);
         $this->productService->restoredelete($id);
-        return redirect()->route('product.index')->with('status', 'Khôi phục thành công!');
+        return redirect()->route('product.trash')->with('status', 'Khôi phục thành công!');
     }
     public function exportExcel()
     {
-        $this->authorize('viewexport', Product::class);
-
         return Excel::download(new ProductExport, 'products.xlsx');
     }
 }

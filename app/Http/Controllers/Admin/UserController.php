@@ -223,27 +223,18 @@ class UserController extends Controller
             return back()->with($notification);
         }
     }
-
-    //Hiển Thị Đăng Nhập
-
   public function viewLogin()
   {
-
-
       return view('auth.login');
     }
     public function login(Request $request){
-
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
           $request->session()->regenerate();
           return redirect()->route('home');
-
       }
       return back()->withErrors([
           'email' => 'Thông tin đăng nhập được cung cấp không khớp với hồ sơ của chúng tôi.',
@@ -255,7 +246,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
-
     }
     public function quenmatkhau(Request $request)
     {
@@ -284,24 +274,23 @@ class UserController extends Controller
     {
         $this->authorize('forceDelete', User::class);
         $this->userService->destroy($id);
-        // return view('admin.product.trash');
     }
 
     public function trash(Request $request)
     {
-        // $this->authorize('viewtrash', User::class);
+        $this->authorize('viewtrash', User::class);
         $users = $this->userService->trash($request);
         return view('admin.users.trash', compact('users'));
     }
     public function softdeletes($id)
     {
-        // $this->authorize('delete', User::class);
+        $this->authorize('delete', User::class);
         $this->userService->softdeletes($id);
         return redirect()->route('user.index');
     }
     public function restoredelete($id)
     {
-        // $this->authorize('restore', User::class);
+        $this->authorize('restore', User::class);
         $this->userService->restoredelete($id);
         return redirect()->route('user.index')->with('status', 'Khôi phục thành công!');
     }

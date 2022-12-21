@@ -27,16 +27,10 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $this->authorize('viewAny', Order::class);
-        try {
+
             $orders = $this->orderService->all($request);
             return view('admin.order.index', compact('orders'));
-        } catch (\Exception $e) {
-            Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
-        }
     }
-
-
-
     public function find($id)
     {
         $this->authorize('view', Order::class);
@@ -48,10 +42,13 @@ class OrderController extends Controller
         }
         return view('admin.order.orderdetail',compact('items'));
     }
+
+
+
+
+    
     public function exportOrder()
     {
-        $this->authorize('viewoxport', Order::class);
-
         return Excel::download(new OrderExport, 'order.xlsx');
     }
 }

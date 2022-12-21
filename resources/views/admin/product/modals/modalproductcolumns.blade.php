@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-lg-12">
                     <select name="category_id" id="" class="form-control">
-                        <option value="">-</option>
+                        <option value="">---Please choose---</option>
                         @foreach ($f_categories as $category )
                         <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach

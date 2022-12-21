@@ -145,14 +145,12 @@ class GroupController extends Controller
                 'message' => 'Đã chuyển vào thùng rác!',
                 'alert-type' => 'success'
             ];
-            // return redirect()->route('group.index')->with($notification);
         } catch (\Exception $e) {
             Log::error('message:'. $e->getMessage());
             $notification = [
                 'message' => 'có lỗi xảy ra!',
                 'alert-type' => 'error'
             ];
-            // return redirect()->route('group.index')->with($notification);
         }
 
     }

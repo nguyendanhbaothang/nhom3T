@@ -24,7 +24,7 @@
                             data-bs-toggle="modal" data-bs-target="#basicModal">Advanced search</a>
 
                         @include('admin.product.modals.modalproductcolumns')
-                        <a href="{{ route('product.xuat') }}" class="btn btn-warning">Xuất Exports </a>
+                        <a href="{{ route('product.xuat') }}" class="btn btn-warning">Exports </a>
 
                     </form>
                 </div>

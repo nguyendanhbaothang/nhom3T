@@ -20,7 +20,6 @@ class OrderExport implements FromCollection
     }
     public function headings() :array
 {
-    ////////các cột của bảng excel
     return ["Tên Sản Phẩm", "Giá(VND)","Ngày mua","Email","Số điện thoại"];
 }
 
