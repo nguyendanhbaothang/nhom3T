@@ -1,16 +1,13 @@
 <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.html">
+      <a href="">
         <img width="130px" src="{{asset('assets/images/logo/1.jpg')}}" alt="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
       <ul>
-
         <li class="nav-item nav-item-has-children">
             <a href="{{ route('home') }}">
-
-
             <span>
               <svg width="22" height="22" viewBox="0 0 22 22">
                 <path
@@ -19,7 +16,6 @@
               </svg>
             </span>
             <span class="text">Dashboard</span>
-
           </a>
         </li>
 
@@ -123,11 +119,6 @@
            </ul>
         </li>
         </li>
-
-
-
-
-
         <li class="nav-item nav-item-has-children">
            <a
               href="#0"
@@ -168,8 +159,6 @@
               @endif
            </ul>
         </li>
-
-
         <li class="nav-item nav-item-has-children">
          <a
             href="#0"
@@ -208,7 +197,7 @@
                </a>
             </li>
             @endif
-            {{-- @if(Auth::user()->hasPermission('User_viewtrash')) --}}
+            @if(Auth::user()->hasPermission('User_viewtrash'))
             <li>
                <a href="{{ route('user.trash') }}">
                <span class="text">
@@ -216,13 +205,9 @@
                </span>
                </a>
             </li>
-            {{-- @endif --}}
+            @endif
          </ul>
       </li>
-
-
-
-
         @if(Auth::user()->hasPermission('Customer_viewAny'))
         <li class="nav-item">
            <a href="{{ route('customers.index') }}">
@@ -245,9 +230,6 @@
            </a>
         </li>
         @endif
-
-
-
         <li class="nav-item nav-item-has-children">
          <a
             href="#0"
@@ -297,11 +279,8 @@
             @endif
          </ul>
       </li>
-
-
     </a>
   </li>
-
      </ul>
   </nav>
 </aside>
