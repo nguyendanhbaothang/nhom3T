@@ -41,6 +41,12 @@
           @endforeach
         </tbody>
       </table>
+      <div class="col-6">
+        <div class="pagination float-right">
+            {{-- {{ $orders->appends(request()->query()) }} --}}
+            {{ $orders->appends(request()->input())->links() }}
+        </div>
+    </div>
 </main>
 </div>
 </div>

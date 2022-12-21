@@ -18,11 +18,21 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'name' => 'dong ho deo tay',
+                'name' => 'Audemars Piguet',
             ],
             [
-                'name' => 'dong ho thong minh',
-            ]
+                'name' => 'Rolex',
+            ],
+            [
+                'name' => 'Hublot',
+            ],
+            [
+                'name' => 'Apple watch',
+            ],
+            [
+                'name' => 'Calvin Klein',
+            ],
+          
         ]);
     }
 }

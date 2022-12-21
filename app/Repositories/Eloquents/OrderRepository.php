@@ -18,7 +18,7 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
     }
     public function all($request)
     {
-        return Order::orderBy('id', 'DESC')->get();
+        return Order::orderBy('id', 'DESC')->paginate(1);
     }
     public function find($id)
     {
