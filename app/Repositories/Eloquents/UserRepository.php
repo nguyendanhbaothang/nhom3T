@@ -33,6 +33,13 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         $result = $this->model->paginate();
         return $result;
     }
+    public function all($request)
+    {
+        // echo __METHOD__;
+        // die();
+        // dd($this->model);
+        return User::orderBy('id', 'DESC')->paginate(1);
+    }
 
     public function store($request)
     {

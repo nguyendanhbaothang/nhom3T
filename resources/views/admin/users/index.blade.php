@@ -76,6 +76,11 @@ border-radius:50%;
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="col-6">
+                            <div class="pagination float-right">
+                                {{ $users->appends(request()->query()) }}
+                            </div>
+                        </div>
                        {{-- {{ $users->appends(request()->query()) }} --}}
                     </div>
                 </div>
