@@ -48,7 +48,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/force_destroy/{id}', [ProductController::class, 'force_destroy'])->name('product.delete');
     Route::put('destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::get('/trash', [ProductController::class, 'trashedItems'])->name('product.trashedItems');
+    Route::get('/trash', [ProductController::class, 'trashedItems'])->name('product.trash');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
     Route::get('/xuatexcel', [ProductController::class, 'exportExcel'])->name('product.xuat');
 });
@@ -86,7 +86,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
 
     Route::put('/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
-    
+
  });
 
 
