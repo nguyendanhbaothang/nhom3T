@@ -125,10 +125,6 @@ class GroupController extends Controller
         $this->authorize('delete', Group::class);
         try {
             $this->groupService->destroy($id);
-            return redirect()->route('group.index')->with('status','Xóa thành công!');
-        } catch (\Exception $e) {
-            Log::error('message:'. $e->getMessage());
-            return redirect()->route('group.index')->with('status','Xóa không thành công!');
         }
 
     }

@@ -6,8 +6,8 @@ interface ProductRepositoryInterface extends RepositoryInterface
 {
     function paginate($request);
     function destroy($id);
-    function trash();
-    function softdeletes($id);
+    function trashedItems();
+    function force_destroy($id);
     function restoredelete($id);
     function edit($id);
 }

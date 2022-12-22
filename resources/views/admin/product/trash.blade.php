@@ -1,8 +1,17 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
-    <h1>Garbage can</h1>
-
+    @if (session('status'))
+<div class="alert alert-success" role="alert">
+   {{ session('status') }}
+</div>
+@endif
+@if (session('error'))
+<div class="alert alert-danger" role="alert">
+   {{ session('error') }}
+</div>
+@endif
+    <h1>Thùng rác</h1>
     <div class="container">
 
 
@@ -12,11 +21,11 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Categories</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Số lượng</th>
                     <th scope="col">Image</th>
-                    <th adta-breakpoints="xs">Action</th>
+                    <th adta-breakpoints="xs">Tùy chỉnh</th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -37,11 +46,11 @@
                                 @csrf
                                 @method('put')
                                 @if (Auth::user()->hasPermission('Product_restore'))
-                                    <button type="submit" class="btn btn-success">Restore</button>
+                                    <button type="submit" class="btn btn-success">Khôi phục</button>
                                     @endif
                                     @if (Auth::user()->hasPermission('Product_forceDelete'))
-                                    <a  data-href="{{ route('product.destroy', $team->id) }}"
-                                        id="{{ $team->id }}" class="btn btn-danger deleteIcon">Delete</a>
+                                    <a  data-href="{{ route('product.delete', $team->id) }}"
+                                        id="{{ $team->id }}" class="btn btn-danger deleteIcon">Xóa</a>
                                     @endif
                             </form>
                         </td>

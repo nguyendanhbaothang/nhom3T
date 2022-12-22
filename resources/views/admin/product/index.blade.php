@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
     <main id="main">
-        <h1>Prodduct</h1>
+        <h1>Sản phẩm</h1>
         <div class="container">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -17,25 +17,25 @@
                 <div class="col-6">
                     <form>
                         @if (Auth::user()->hasPermission('Product_create'))
-                            <a href="{{ route('product.create') }}" class="btn btn-info">Add new
+                            <a href="{{ route('product.create') }}" class="btn btn-info">Thêm mới
                             </a>
                         @endif
                         <a class="btn btn-success" type="button" name="key" value="{{ $f_key }}"
-                            data-bs-toggle="modal" data-bs-target="#basicModal">Advanced search</a>
+                            data-bs-toggle="modal" data-bs-target="#basicModal">Tìm kiếm</a>
 
                         @include('admin.product.modals.modalproductcolumns')
-                        <a href="{{ route('product.xuat') }}" class="btn btn-warning">Xuất Exports </a>
+                        <a href="{{ route('product.xuat') }}" class="btn btn-warning">Xuất </a>
 
                     </form>
                 </div>
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Thể loại</th>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Tùy chỉnh</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,18 +50,18 @@
                                     style="width: 100px">
                             </td>
                             <td>
-                                <form action="{{ route('product.softdeletes', $team->id) }}" method="POST">
+                                <form action="{{ route('product.destroy', $team->id) }}" method="POST">
                                     @if (Auth::user()->hasPermission('Product_view'))
-                                        <a class="btn btn-info" href="{{ route('product.show', $team->id) }}">Show</a>
+                                        <a class="btn btn-info" href="{{ route('product.show', $team->id) }}">Xem</a>
                                     @endif
                                     @if (Auth::user()->hasPermission('Product_update'))
-                                        <a href="{{ route('product.edit', $team->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('product.edit', $team->id) }}" class="btn btn-primary">Sửa</a>
                                     @endif
                                     @csrf
                                     @method('PUT')
                                     @if (Auth::user()->hasPermission('Product_delete'))
                                         <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Chuyên vào thùng rác')">Delete</button>
+                                            onclick="return confirm('Chuyên vào thùng rác')">Thùng rác</button>
                                     @endif
                                     <p class="text-success">
                                     <div> <i class="fa fa-check" aria-hidden="true"></i>

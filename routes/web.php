@@ -46,9 +46,9 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::put('/softdeletes/{id}', [ProductController::class, 'softdeletes'])->name('product.softdeletes');
-    Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
+    Route::delete('/force_destroy/{id}', [ProductController::class, 'force_destroy'])->name('product.delete');
+    Route::put('destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('/trash', [ProductController::class, 'trashedItems'])->name('product.trashedItems');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
     Route::get('/xuatexcel', [ProductController::class, 'exportExcel'])->name('product.xuat');
 });
@@ -68,12 +68,7 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('category/restore/{id}',[CategoryController::class, 'restore'])->name('categories.restore');
 });
 
-//đơn hàng
-Route::prefix('orders')->group(function () {
-    Route::get('/', [OrderController::class, 'index'])->name('order.index');
-    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
-    Route::get('/xuatexcel', [OrderController::class, 'exportOrder'])->name('orders.xuat');
-});
+
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
@@ -89,6 +84,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
     Route::delete('/delete/{id}',[UserController::class, 'force_destroy'])->name('user.delete');
     Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
+
     Route::put('/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
     
  });
@@ -119,7 +115,14 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
 });
+//đơn hàng
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::post('/trangthaidon', [OrderController::class,'trangthaidon']);
 
+    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
+    Route::get('/xuatexcel', [OrderController::class, 'exportOrder'])->name('orders.xuat');
+});
 
 });
 Route::post('/email', [UserController::class, 'quenmatkhau'])->name('quenmatkhau');

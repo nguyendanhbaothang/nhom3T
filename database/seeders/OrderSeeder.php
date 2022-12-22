@@ -14,6 +14,7 @@ class OrderSeeder extends Seeder
     {
         //
         DB::table('orders')->insert([
+
              [   'customer_id'=>1,
                 'total' => 200000000,
                'date_at' => '2003/11/11'

@@ -2,12 +2,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Basic Modal</h5> <button type="button" class="btn-close"
+                <h5 class="modal-title">Tìm kiếm</h5> <button type="button" class="btn-close"
                     data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body"> <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Name Product</label>
+                    <label class="">Tên sản phẩm</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="name"
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Price</label>
+                    <label class="">Giá</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="price"
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Id Product</label>
+                    <label class="">Tìm theo ID</label>
                 </div>
                 <div class="col-lg-12">
                     <div class="input text"><input type="text" name="id"
@@ -35,11 +35,11 @@
             </div>
             <div class="form-group form-row filter-row">
                 <div class="col-lg-12">
-                    <label class="">Category</label>
+                    <label class="">Thể loại</label>
                 </div>
                 <div class="col-lg-12">
                     <select name="category_id" id="" class="form-control">
-                        <option value="">-</option>
+                        <option value="">---Vui lòng chọn---</option>
                         @foreach ($f_categories as $category )
                         <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
@@ -49,7 +49,7 @@
 
             </div>
             <div class="modal-footer"> <button type="submit" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button> <button type="submit" class="btn btn-primary">Search</button></div>
+                    data-bs-dismiss="modal">Quay lại</button> <button type="submit" class="btn btn-primary">Tìm </button></div>
         </div>
     </div>
 </div>

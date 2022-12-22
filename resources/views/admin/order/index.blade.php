@@ -1,27 +1,28 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
-    <a   class="btn btn-warning" href="{{route('orders.xuat')}}">OrderExport</a>
+    <a   class="btn btn-warning" href="{{route('orders.xuat')}}">Xuất</a>
 <section class="wrapper">
     <div class="panel-panel-default">
         <div class="market-updates">
             <div class="container">
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Order</h1>
+      <h1>Đơn hàng</h1>
       <hr>
     </div>
     <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">STT</th>
-            <th scope="col">Customer name</th>
+            <th scope="col">Tên khách hàng</th>
             <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">Order date</th>
-            <th scope="col">Total Money(VND)</th>
-            <th scope="col">Option</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Ngày đặt hàng</th>
+            <th scope="col">Trạng thái</th>
+
+            <th scope="col">Tùy chỉnh</th>
           </tr>
         </thead>
         <tbody>
@@ -33,9 +34,22 @@
             <td>{{$order->customer->phone}}</td>
             <td>{{$order->customer->address}}</td>
             <td>{{$order->date_at}}</td>
-            <td>{{number_format($order->total)}} VND</td>
             <td>
-                <a  class="btn btn-info" href="{{route('order.detail',$order->id)}}">See details</a>
+                @if ($order->status === 0)
+                    <h5 style="color: rgb(144, 243, 147)"><i
+                            class="bi bi-bookmark-plus-fill"></i>Đơn mới</h5>
+                @endif
+                @if ($order->status === 1)
+                    <h5 style="color: green"><i
+                            class="bi bi-bookmark-check-fill"></i>Đang giao</h5>
+                @endif
+                @if ($order->status === 2)
+                    <h5 style="color: red"><i class="bi bi-bookmark-x-fill">Đã giao</i>
+                    </h5>
+                @endif
+            </td>
+            <td>
+                <a  class="btn btn-info" href="{{route('order.detail',$order->id)}}">Xem</a>
             </td>
           </tr>
           @endforeach
@@ -43,7 +57,7 @@
       </table>
       <div class="col-6">
         <div class="pagination float-right">
-            {{-- {{ $orders->appends(request()->query()) }} --}}
+
             {{ $orders->appends(request()->input())->links() }}
         </div>
     </div>

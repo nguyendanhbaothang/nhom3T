@@ -224,27 +224,18 @@ class UserController extends Controller
             return back()->with($notification);
         }
     }
-
-    //Hiển Thị Đăng Nhập
-
   public function viewLogin()
   {
-
-
       return view('auth.login');
     }
     public function login(Request $request){
-
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
           $request->session()->regenerate();
           return redirect()->route('home');
-
       }
       return back()->withErrors([
           'email' => 'Thông tin đăng nhập được cung cấp không khớp với hồ sơ của chúng tôi.',
@@ -256,7 +247,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
-
     }
     public function quenmatkhau(Request $request)
     {
@@ -283,6 +273,7 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
+
         $this->authorize('delete', User::class);
         try {
             $this->userService->destroy($id);
@@ -297,12 +288,13 @@ class UserController extends Controller
 
     public function trash(Request $request)
     {
-        // $this->authorize('viewtrash', User::class);
+        $this->authorize('viewtrash', User::class);
         $users = $this->userService->trash($request);
         return view('admin.users.trash', compact('users'));
     }
     public function force_destroy($id)
     {
+
         $this->authorize('forceDelete', User::class);
         try {
             $user = $this->userService->force_destroy($id);
@@ -313,6 +305,7 @@ class UserController extends Controller
     }
     public function restore($id)
     {
+
         $this->authorize('restore',User::class);
         try {
             $this->userService->restore($id);

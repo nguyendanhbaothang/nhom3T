@@ -40,7 +40,6 @@ class ProductController extends Controller
         $name      = $request->name ?? '';
         $price      = $request->price ?? '';
         $category_id       = $request->category_id ?? '';
-
         $id         = $request->id ?? '';
         $params = [
             'f_id'        => $id,
@@ -141,37 +140,39 @@ class ProductController extends Controller
      * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+     public function destroy($id)
+     {
+         $this->authorize('delete', Product::class);
+         $this->productService->destroy($id);
+         return redirect()->route('product.index')->with('status', 'Chuyển vào thùng rác thành công!');
+     }
+    public function force_destroy($id)
     {
         $this->authorize('forceDelete', Product::class);
-        $this->productService->destroy($id);
-        // return view('admin.product.trash');
+        $this->productService->force_destroy($id);
     }
-    public function trash(Request $request)
+
+    public function trashedItems(Request $request)
     {
         $this->authorize('viewtrash', Product::class);
-        $products = $this->productService->trash($request);
+        $products = $this->productService->trashedItems($request);
         $params = [
             'products' => $products
         ];
         return view('admin.product.trash', $params);
     }
-    public function softdeletes($id)
-    {
-        $this->authorize('delete', Product::class);
-        $this->productService->softdeletes($id);
-        return redirect()->route('product.index');
-    }
+
     public function restoredelete($id)
     {
         $this->authorize('restore', Product::class);
         $this->productService->restoredelete($id);
-        return redirect()->route('product.index')->with('status', 'Khôi phục thành công!');
+        return redirect()->route('product.trashedItems')->with('status', 'Khôi phục thành công!');
     }
     public function exportExcel()
     {
-        $this->authorize('viewexport', Product::class);
-
         return Excel::download(new ProductExport, 'products.xlsx');
     }
+
+
 }
