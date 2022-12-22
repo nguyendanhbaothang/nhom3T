@@ -50,23 +50,22 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
         $group->name = $request->name;
         return $group->save();
     }
-    public function restore($id)
+    // public function restore($id)
+    // {
+    //     $group = $this->model->withTrashed()->findOrFail($id);
+    //     $group->restore();
+    //     return $group;
+    // }
+    // public function Garbage()
+    // {
+    //     $group = $this->model->onlyTrashed();
+    //     $group->orderBy('id', 'desc');
+    //     return $group;
+    // }
+    public function destroy($id)
     {
-        $group = $this->model->withTrashed()->findOrFail($id);
-        $group->restore();
-        return $group;
-    }
-    public function Garbage()
-    {
-        $group = $this->model->onlyTrashed();
-        $group->orderBy('id', 'desc');
-        return $group;
-    }
-    public function forceDelete($id)
-    {
-        $group = $this->model->onlyTrashed()->findOrFail($id);
-        $group->forceDelete();
-        return $group;
+        $group = Group::findOrFail($id);
+        return $group->delete();
     }
     public function detail($id)
     {

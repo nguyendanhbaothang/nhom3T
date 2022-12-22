@@ -1,22 +1,32 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
+    @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
     <div class="container">
     <section class="wrapper">
         <div class="table-agile-info">
             <div class="panel-panel-default">
                 <header class="page-title-bar">
-                    <h1 class="page-title">Group</h1>
+                    <h1 class="page-title">Nhóm nhân viên</h1>
                     <br>
                     <nav aria-label="breadcrumb">
                         @if (Auth::user() && Auth::user()->hasPermission('Group_create') || true)
-                                <a href="{{ route('group.create') }}" class="btn btn-info">Add group</a>
+                                <a href="{{ route('group.create') }}" class="btn btn-info">Thêm mới nhóm</a>
                         @endif
                     </nav>
                 </header>
                 <hr>
                 <div class="panel-heading">
-                   <h3>List group</h3>
+                   <h3>Danh sách nhân viên</h3>
                 </div>
                 <div>
                     <table class="table" ui-jq="footable"
@@ -33,9 +43,9 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Group name</th>
-                                <th>Undertaker</th>
-                                <th data-breakpoints="xs">Action</th>
+                                <th>Tên nhóm quyền</th>
+                                <th>Số người</th>
+                                <th data-breakpoints="xs">Hành động</th>
                             </tr>
                         </thead>
                         <tbody id="myTable">
@@ -45,21 +55,25 @@
                                     <td>{{ $group->name }} </td>
                                     <td>Hiện có {{ count($group->users) }} người</td>
                                     <td>
-
-                                        <form action="{{ route('group.destroy', $group->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            @if (Auth::user()->hasPermission('Group_update'))
-                                            <a class="btn btn-primary " href="{{route('group.detail', $group->id)}}">Authorize</a>
-                                            @endif
-                                            @if (Auth::user()->hasPermission('Group_update'))
-                                            <a href="{{ route('group.edit', $group->id) }}"
-                                                class="btn btn-warning">Edit</a>
-                                            @endif
-
+                                        @if (Auth::user()->hasPermission('Group_update'))
+                                            <a class="btn btn-primary " href="{{route('group.detail', $group->id)}}">Trao quyền</a>
+                                        @endif
+                                        @if (Auth::user()->hasPermission('Group_update'))
+                                        <a href="{{ route('group.edit', $group->id) }}">
+                                        <i
+                                           class="btn btn-primary">Sửa</i></a>
+                                        @endif
+                                        <form onclick="return confirm('Bạn có muốn chuyển nó vào thùng rác?')" action="{{ route('group.destroy', $group->id) }}"
+                                           style="display:inline"  method="post">
+                                        @if (Auth::user()->hasPermission('Group_delete'))
+                                           <button
+                                              type="submit"
+                                              class="btn btn-danger">Xóa</button>
+                                        @endif
+                                        @csrf
+                                        @method('DELETE')
                                         </form>
-
-                                    </td>
+                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>

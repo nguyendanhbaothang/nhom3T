@@ -11,7 +11,7 @@
                         <nav aria-label="breadcrumb">
                             {{-- <a href="{{ route('product.index') }}" class="w3-button w3-red">Quay Lại</a> --}}
                         </nav>
-                        <h1 class="page-title">Edit Permission</h1>
+                        <h1 class="page-title">Sửa tên nhóm quyền</h1>
                     </header>
                     <hr>
                     <div class="panel-body">
@@ -20,7 +20,7 @@
                             @method('put')
                             @csrf
                             <div class="form-group has-warning">
-                                <label class="col-lg-2">Name Permission</label>
+                                <label class="col-lg-2">Tên nhóm quyền</label>
                                 <div class="col-lg-8">
                                     <input type="text" value="{{$group->name}}" name="name" placeholder=""
                                         class=" @error('name') is-invalid @enderror form-control ">
@@ -32,9 +32,9 @@
                             <br><br>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-6">
-                                    <button class="btn btn-dark" type="submit">Add Category</button>
+                                    <button class="btn btn-dark" type="submit">Sửa</button>
                                     <a href="{{ route('group.index') }}" class="btn btn-light"
-                                        type="submit">Cancel</a>
+                                        type="submit">Hủy</a>
                                 </div>
                             </div>
                         </form>
