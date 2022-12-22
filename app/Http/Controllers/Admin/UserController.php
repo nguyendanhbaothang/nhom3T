@@ -288,7 +288,7 @@ class UserController extends Controller
 
     public function trash(Request $request)
     {
-        $this->authorize('viewtrash', User::class);
+        // $this->authorize('viewtrash', User::class);
         $users = $this->userService->trash($request);
         return view('admin.users.trash', compact('users'));
     }
