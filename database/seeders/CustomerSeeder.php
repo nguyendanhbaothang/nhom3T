@@ -28,7 +28,21 @@ class CustomerSeeder extends Seeder
                 'address' => 'Dong Ha',
                 'phone' => '123456789',
                 'email' => 'tam@gmail.com',
-                'password' => '12345678'
+                'password' => '123456783'
+            ],
+            [
+                'name' => 'Trịnh Phong Tâm',
+                'address' => 'Trung son',
+                'phone' => '123456789',
+                'email' => 'tam1@gmail.com',
+                'password' => '123456781'
+            ],
+            [
+                'name' => 'Nguyễn Hữu Nhân',
+                'address' => 'Gio Phong',
+                'phone' => '123456789',
+                'email' => 'nhan@gmail.com',
+                'password' => '123456782'
             ]
         ]);
     }

@@ -2,7 +2,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-<h1>Category</h1>
+<h1>Danh mục</h1>
 <main id="main">
 <body>
 <table  class="table">
@@ -17,12 +17,12 @@
     </div>
     @endif
     @if(Auth::user()->hasPermission('Category_create'))
-<a href="{{route('categories.create')}}" class="btn btn-success">Add</a>
+<a href="{{route('categories.create')}}" class="btn btn-success">Thêm danh mục</a>
 @endif
     <tr>
     <th>STT</th>
-    <th>Name</th>
-    <th>Action</th>
+    <th>Tên danh mục</th>
+    <th>Tuỳ chỉnh</th>
     </tr>
     @foreach ($categories as $key => $value )
     <tr>
@@ -36,14 +36,14 @@
             @if (Auth::user()->hasPermission('Category_update'))
                 <a href="{{ route('categories.edit', $value->id) }}">
                     <i
-                        class="btn btn-primary">Edit</i></a>
+                        class="btn btn-primary">Chỉnh sửa</i></a>
                         @endif
                         <form onclick="return confirm('Bạn có muốn chuyển nó vào thùng rác?')" action="{{ route('categories.destroy', $value->id) }}"
                             style="display:inline"  method="post">
                             @if (Auth::user()->hasPermission('Category_delete'))
                             <button
                     type="submit"
-                        class="btn btn-danger">Delete</button>
+                        class="btn btn-danger">Xoá</button>
                         @endif
                 @csrf
                 @method('DELETE')
