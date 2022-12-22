@@ -6,8 +6,8 @@ interface UserRepositoryInterface extends RepositoryInterface{
     public function store($request);
     public function update($request, $id);
     function trash();
-    function softdeletes($id);
-    function restoredelete($id);
+    public function force_destroy($id);
+    public function restore($id);
     //function adminpass($id);
     //function adminUpdatePass($request, $id);
     //function updatepass($request);

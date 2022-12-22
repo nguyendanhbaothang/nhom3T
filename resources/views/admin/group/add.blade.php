@@ -11,7 +11,7 @@
                             <nav aria-label="breadcrumb">
                                 {{-- <a href="{{ route('product.index') }}" class="w3-button w3-red">Quay Lại</a> --}}
                             </nav>
-                            <h1 class="page-title">Create Permission Name</h1>
+                            <h1 class="page-title">Thêm mới nhóm quyền</h1>
                         </header>
                         <hr>
                         <div class="panel-body">
@@ -19,7 +19,7 @@
                                 method="POST">
                                 @csrf
                                 <div class="form-group has-warning">
-                                    <label class="col-lg-2">Name category</label>
+                                    <label class="col-lg-2">Tên nhóm quyền</label>
                                     {{-- <label class="col-lg-3 control-label">Name</label> --}}
                                     <div class="col-lg-8">
                                         <input type="text" value="{{ old('name') }}" name="name" placeholder=""
@@ -32,9 +32,9 @@
                                 <br><br>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-6">
-                                        <button class="btn btn-primary" type="submit">Add</button>
+                                        <button class="btn btn-primary" type="submit">Thêm</button>
                                         <a href="{{ route('group.index') }}" class="btn btn-danger"
-                                            type="submit">Cancel</a>
+                                            type="submit">Hủy</a>
                                     </div>
                                 </div>
                             </form>

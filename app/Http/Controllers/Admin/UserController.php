@@ -32,12 +32,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', User::class);
         $users = $this->userService->all($request);
-        $param = [
-            'users' => $users,
+
+        $id         = $request->id ?? '';
+        $key        = $request->key ?? '';
+        $name      = $request->name ?? '';
+        $phone       = $request->phone ?? '';
+        $address      = $request->address ?? '';
+        $position       = $request->position ?? '';
+        $params = [
+            'f_id'        => $id,
+            'f_key'       => $key,
+            'f_name'     => $name,
+            'f_phone' => $phone,
+            'f_address'     => $address,
+            'f_position'     => $position,
+            'users'    => $users,
         ];
-        return view('admin.users.index', $param);
+        return view('admin.users.index', $params);
     }
 
     public function showAdmin()
@@ -75,21 +87,13 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         try {
-            // $this->userService->store($request);
         $users = $this->userService->store($request);
-
-            // logic after save
+        return redirect()->route('user.index')->with('status', 'Thêm nhân viên thành công!');
         } catch (\Exception $e) {
             //logic handle error
             Log::error($e->getMessage());
+            return redirect()->route('user.index')->with('status', 'Thêm nhân viên không thành công!');
         }
-
-
-        $notification = [
-            'message' => 'Đăng ký thành công!',
-            'alert-type' => 'success'
-        ];
-        return redirect()->route('user.index')->with($notification);
     }
 
     /**
@@ -140,18 +144,15 @@ class UserController extends Controller
     {
         try {
             $this->userService->update($request, $id);
+            return redirect()->route('user.index')->with('status', 'Cập nhật thành công!');
 
             // logic after update
         } catch (\Exception $e) {
             //logic handle error
             Log::error($e->getMessage());
+            return redirect()->route('user.index')->with('status', 'Cập nhật không thành công!');
 
         }
-        $notification = [
-            'message' => 'Chỉnh Sửa Thành Công!',
-            'alert-type' => 'success'
-        ];
-        return redirect()->route('user.index')->with($notification);
     }
 
     public function editpass($id)
@@ -282,9 +283,16 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
-        $this->authorize('forceDelete', User::class);
-        $this->userService->destroy($id);
-        // return view('admin.product.trash');
+        $this->authorize('delete', User::class);
+        try {
+            $this->userService->destroy($id);
+            return redirect()->route('user.index')->with('status','Chuyển vào thùng rác thành công!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+
+            return redirect()->route('user.index')->with('status','Chuyển vào thùng rác không thành công!');
+        }
+
     }
 
     public function trash(Request $request)
@@ -293,16 +301,24 @@ class UserController extends Controller
         $users = $this->userService->trash($request);
         return view('admin.users.trash', compact('users'));
     }
-    public function softdeletes($id)
+    public function force_destroy($id)
     {
-        // $this->authorize('delete', User::class);
-        $this->userService->softdeletes($id);
-        return redirect()->route('user.index');
+        $this->authorize('forceDelete', User::class);
+        try {
+            $user = $this->userService->force_destroy($id);
+            return redirect()->route('user.trash')->with('status','Xóa thành công!' );
+        } catch (\Exception $e) {
+            return redirect()->route('user.trash')->with('error','Xóa không thành công!' );
+        }
     }
-    public function restoredelete($id)
+    public function restore($id)
     {
-        // $this->authorize('restore', User::class);
-        $this->userService->restoredelete($id);
-        return redirect()->route('user.index')->with('status', 'Khôi phục thành công!');
+        $this->authorize('restore',User::class);
+        try {
+            $this->userService->restore($id);
+            return redirect()->route('user.trash')->with('status','Khôi phục thành công!' );
+        } catch (\Exception $e) {
+            return redirect()->route('user.trash')->with('error','Khôi phục không thành công!' );
+        }
     }
 }

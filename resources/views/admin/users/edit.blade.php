@@ -9,9 +9,9 @@
                     <div class="page-inner">
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
-                                <a href="{{ route('user.index') }}" class="btn btn-dark">Back</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-dark">Quay lại</a>
                             </nav>
-                            <h1 class="page-title">Change Info</h1>
+                            <h1 class="page-title">Thay đổi thông tin</h1>
                         </header>
                         <div class="page-section">
                             @if ($errors->any())
@@ -28,7 +28,7 @@
                                 @csrf
                                 <div class="card">
                                     <div class="card-body">
-                                        <legend>Info</legend>
+                                        <legend>Thông tin nhân viên</legend>
                                         <div class="row">
 
                                             <div class="col-lg-12">
@@ -45,7 +45,7 @@
 
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="tf1">Name<abbr
+                                                    <label for="tf1">Tên<abbr
                                                             name="Trường bắt buộc">*</abbr></label>
                                                     <input name="name" type="text" class="form-control"
                                                         value="{{ $user->name }}">
@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="tf1">Phone<abbr
+                                                    <label for="tf1">Số điện thoại<abbr
                                                             name="Trường bắt buộc">*</abbr></label> <input name="phone"
                                                         type="number" class="form-control" value="{{ $user->phone }}">
                                                     <small id="" class="form-text text-muted"></small>
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="tf1">Birthday<abbr
+                                                    <label for="tf1">Ngày sinh<abbr
                                                             name="Trường bắt buộc">*</abbr></label> <input name="birthday"
                                                         type="date" class="form-control" value="{{ $user->birthday }}">
                                                     <small id="" class="form-text text-muted"></small>
@@ -80,10 +80,10 @@
                                             </div>
                                             <div class="form-group col-lg-4">
                                                 @if (Auth::user()->hasPermission('Group_update'))
-                                                <label class="control-label" for="flatpickr01">Position<abbr
+                                                <label class="control-label" for="flatpickr01">Chức vụ<abbr
                                                         name="Trường bắt buộc">*</abbr></label>
                                                 <select name="group_id" id="" class="form-control">
-                                                    <option value="">--Please Choose--</option>
+                                                    <option value="">--Vui lòng chọn--</option>
                                                     {{-- @foreach ($groups as $group)
                                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
                                                     @endforeach --}}
@@ -100,32 +100,30 @@
                                                 @endif
                                             </div>
                                             <div class="form-group col-lg-4">
-                                                <label class="control-label" for="flatpickr01">Gender<abbr
+                                                <label class="control-label" for="flatpickr01">Giới tính<abbr
                                                         name="Trường bắt buộc">*</abbr></label>
                                                 <select name="gender" id="" value="{{ $user->gender }}" class="form-control">
-                                                    <option value="{{ $user->gender }}">{{ $user->gender }}</option>
-                                                    <option value="Nam">Genteman</option>
-                                                    <option value="Nữ">Lady</option>
+                                                    <option value="Nam">Nam</option>
+                                                    <option value="Nữ">Nữ</option>
                                                 </select>
                                                 @if ('gender')
                                                     <p style="color:red">{{ $errors->first('gender') }}</p>
                                                 @endif
                                             </div>
                                             <div class="form-group col-lg-4">
-                                                <label class="control-label" >Password<abbr
-                                                        name="Trường bắt buộc">*</abbr></label>
+                                                <label class="control-label" >Mật khẩu</label>
                                                         <input name="password"
-                                                        type="text" class="form-control" value="{{ $user->password }}">
+                                                        type="text" class="form-control" value="">
                                                 @if ('gender')
                                                     <p style="color:red">{{ $errors->first('gender') }}</p>
                                                 @endif
                                             </div>
                                             <div class="form-group has-warning">
-                                                <label class="col-lg-3 control-label">Image</label>
+                                                <label class="col-lg-3 control-label">Hình ảnh</label>
                                                 <div class="col-lg-4">
                                                     <input accept="image/*" type='file' value="{{ $user->image }}" id="inputFile" name="image" /><br>
                                                     <img type="hidden" width="90px" height="90px" id="blah1"
-                                                    src="{{ asset('public/assets/images/user/' . $user->image) ?? asset('public/assets/images/user/' . $request->image) }}"
+                                                    src="{{ asset('pulic/user/' . $user->image) ?? asset('pulic/user/' . $request->image) }}"
                                                     alt="" />
                                                 @if ('image')
                                                     <p style="color:red">{{ $errors->first('image') }}</p>
@@ -137,7 +135,7 @@
                                             {{-- địa chỉ --}}
                                             <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <label for="tf1">Adddress<abbr
+                                                    <label for="tf1">Địa chỉ<abbr
                                                             name="Trường bắt buộc">*</abbr></label> <input name="address"
                                                         type="text" class="form-control" value="{{ $user->address }}">
                                                     <small id="" class="form-text text-muted"></small>
@@ -151,8 +149,8 @@
                                         </div>
                                         <div class="form-actions">
                                             <br><br><br><br>
-                                            <button class="btn btn-danger" type="submit">Save Change</button>
-                                            <a class="btn btn-warning" href="{{ route('user.index') }}">Cancel</a>
+                                            <button class="btn btn-danger" type="submit">Lưu thay đổi</button>
+                                            <a class="btn btn-warning" href="{{ route('user.index') }}">Hủy</a>
                                         </div>
                                     </div>
                             </form>

@@ -87,9 +87,9 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/updatepass/{id}', [UserController::class, 'updatepass'])->name('user.updatepass');
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
-    Route::delete('/softdeletes/{id}', [UserController::class, 'softdeletes'])->name('user.softdeletes');
+    Route::delete('/delete/{id}',[UserController::class, 'force_destroy'])->name('user.delete');
     Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
-    Route::put('/restoredelete/{id}', [UserController::class, 'restoredelete'])->name('user.restoredelete');
+    Route::put('/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
     
  });
 
@@ -112,9 +112,9 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
     Route::put('/update/{id}', [GroupController::class, 'update'])->name('group.update');
     Route::delete('destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
-    Route::delete('/xoa-luon/{id}', [GroupController::class, 'forceDelete'])->name('group.forceDelete');
-    Route::get('/thung-rac', [GroupController::class, 'Garbage'])->name('group.garbage');
-    Route::get('/tai-su-dung/{id}', [GroupController::class, 'restore'])->name('group.restore');
+    // Route::delete('/delete/{id}',[GroupController::class, 'force_destroy'])->name('user.delete');
+    // Route::get('/thung-rac', [GroupController::class, 'Garbage'])->name('group.garbage');
+    // Route::get('/tai-su-dung/{id}', [GroupController::class, 'restore'])->name('group.restore');
     // trao quyền
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');

@@ -2,6 +2,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
+
 <h1>Danh mục</h1>
 <main id="main">
 <body>
@@ -59,7 +60,8 @@
     </div>
 </div>
 </body>
-</html>
 
+
+</html>
 </main>
 @endsection

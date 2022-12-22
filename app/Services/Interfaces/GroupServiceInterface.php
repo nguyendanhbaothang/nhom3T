@@ -7,6 +7,8 @@ ServiceInterface nằm cùng cấp, ko cần use
 interface GroupServiceInterface extends ServiceInterface{
     // public function detail($id);
     // public function group_detail($request, $id);
+    // public function force_destroy($id);
+
     
 
 }
