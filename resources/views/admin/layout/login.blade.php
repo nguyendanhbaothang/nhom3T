@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta content="width=device-width, initial-scale=1.0" name="viewport">
-      <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+      <title>Đăng nhập</title>
       <meta name="robots" content="noindex, nofollow">
       <meta content="" name="description">
       <meta content="" name="keywords">
@@ -27,7 +27,7 @@
                <div class="container">
                   <div class="row justify-content-center">
                      <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                        <div class="d-flex justify-content-center py-4"> <a href="index.html" class="logo d-flex align-items-center w-auto"> <img src="assets/img/logo.png" alt=""> <span class="d-none d-lg-block">NiceAdmin</span> </a></div>
+                        <div class="d-flex justify-content-center py-4"> <a href="index.html" class="logo d-flex align-items-center w-auto"> <img src="assets/img/logo.png" alt=""> <span class="d-none d-lg-block">3T SHOP</span> </a></div>
                         <div class="card mb-3">
                            <div class="card-body">
                             @yield('content')

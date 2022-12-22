@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="pt-4 pb-2">
-	<h5 class="card-title text-center pb-0 fs-4">Send To Email</h5>
-	<p class="text-center small">Enter your email for email to you!</p>
+	<h5 class="card-title text-center pb-0 fs-4">Gửi tới Email</h5>
+	<p class="text-center small">Nhập email của bạn để gửi email cho bạn</p>
  </div>
  <form class="row g-3 needs-validation" action="{{route('quenmatkhau')}}" method="post" >
 	@csrf
@@ -20,7 +20,7 @@
 	   <label for="yourPassword" class="form-label">ㅤㅤㅤㅤㅤㅤㅤ</label>
 	   <div class="invalid-feedback">ㅤㅤㅤㅤㅤㅤㅤㅤ</div>
 	</div>
-    <button class="btn submits sign-up">Send<i class="fa fa-user-plus" ></i></button>
+    <button class="btn submits sign-up">Gửi<i class="fa fa-user-plus" ></i></button>
 
  </form>
 

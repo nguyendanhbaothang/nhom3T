@@ -78,7 +78,7 @@
                     <img src="{{asset('public/assets/product/'.$product->image)}} "height="100px" width="100px">
                 </div>
                  <div class="col-12">
-                  <label for="exampleInputEmail1" >Active Category</label>
+                  <label for="exampleInputEmail1" >Trạng thái</label>
                   <select name="status" class="form-select" id="inputGroupSelect02">
                   @if($product->status==0)
                       <option selected value="0">Hoạt động<table></table></option>
@@ -91,7 +91,7 @@
                   </div>
 
                   <div class="col-12">
-                    <label for="exampleInputEmail1" >Trạng thái</label>
+                    <label for="exampleInputEmail1" >Nổi bật hay không</label>
                     <select name="product_hot" class="form-select" id="inputGroupSelect02">
                     @if($product->product_hot==0)
                         <option selected value="0">Nổi bật<table></table></option>

@@ -72,7 +72,7 @@
            </div>
 
            <div class="ol-12">
-            <label>Active</label>
+            <label>Trạng thái</label>
             <select name="status" class="form-select" >
                 <option value="">-----Vui lòng chọn-----</option>
                 <option value="0">Hoạt động</option>
@@ -83,7 +83,7 @@
             @enderror
             </div>
             <div class="ol-12">
-              <label >Trạng thái</label>
+              <label >Nổi bật hay không</label>
               <select name="product_hot" class="form-select" >
                   <option value="">----Vui lòng chọn----</option>
                   <option value="0">Nổi bật</option>

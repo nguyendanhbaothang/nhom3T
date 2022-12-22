@@ -1,41 +1,97 @@
 @extends('admin.layout.master')
 @section('content')
-<main class="page-content">
-    <section class="wrapper">
-        <div class="panel-panel-default">
-            <div class="market-updates">
-                <div class="container">
-                    <main id="main" class="main">
-                        <div class="pagetitle">
-                            <h1>Chi tiết đơn hàng</h1>
-                            <a class="btn btn-primary" href="{{ route('order.index') }}">Đơn hàng</a>
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
+<section class="section">
+    <a   class="btn btn-info" href="{{route('order.index')}}">Quay lại</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <br>
+                    <h2 class="offset-4">
+                        Chi Tiết Đơn Hàng
+                    </h2><br>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên Sản Phẩm</th>
+                                <th scope="col">GIá(Đồng)</th>
+                                <th scope="col">Số Lượng</th>
+                                <th scope="col">Tổng Tiền(Đồng)</th>
+                                <th scope="col">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $total = 0 @endphp
+                            @foreach ($order_Details as $key => $order_Detail)
+                            @php $total += $order_Detail->quantity * $order_Detail->price  @endphp
                                 <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Giá (VND)</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Tổng tiền (VND)</th>
+                                    <th scope="row">{{ ++$key }}</th>
+                                    <td>{{ $order_Detail->product->name }}</td>
+                                    <td>{{ number_format($order_Detail->product->price) }}</td>
+                                    <td>{{ $order_Detail->quantity }}</td>
+                                    <td>{{ number_format($order_Detail->quantity * $order_Detail->total ) }}</td>
+                                    <td>@if($order->status==0)
+                                        <form>
+                                           @csrf
+                                           <select name="status" data-order_id="{{$order->id}}" class="custom-select trangthai">
+                                              <option selected value="0">Đơn mới</option>
+                                              <option value="1">Đang giao</option>
+                                              <option value="2">Đã giao</option>
+                                           </select>
+                                        </form>
+                                        @elseif($order->status==1)
+                                        <form>
+                                           @csrf
+                                           <select name="status" data-order_id="{{$order->id}}" class="custom-select trangthai">
+                                              <option  value="0">Đơn mới</option>
+                                              <option selected value="1">Đang giao</option>
+                                              <option value="2">Đã giao</option>
+                                           </select>
+                                        </form>
+                                        @else
+                                        <form>
+                                           @csrf
+                                           <select name="status" data-order_id="{{$order->id}}" class="custom-select trangthai">
+                                              <option  value="0">Đơn mới</option>
+                                              <option value="1">Đang giao</option>
+                                              <option selected value="2">Đã giao</option>
+                                           </select>
+                                        </form>
+                                        @endif
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($items as $key => $item)
-                                    <tr>
-                                        <th scope="row">{{ ++$key }}</th>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ number_format($item->price) }} VND</td>
-                                        <td>{{ $item->quantity }}</td>
-                                        <td>{{ number_format($item->total) }} VND</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </main>
+
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <h4 style="color: red"><strong>Tổng Tiền Đơn Hàng: {{ number_format($order_Detail->quantity * $order_Detail->total ) }} VND</strong></h4><hr>
+
+                    <div style="float:right">
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+    <script type="text/javascript">
+        $('.trangthai').change(function(){
+            const trangthai = $(this).val();
+            const order_id = $(this).data('order_id');
+            var _token = $('input[name="_token"]').val();
+            if(trangthai==0){
+                var thongbao = 'Thay đổi trạng thái thành đơn mới';
+            }else if(trangthai==1){
+                var thongbao = 'Thay đổi trạng thái thành đang giao';
+            }else{
+                var thongbao = 'Thay đổi trạng thái thành đã giao';
+            }
+            $.ajax({
+                url:"{{url('/trangthaidon')}}",
+                method:"POST",
+                data:{trangthai:trangthai, order_id:order_id, _token:_token},
+                success:function(data)
+                    {
+                        alert(thongbao);
+                    }
+            });
+        });
+    </script>
 @endsection

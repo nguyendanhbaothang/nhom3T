@@ -20,7 +20,6 @@
             <th scope="col">Số điện thoại</th>
             <th scope="col">Địa chỉ</th>
             <th scope="col">Ngày đặt hàng</th>
-            <th scope="col">Tổng tiền(VND)</th>
             <th scope="col">Trạng thái</th>
 
             <th scope="col">Tùy chỉnh</th>
@@ -35,9 +34,20 @@
             <td>{{$order->customer->phone}}</td>
             <td>{{$order->customer->address}}</td>
             <td>{{$order->date_at}}</td>
-            <td>{{number_format($order->total)}} VND</td>
-            <td>{{$order->status}} </td>
-
+            <td>
+                @if ($order->status === 0)
+                    <h5 style="color: rgb(144, 243, 147)"><i
+                            class="bi bi-bookmark-plus-fill"></i>Đơn mới</h5>
+                @endif
+                @if ($order->status === 1)
+                    <h5 style="color: green"><i
+                            class="bi bi-bookmark-check-fill"></i>Đang giao</h5>
+                @endif
+                @if ($order->status === 2)
+                    <h5 style="color: red"><i class="bi bi-bookmark-x-fill">Đã giao</i>
+                    </h5>
+                @endif
+            </td>
             <td>
                 <a  class="btn btn-info" href="{{route('order.detail',$order->id)}}">Xem</a>
             </td>

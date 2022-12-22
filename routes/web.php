@@ -68,12 +68,7 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('category/restore/{id}',[CategoryController::class, 'restore'])->name('categories.restore');
 });
 
-//đơn hàng
-Route::prefix('orders')->group(function () {
-    Route::get('/', [OrderController::class, 'index'])->name('order.index');
-    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
-    Route::get('/xuatexcel', [OrderController::class, 'exportOrder'])->name('orders.xuat');
-});
+
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
@@ -119,7 +114,14 @@ Route::group(['prefix' => 'groups'], function () {
     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
 });
+//đơn hàng
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::post('/trangthaidon', [OrderController::class,'trangthaidon']);
 
+    Route::get('/detail/{id}', [OrderController::class, 'find'])->name('order.detail');
+    Route::get('/xuatexcel', [OrderController::class, 'exportOrder'])->name('orders.xuat');
+});
 
 });
 Route::post('/email', [UserController::class, 'quenmatkhau'])->name('quenmatkhau');

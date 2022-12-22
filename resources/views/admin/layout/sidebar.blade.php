@@ -42,7 +42,7 @@
                        />
                  </svg>
               </span>
-              <span class="text"> Sản phẩm</span>
+              <span class="text"> Quản lí sản phẩm</span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -92,7 +92,7 @@
                        />
                  </svg>
               </span>
-              <span class="text">Thể loại</span>
+              <span class="text">Quản lí danh mục</span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -102,7 +102,7 @@
               <li>
                  <a href="{{ route('categories.index') }}">
                  <span class="text">
-                 Thể loại <span class="pro-badge">Pro</span>
+                 Danh mục <span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -142,7 +142,7 @@
                        />
                  </svg>
               </span>
-              <span class="text"> Đơn hàng </span>
+              <span class="text">Quản lí đơn hàng </span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -152,7 +152,7 @@
               <li>
                  <a href="{{ route('order.index') }}">
                  <span class="text">
-                 Đơn hàng<span class="pro-badge">Pro</span>
+                Xem đơn hàng<span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -182,7 +182,7 @@
                      />
                </svg>
             </span>
-            <span class="text"> Nhân viên</span>
+            <span class="text"> Quản lí nhân viên</span>
          </a>
          <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
@@ -192,7 +192,7 @@
             <li>
                <a href="{{ route('user.index') }}">
                <span class="text">
-               Nhân viên <span class="pro-badge">Pro</span>
+               Danh sách nhân viên <span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
@@ -253,7 +253,7 @@
                      />
                </svg>
             </span>
-            <span class="text"> Quyền</span>
+            <span class="text"> Nhóm quyền</span>
          </a>
          <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
@@ -263,7 +263,7 @@
             <li>
                <a href="{{ route('group.index') }}">
                <span class="text">
-               Quyền <span class="pro-badge">Pro</span>
+               Danh sách nhóm quyền <span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
@@ -272,7 +272,7 @@
             <li>
                <a href="{{ route('group.create') }}">
                <span class="text">
-                 Thêm quyền<span class="pro-badge">Pro</span>
+                 Tạo nhóm quyền<span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
