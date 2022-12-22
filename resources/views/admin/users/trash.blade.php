@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 @section('content')
 <main class="page-content">
-    <h1>Garbage</h1>
+    <h1>Thùng rác</h1>
 
     <div class="container">
 
@@ -12,11 +12,11 @@
             <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Position</th>
-                    <th adta-breakpoints="xs">Action</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Chức vụ</th>
+                    <th adta-breakpoints="xs">Hành động</th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -33,16 +33,21 @@
                         <td>{{ $user->position }}</td>
 
                         <td>
-                            <form action="{{ route('user.restoredelete', $user->id) }}" method="POST">
+                            <form action="{{ route('user.delete', $user->id) }}" method="post" >
+                                @method('DELETE')
                                 @csrf
-                                @method('put')
                                 @if (Auth::user()->hasPermission('User_restore'))
-                                    <button type="submit" class="btn btn-success">Restore</button>
+                
+                                <a onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này không?');"
+                                    style='color:rgb(52,136,245)' class='btn'
+                                    href="{{ route('user.restore', $user->id) }}"><i
+                                    class='btn btn-primary'>Khôi phục</i></a>
                                     @endif
                                     @if (Auth::user()->hasPermission('User_forceDelete'))
-                                    <a  data-href="{{ route('user.destroy', $user->id) }}"
-                                        id="{{ $user->id }}" class="btn btn-danger deleteIcon">Delete</a>
+                                <button onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');"
+                                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xóa</i></button>
                                     @endif
+                
                             </form>
                         </td>
                     </tr>
@@ -55,51 +60,4 @@
         </div>
 </main>
 </section>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-{{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-$(document).on('click', '.deleteIcon', function(e) {
-    e.preventDefault();
-    let id = $(this).attr('id');
-    let href = $(this).data('href');
-    let csrf = '{{ csrf_token() }}';
-    console.log(id);
-    Swal.fire({
-        title: 'Bạn có chắc không?',
-        text: "Bạn sẽ không thể hoàn nguyên điều này!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Có, xóa!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: href,
-                method: 'delete',
-                data: {
-                    _token: csrf
-                },
-                success: function(res) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Tệp của bạn đã bị xóa!',
-                        'success'
-                    )
-                    $('.item-' + id).remove();
-                    // window.location.reload();
-                },
-            });
-            Swal.fire({
-            icon: 'error',
-            title: 'lỗi rồi...',
-            text: 'Đã xảy ra lỗi!',
-            })
-        }
-    })
-});
-</script>
 @endsection

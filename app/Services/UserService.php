@@ -60,11 +60,12 @@ class UserService implements UserServiceInterface
     {
         return $this->userRepository->trash($request);
     }
-    public function softdeletes($id){
-        return $this->userRepository->softdeletes($id);
+    public function force_destroy($id)
+    {
+        return $this->userRepository->force_destroy($id);
     }
-    public function restoredelete($id){
-        return $this->userRepository->restoredelete($id);
+    public function restore($id){
+        return $this->userRepository->restore($id);
     }
 
 }
