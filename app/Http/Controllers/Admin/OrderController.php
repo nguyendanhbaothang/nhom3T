@@ -50,7 +50,7 @@ class OrderController extends Controller
     }
     public function exportOrder()
     {
-        $this->authorize('viewoxport', Order::class);
+        // $this->authorize('viewoxport', Order::class);
 
         return Excel::download(new OrderExport, 'order.xlsx');
     }
