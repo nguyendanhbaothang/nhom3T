@@ -23,7 +23,24 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $items = $this->customerService->all($request);
-        return view('admin.customers.index', compact('items'));
+
+        $id         = $request->id ?? '';
+        $key        = $request->key ?? '';
+        $name      = $request->name ?? '';
+        $address      = $request->address ?? '';
+        $email       = $request->email ?? '';
+        $phone       = $request->phone ?? '';
+        $params = [
+            'f_id'        => $id,
+            'f_key'       => $key,
+            'f_name'     => $name,
+            'f_address'     => $address,
+            'f_email'     => $email,
+            'f_phone' => $phone,
+            'items'    => $items,
+        ];
+        return view('admin.customers.index', $params);
+
     }
 
     /**

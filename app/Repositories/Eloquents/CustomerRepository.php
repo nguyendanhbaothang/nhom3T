@@ -34,6 +34,41 @@ class CustomerRepository extends EloquentRepository implements CustomerRepositor
         // echo __METHOD__;
         // die();
         // dd($this->model);
+        $key        = $request->key ?? '';
+        $name      = $request->name ?? '';
+        $address      = $request->address ?? '';
+        $email       = $request->email ?? '';
+        $phone       = $request->phone ?? '';
+        $id         = $request->id ?? '';
+        $query = Customer::query(true);
+
+        if ($name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+        if ($address) {
+            $query->where('address', 'LIKE', '%' . $address . '%');
+        }
+        if ($email) {
+            $query->where('email', 'LIKE', '%' . $email . '%');
+        }
+        if ($phone) {
+            $query->where('phone', 'LIKE', '%' . $phone . '%');
+        }
+
+        if ($id) {
+            $query->where('id', $id);
+        }
+        if ($key) {
+            $query->orWhere('id', $key);
+            $query->orWhere('name', 'LIKE', '%' . $key . '%');
+            $query->orWhere('address', 'LIKE', '%' . $key . '%');
+            $query->orWhere('email', 'LIKE', '%' . $key . '%');
+            $query->orWhere('phone', 'LIKE', '%' . $key . '%');
+        }
+
+        $products = $query->paginate(3);
+        return $products;
         return Customer::orderBy('id', 'DESC')->paginate(1);
+
     }
 }

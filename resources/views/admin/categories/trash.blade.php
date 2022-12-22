@@ -14,8 +14,8 @@
       <thead>
         <tr>
           <th scope="col">STT</th>
-          <th scope="col">Name</th>
-          <th scope="col">Action</th>
+          <th scope="col">Tên danh mục</th>
+          <th scope="col">Tuỳ chỉnh</th>
         </tr>
       </thead>
       <tbody>
@@ -32,11 +32,11 @@
                 <a onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này không?');"
                     style='color:rgb(52,136,245)' class='btn'
                     href="{{ route('categories.restore', $category->id) }}"><i
-                    class='btn btn-primary'>Restore</i></a>
+                    class='btn btn-primary'>Khôi phục</i></a>
                     @endif
                     @if (Auth::user()->hasPermission('Product_forceDelete'))
                 <button onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');"
-                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Delete</i></button>
+                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xoá</i></button>
                     @endif
 
             </form>

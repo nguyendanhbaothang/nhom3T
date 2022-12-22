@@ -10,7 +10,7 @@
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
                             </nav>
-                            <h1 class="page-title">Change password of {{ auth()->user()->name }}</h1>
+                            <h1 class="page-title">Thay đổi mật khẩu của {{ auth()->user()->name }}</h1>
                         </header>
                         <hr>
                         <div class="page-section">
@@ -21,7 +21,7 @@
                                 @csrf
                                 <div class="form-group has-success">
                                     <label class="col-sm-3 control-label col-lg-3" for="currentPassword">
-                                        Current password</label>
+                                        Mật khẩu cũ</label>
                                     <div class="col-lg-6">
                                         <input name="password" type="password" class="form-control" id="inputSuccess">
                                     </div>
@@ -31,7 +31,7 @@
                                 @enderror
                                 <br>
                                 <div class="form-group has-warning">
-                                    <label class="col-sm-3 control-label col-lg-3" for="newPassword">New Password</label>
+                                    <label class="col-sm-3 control-label col-lg-3" for="newPassword">Mật khẩu mới</label>
                                     <div class="col-lg-6">
                                         <input name="newpassword" type="password" class="form-control" id="newPassword">
                                     </div>
@@ -41,7 +41,7 @@
                                 @enderror
                                 <br>
                                 <div class="form-group has-warning">
-                                    <label class="col-sm-3 control-label col-lg-3" for="renewPassword">Enter a new password</label>
+                                    <label class="col-sm-3 control-label col-lg-3" for="renewPassword">Nhập lại mật khâur mới</label>
                                     <div class="col-lg-6">
                                         <input name="renewpassword" type="password" class="form-control" id="renewPassword">
                                     </div>
@@ -51,8 +51,8 @@
                                 @enderror
                                 <br>
                                 <div class="text-center">
-                                    <button type="submit" class="w3-button w3-blue">Save password</button>
-                                    <a href="{{ route('user.index') }}" class="w3-button w3-red">Cancel</a>
+                                    <button type="submit" class="btn btn-danger">Lưu</button>
+                                    <a href="{{ route('user.index') }}" class="btn btn-info">Hủy</a>
                                 </div>
                             </form>
                         </div>

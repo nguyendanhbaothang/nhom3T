@@ -35,10 +35,43 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     }
     public function all($request)
     {
-        // echo __METHOD__;
-        // die();
-        // dd($this->model);
-        return User::orderBy('id', 'DESC')->paginate(1);
+        $user = User::all();
+        $key        = $request->key ?? '';
+        $name      = $request->name ?? '';
+        $phone      = $request->phone ?? '';
+        $address       = $request->address ?? '';
+        $position       = $request->position ?? '';
+
+        $id         = $request->id ?? '';
+        $query = User::query(true);
+
+        if ($name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+        if ($phone) {
+            $query->where('phone', 'LIKE', '%' . $phone . '%');
+        }
+        if ($address) {
+            $query->where('address', 'LIKE', '%' . $address . '%');
+        }
+        if ($position) {
+            $query->where('position', 'LIKE', '%' . $position . '%');
+        }
+
+        if ($id) {
+            $query->where('id', $id);
+        }
+        if ($key) {
+            $query->orWhere('id', $key);
+            $query->orWhere('name', 'LIKE', '%' . $key . '%');
+            $query->orWhere('phone', 'LIKE', '%' . $key . '%');
+            $query->orWhere('address', 'LIKE', '%' . $key . '%');
+            $query->orWhere('position', 'LIKE', '%' . $key . '%');
+        }
+
+        $user = $query->paginate(3);
+        return $user;
+        return User::with('user')->orderBy('id', 'DESC')->get();
     }
 
     public function store($request)
@@ -107,25 +140,24 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     }
     public function destroy($id)
     {
-        $user = User::onlyTrashed()->findOrFail($id);
-        return $user->forceDelete();
+        $user = User::findOrFail($id);
+        return $user->delete();
     }
     public function trash()
     {
         return User::onlyTrashed()->get();
     }
 
-    public function softdeletes($id)
+    public function force_destroy($id)
     {
-        date_default_timezone_set("Asia/Ho_Chi_Minh");
-        $user = User::findOrFail($id);
-        $user->deleted_at = date("Y-m-d h:i:s");
-        return $user->save();
+        $user = $this->model->onlyTrashed()->findOrFail($id);
+        return $user->forceDelete();
     }
-    public function restoredelete($id)
+    
+    public function restore($id)
     {
-        $user = User::withTrashed()->where('id', $id);
-        return $user->restore();
+        $user = $this->model->withTrashed()->findOrFail($id);
+        return  $user->restore();
     }
 }
 

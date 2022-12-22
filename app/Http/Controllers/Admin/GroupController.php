@@ -59,18 +59,10 @@ class GroupController extends Controller
     {
         try {
             $this->groupService->store($request);
-            $notification = [
-                'message' => 'Thêm Tên Quyền Thành Công!',
-                'alert-type' => 'success'
-            ];
-            return redirect()->route('group.index')->with($notification);
+            return redirect()->route('group.index')->with('status','Thêm thành công!');
         } catch (\Exception $e) {
             Log::error('message:'. $e->getMessage());
-            $notification = [
-                'message' => 'có lỗi xảy ra!',
-                'alert-type' => 'error'
-            ];
-            return redirect()->route('group.index')->with($notification);
+            return redirect()->route('group.index')->with('error','Thêm thất bại!');
         }
 
 
@@ -112,19 +104,11 @@ class GroupController extends Controller
     {
         try {
             $this->groupService->update( $request, $id);
-            $notification = [
-                'message' => 'Câp Nhật Thành Công!',
-                'alert-type' => 'success'
-            ];
-            return redirect()->route('group.index')->with($notification);
+            return redirect()->route('group.index')->with('status','Cập nhật thành công!');
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            $notification = [
-                'message' => 'có lỗi xảy ra!',
-                'alert-type' => 'error'
-            ];
-            return redirect()->route('group.index')->with($notification);
+            return redirect()->route('group.index')->with('status','Cập nhật không thành công!');
         }
 
         // return redirect()->route('group.index')->with($notification);
@@ -141,16 +125,6 @@ class GroupController extends Controller
         $this->authorize('delete', Group::class);
         try {
             $this->groupService->destroy($id);
-            $notification = [
-                'message' => 'Đã chuyển vào thùng rác!',
-                'alert-type' => 'success'
-            ];
-        } catch (\Exception $e) {
-            Log::error('message:'. $e->getMessage());
-            $notification = [
-                'message' => 'có lỗi xảy ra!',
-                'alert-type' => 'error'
-            ];
         }
 
     }
@@ -159,18 +133,10 @@ class GroupController extends Controller
         $this->authorize('forceDelete', Group::class);
         try {
             $this->groupService->forceDelete($id);
-            $notification = [
-                'message' => 'Nhóm quyền đã bị xóa!',
-                'alert-type' => 'success'
-            ];
-            return redirect()->route('group.garbage')->with($notification);
+            return redirect()->route('group.garbage')->with('status','Xóa thành công!');
         } catch (\Exception $e) {
             Log::error('message:' . $e->getMessage());
-            $notification = [
-                'message' => 'có lỗi xảy ra!',
-                'alert-type' => 'error'
-            ];
-            return redirect()->route('group.garbage')->with($notification);
+            return redirect()->route('group.garbage')->with('status','Xóa không thành công!');
         }
     }
     public function restore($id)
@@ -178,18 +144,10 @@ class GroupController extends Controller
         $this->authorize('restore', Group::class);
         try {
             $this->groupService->restore($id);
-            $notification = [
-                'message' => 'Khôi phục thành công!',
-                'alert-type' => 'success'
-            ];
-            return redirect()->route('group.garbage')->with($notification);
+            return redirect()->route('group.garbage')->with('status','Khôi phục thành công!');
         } catch (\Exception $e) {
             Log::error('message:' . $e->getMessage());
-            $notification = [
-                'message' => 'có lỗi xảy ra!',
-                'alert-type' => 'error'
-            ];
-            return redirect()->route('group.garbage')->with($notification);
+            return redirect()->route('group.garbage')->with('status','Khôi phục không thành công!');
         }
     }
     public function Garbage()
@@ -200,12 +158,8 @@ class GroupController extends Controller
 
     public function group_detail(Request $request, $id)
     {
-        $notification = [
-            'message' => 'Cấp Quyền Thành Công!',
-            'alert-type' => 'success'
-        ];
         $this->groupService->group_detail($id, $request);
-        return redirect()->route('group.index')->with($notification);
+        return redirect()->route('group.index')->with('status','Cấp quyền thành công!');
     }
     public function detail($id)
     {

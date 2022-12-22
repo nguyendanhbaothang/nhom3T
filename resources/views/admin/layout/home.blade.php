@@ -40,7 +40,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="title mb-30">
-                                <h2>Dashboard</h2>
+                                <h2>Trang chủ</h2>
                             </div>
                         </div>
                         <!-- end col -->
@@ -57,12 +57,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">Product</h6>
+                            <h6 class="mb-10">Sản phẩm</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalProduct }}</h1>
                             </h3>
-                            <a href="{{ route('product.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('product.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -75,12 +75,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">Category</h6>
+                            <h6 class="mb-10">Danh mục</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalCategory }}</h1>
                             </h3>
-                            <a href="{{ route('categories.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('categories.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -93,12 +93,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">Order</h6>
+                            <h6 class="mb-10">Đơn hàng</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalOrder }}</h1>
                             </h3>
-                            <a href="{{ route('order.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('order.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -111,12 +111,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">User</h6>
+                            <h6 class="mb-10">Nhân viên</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalUser }}</h1>
                             </h3>
-                            <a href="{{ route('user.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('user.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -128,12 +128,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">Customer</h6>
+                            <h6 class="mb-10">Khách hàng</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalCustomer }}</h1>
                             </h3>
-                            <a href="{{ route('customers.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('customers.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -145,12 +145,12 @@
                         <div class="icon primary">
                         </div>
                         <div class="content">
-                            <h6 class="mb-10">Group</h6>
+                            <h6 class="mb-10">Nhóm quyền</h6>
 
                             <h3 class="text-bold mb-10">
                                 <h1>{{ $totalGroup }}</h1>
                             </h3>
-                            <a href="{{ route('group.index') }}" class="mb-10">View</a>
+                            <a href="{{ route('group.index') }}" class="mb-10">Xem</a>
                             <p class="text-sm text-danger">
                             </p>
                         </div>
@@ -167,28 +167,14 @@
 
             <!-- End Row -->
             <div class="row">
-                <div class="col-lg-5">
-                    <div class="card-style calendar-card mb-30">
-                        <div id="calendar-mini"></div>
-                    </div>
-                </div>
-                <!-- End Col -->
-
                 <div class="col-lg-7">
                     <div class="card-style mb-30">
                         <div class="title d-flex flex-wrap align-items-center justify-content-between">
                             <div class="left">
-                                <h6 class="text-medium mb-30">New Product</h6>
+                                <h6  class="text-medium mb-30" style="color: rgb(130, 41, 214)">Sản phẩm mới nhất</h6>
                             </div>
                             <div class="right">
-                                <div class="select-style-1">
-                                    <div class="select-position select-sm">
-                                        <select class="light-bg">
-                                            <option value="">Today</option>
-                                            <option value="">Yesterday</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <!-- end select -->
                             </div>
                         </div>
@@ -198,16 +184,16 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <h6 class="text-sm text-medium">Products</h6>
+                                            <h6 class="text-sm text-medium">Sản phẩm</h6>
                                         </th>
                                         <th class="min-width">
                                             <h6 class="text-sm text-medium">
-                                                Category
+                                                Danh mục
                                             </h6>
                                         </th>
                                         <th class="min-width">
                                             <h6 class="text-sm text-medium">
-                                                Price
+                                                Giá
                                             </h6>
                                         </th>
                                     </tr>
@@ -215,8 +201,8 @@
                                 <tbody>
 
                                     @foreach ($productnew as $product)
-                                    <tr>
-                                        <td>
+                                        <tr>
+                                            <td>
                                                 <div class="product">
                                                     <div class="image">
                                                         <img src="{{ asset('public/assets/product/' . $product->image) }}"
@@ -228,19 +214,152 @@
 
                                             </td>
                                             <td>
-                                                {{$product->category->name}}
+                                                {{ $product->category->name }}
                                             </td>
                                             <td>
-                                                {{ number_format($product->price)}} VND
+                                                {{ number_format($product->price) }} <h5 style="color: rgb(130, 41, 214)">VND</h5>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- End Table -->
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-5">
+                    <div class="card-style mb-30">
+                        <div class="title d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="left">
+                                <h6 class="text-medium mb-30" style="color: rgb(130, 41, 214)">Khách hàng</h6>
+                            </div>
+                            <div class="right">
+
+                                <!-- end select -->
+                            </div>
+                        </div>
+                        <!-- End Title -->
+                        <div class="table-responsive">
+                            <table class="table top-selling-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-sm text-medium">Tên</h6>
+                                        </th>
+                                        <th class="min-width">
+                                            <h6 class="text-sm text-medium">
+                                                Địa chỉ
+                                            </h6>
+                                        </th>
+                                        <th class="min-width">
+                                            <h6 class="text-sm text-medium">
+                                                Sđt
+                                            </h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($topcustomer as $customer)
+                                        <tr>
+                                            <td>
+                                                {{ $customer->name }}</p>
+                                            </td>
+                                            <td>
+                                                {{ $customer->address }}
+                                            </td>
+                                            <td>
+                                                {{ $customer->phone }}
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <!-- End Table -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card-style mb-30">
+                        <div class="title d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="left">
+                                <h6 class="text-medium mb-30" style="color: rgb(130, 41, 214)">Top sản phẩm bán chạy</h6>
+                            </div>
+                            <div class="right">
+
+                                <!-- end select -->
+                            </div>
+                        </div>
+                        <!-- End Title -->
+                        <div class="table-responsive">
+                            <table class="table top-selling-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h6 class="text-sm text-medium">Ảnh</h6>
+                                        </th>
+                                        <th>
+                                            <h6 class="text-sm text-medium">Tên sản phẩm</h6>
+                                        </th>
+
+                                        <th class="min-width">
+                                            <h6 class="text-sm text-medium">
+                                                Giá
+                                            </h6>
+                                        </th>
+                                        <th class="min-width">
+                                            <h6 class="text-sm text-medium">
+                                                Đã bán
+                                            </h6>
+                                        </th>
+                                        <th class="min-width">
+                                            <h6 class="text-sm text-medium">
+                                                Doanh thu
+                                            </h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($topproduct as $product)
+                                        <tr>
+                                            <td>
+                                                <div class="product">
+                                                    <div class="image">
+                                                        <img src="{{ asset('public/assets/product/' . $product->image) }}"
+                                                            alt="" />
+                                                    </div>
+                                                </div>
+
+
+                                            </td>
+                                            <td>
+                                                <p class="text-sm">{{ $product->name }}</p>
+
+                                            </td>
+
+                                            <td>
+                                                {{ number_format($product->price) }} <h5 style="color: rgb(130, 41, 214)">VND</h5>
+                                            </td>
+                                            <td>
+                                                {{ $product->total_Product}} Cái
+                                            </td>
+                                            <td>
+                                                {{ number_format($product->total_Product * $product->price)}} <h5 style="color: rgb(130, 41, 214)">VND</h5>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <!-- End Table -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End Col -->
+
+
                 <!-- End Col -->
             </div>
             <!-- End Row -->
@@ -256,9 +375,7 @@
     <!-- ======== main-wrapper end =========== -->
 
     <!-- ============ Theme Option Start ============= -->
-    <button class="option-btn">
-        <i class="lni lni-cog"></i>
-    </button>
+
     <div class="option-overlay"></div>
     <div class="option-box">
         <div class="option-header">
