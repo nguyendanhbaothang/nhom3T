@@ -102,11 +102,11 @@ $(document).on('click', '.deleteIcon', function(e) {
                     // window.location.reload();
                 },
             });
-            Swal.fire({
-            icon: 'error',
-            title: 'lỗi rồi...',
-            text: 'Đã xảy ra lỗi!',
-            })
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'lỗi rồi...',
+            //     text: 'Đã xảy ra lỗi!',
+            // })
         }
     })
 });

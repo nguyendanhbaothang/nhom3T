@@ -167,7 +167,7 @@ class ProductController extends Controller
     {
         $this->authorize('restore', Product::class);
         $this->productService->restoredelete($id);
-        return redirect()->route('product.trashedItems')->with('status', 'Khôi phục thành công!');
+        return redirect()->route('product.trash')->with('status', 'Khôi phục thành công!');
     }
     public function exportExcel()
     {
