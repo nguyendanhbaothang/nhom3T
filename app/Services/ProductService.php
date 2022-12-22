@@ -31,12 +31,12 @@ class ProductService implements ProductServiceInterface
     public function destroy($id){
         return $this->productRepository->destroy($id);
     }
-    public function trash($request)
+    public function trashedItems($request)
     {
-        return $this->productRepository->trash($request);
+        return $this->productRepository->trashedItems($request);
     }
-    public function softdeletes($id){
-        return $this->productRepository->softdeletes($id);
+    public function force_destroy($id){
+        return $this->productRepository->force_destroy($id);
     }
     public function restoredelete($id){
         return $this->productRepository->restoredelete($id);

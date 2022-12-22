@@ -46,9 +46,9 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::put('/softdeletes/{id}', [ProductController::class, 'softdeletes'])->name('product.softdeletes');
-    Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
+    Route::delete('/force_destroy/{id}', [ProductController::class, 'force_destroy'])->name('product.delete');
+    Route::put('destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('/trash', [ProductController::class, 'trashedItems'])->name('product.trashedItems');
     Route::put('/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
     Route::get('/xuatexcel', [ProductController::class, 'exportExcel'])->name('product.xuat');
 });
@@ -90,7 +90,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::delete('/softdeletes/{id}', [UserController::class, 'softdeletes'])->name('user.softdeletes');
     Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
     Route::put('/restoredelete/{id}', [UserController::class, 'restoredelete'])->name('user.restoredelete');
-    
+
  });
 
 

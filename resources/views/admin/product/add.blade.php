@@ -64,7 +64,7 @@
         <div class="text text-danger">{{ $message }}</div>
         @enderror
            <div class="col-12">
-             <label class="form-label">Images</label>
+             <label class="form-label">Ảnh</label>
              <input class="form-control" name="image" type="file">
              @error('image')
              <div class="text text-danger">{{ $message }}</div>
@@ -74,7 +74,7 @@
            <div class="ol-12">
             <label>Active</label>
             <select name="status" class="form-select" >
-                <option value="">-----Please Choose-----</option>
+                <option value="">-----Vui lòng chọn-----</option>
                 <option value="0">Hoạt động</option>
                 <option value="1">Không hoạt động</option>
             </select>

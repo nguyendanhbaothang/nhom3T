@@ -18,11 +18,15 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
     }
     public function all($request)
     {
-        return Order::orderBy('id', 'DESC')->paginate(1);
+        $orders = $this->model->select('*');
+
+        return $orders->orderBy('id', 'DESC')->paginate(5);
     }
     public function find($id)
     {
         $items = DB::table('orderdetail')
+
+
             ->join('orders', 'orderdetail.order_id', '=', 'orders.id')
             ->join('products', 'orderdetail.product_id', '=', 'products.id')
             ->select('products.*', 'orderdetail.*', 'orders.id')

@@ -34,13 +34,11 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
     public function all($request)
     {
-        $products = Product::with('category')->orderBy('id', 'DESC')->get();
         $categories = Category::all();
         $key        = $request->key ?? '';
         $name      = $request->name ?? '';
         $price      = $request->price ?? '';
         $category_id       = $request->category_id ?? '';
-
         $id         = $request->id ?? '';
         $query = Product::query(true);
 
@@ -119,17 +117,16 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
         return $product->save();
     }
-    public function destroy($id)
+    public function force_destroy($id)
     {
         $products = Product::onlyTrashed()->findOrFail($id);
         return $products->forceDelete();
     }
-    public function trash()
+    public function trashedItems()
     {
         return Product::onlyTrashed()->get();
     }
-
-    public function softdeletes($id)
+    public function destroy($id)
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $product = Product::findOrFail($id);

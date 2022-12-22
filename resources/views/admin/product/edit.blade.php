@@ -13,18 +13,18 @@
                 @method('put')
                 @csrf
                <div class="col-12">
-                 <label class="form-label">Name</label>
-                 <input type="text" class="form-control" value="{{$product->name}}" name="name" placeholder="Name">
+                 <label class="form-label">Tên</label>
+                 <input type="text" class="form-control" value="{{$product->name}}" name="name" placeholder="Tên">
                  @error('name')
                  <div class="text text-danger">{{ $message }}</div>
                  @enderror
                </div>
 
                <div class="col-12">
-                <label class="form-label">Price</label>
+                <label class="form-label">Giá</label>
                 <div class="row g-3">
                   <div class="col-lg-9">
-                    <input type="text" class="form-control" value="{{$product->price}}" name="price" placeholder="Price">
+                    <input type="text" class="form-control" value="{{$product->price}}" name="price" placeholder="Giá">
                     @error('price')
                     <div class="text text-danger">{{ $message }}</div>
                     @enderror
@@ -37,10 +37,10 @@
               </div>
 
               <div class="col-12">
-                <label class="form-label">Quantity</label>
+                <label class="form-label">Số lượng</label>
                 <div class="row g-3">
                   <div class="col-lg-9">
-            <input type="text" class="form-control" name="quantity" value="{{$product->quantity}}" placeholder="Quantity">
+            <input type="text" class="form-control" name="quantity" value="{{$product->quantity}}" placeholder="Số lượng">
             @error('quantity')
             <div class="text text-danger">{{ $message }}</div>
             @enderror
@@ -52,15 +52,15 @@
                 </div>
               </div>
                <div class="col-12">
-                 <label class="form-label">Description</label>
-                 <textarea class="form-control" placeholder="Description" id="editor"  name="description" rows="4" cols="4">{{$product->description}}</textarea>
+                 <label class="form-label">Miêu tả</label>
+                 <textarea class="form-control" placeholder="Miêu tả" id="editor"  name="description" rows="4" cols="4">{{$product->description}}</textarea>
                  @error('description')
                  <div class="text text-danger">{{ $message }}</div>
                  @enderror
                 </div>
-               <label class="form-label">Category</label>
+               <label class="form-label">Thể loại</label>
                <select name="category_id" id="" class="form-control">
-                <option value="">--Please choose--</option>
+                <option value="">--Vui lòng chọn--</option>
                 @foreach ($categories as $category)
                 <option
                     <?= $category->id == $product->category_id ? 'selected' : '' ?>
@@ -71,48 +71,41 @@
             @error('category_id')
             <div class="text text-danger">{{ $message }}</div>
             @enderror
-               {{-- <div class="col-12">
-                 <label class="form-label">Images</label>
-                 <input class="form-control" name="image" value="{{$product->image  }}" type="file">
-                 @error('image')
-                 <div class="text text-danger">{{ $message }}</div>
-                 @enderror --}}
                  </div>
                  <div class="mb-3">
-                    <label for="exampleInputEmail1" >Image</label>
+                    <label for="exampleInputEmail1" >Ảnh</label>
                     <input type="file" name="image" class="form-control-file"><br>
                     <img src="{{asset('public/assets/product/'.$product->image)}} "height="100px" width="100px">
-                    {{-- <span style="color:red;">@error("image"){{ $message }} @enderror</span> --}}
                 </div>
                  <div class="col-12">
                   <label for="exampleInputEmail1" >Active Category</label>
                   <select name="status" class="form-select" id="inputGroupSelect02">
                   @if($product->status==0)
-                      <option selected value="0">Active<table></table></option>
-                      <option value="1">No Active</option>
+                      <option selected value="0">Hoạt động<table></table></option>
+                      <option value="1">Không hoạt động</option>
                   @else($truyen->kichhoat==1)
-                      <option  value="0">Active<table></table></option>
-                      <option selected value="1">No Active</option>
+                      <option  value="0">Hoạt động<table></table></option>
+                      <option selected value="1">Không hoạt động</option>
                   @endif
                   </select>
                   </div>
 
                   <div class="col-12">
-                    <label for="exampleInputEmail1" >Status</label>
+                    <label for="exampleInputEmail1" >Trạng thái</label>
                     <select name="product_hot" class="form-select" id="inputGroupSelect02">
                     @if($product->product_hot==0)
-                        <option selected value="0">Hot<table></table></option>
-                        <option value="1">No Hot</option>
+                        <option selected value="0">Nổi bật<table></table></option>
+                        <option value="1">Không nổi bật</option>
                         @else($truyen->kichhoat==1)
-                        <option  value="0">Hot<table></table></option>
-                        <option selected value="1">No Hot</option>
+                        <option  value="0">Nổi bật<table></table></option>
+                        <option selected value="1">Không nổi bật</option>
                     @endif
                     </select>
                     </div>
 
                <div class="col-12">
-                 <button class="btn btn-primary px-4">Complete</button>
-                <a class="btn btn-primary px-4" href="{{ route('product.index') }}" class="w3-button w3-red">Back</a>
+                 <button class="btn btn-primary px-4">Lưu</button>
+                <a class="btn btn-primary px-4" href="{{ route('product.index') }}" class="w3-button w3-red">Trở về</a>
             </div>
              </form>
             </div>

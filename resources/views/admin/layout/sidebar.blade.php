@@ -15,7 +15,7 @@
                 />
               </svg>
             </span>
-            <span class="text">Dashboard</span>
+            <span class="text">Trang chủ</span>
           </a>
         </li>
 
@@ -42,7 +42,7 @@
                        />
                  </svg>
               </span>
-              <span class="text"> Manager Product</span>
+              <span class="text"> Sản phẩm</span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -52,16 +52,16 @@
               <li>
                  <a href="{{ route('product.index') }}">
                  <span class="text">
-                 Product <span class="pro-badge">Pro</span>
+                 Sản phẩm <span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
               @endif
               @if(Auth::user()->hasPermission('Product_viewtrash'))
               <li>
-                 <a href="{{ route('product.trash') }}">
+                 <a href="{{ route('product.trashedItems') }}">
                  <span class="text">
-                 Garbage can <span class="pro-badge">Pro</span>
+                 Thùng rác <span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -92,7 +92,7 @@
                        />
                  </svg>
               </span>
-              <span class="text">Manager Category</span>
+              <span class="text">Thể loại</span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -102,7 +102,7 @@
               <li>
                  <a href="{{ route('categories.index') }}">
                  <span class="text">
-                 Category <span class="pro-badge">Pro</span>
+                 Thể loại <span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -111,7 +111,7 @@
               <li>
                  <a href="{{ route('categories.getTrashed') }}">
                  <span class="text">
-                 Garbage <span class="pro-badge">Pro</span>
+                 Thùng rác <span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -142,7 +142,7 @@
                        />
                  </svg>
               </span>
-              <span class="text"> Manager Order </span>
+              <span class="text"> Đơn hàng </span>
            </a>
            <ul id="ddmenu_2" class="collapse dropdown-nav">
               <li>
@@ -152,7 +152,7 @@
               <li>
                  <a href="{{ route('order.index') }}">
                  <span class="text">
-                 View Order<span class="pro-badge">Pro</span>
+                 Đơn hàng<span class="pro-badge">Pro</span>
                  </span>
                  </a>
               </li>
@@ -182,7 +182,7 @@
                      />
                </svg>
             </span>
-            <span class="text">Manager User</span>
+            <span class="text"> Nhân viên</span>
          </a>
          <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
@@ -192,7 +192,7 @@
             <li>
                <a href="{{ route('user.index') }}">
                <span class="text">
-               List User <span class="pro-badge">Pro</span>
+               Nhân viên <span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
@@ -201,7 +201,7 @@
             <li>
                <a href="{{ route('user.trash') }}">
                <span class="text">
-                  Garbage<span class="pro-badge">Pro</span>
+                  Thùng rác<span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
@@ -225,7 +225,7 @@
                  </svg>
               </span>
               <class="text">
-              Customer <span class="pro-badge">Pro</span>
+              Khách hàng <span class="pro-badge">Pro</span>
               </span>
            </a>
         </li>
@@ -253,7 +253,7 @@
                      />
                </svg>
             </span>
-            <span class="text"> Manager Group</span>
+            <span class="text"> Quyền</span>
          </a>
          <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
@@ -263,7 +263,7 @@
             <li>
                <a href="{{ route('group.index') }}">
                <span class="text">
-               List Group <span class="pro-badge">Pro</span>
+               Quyền <span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>
@@ -272,7 +272,7 @@
             <li>
                <a href="{{ route('group.create') }}">
                <span class="text">
-                  Create Position<span class="pro-badge">Pro</span>
+                 Thêm quyền<span class="pro-badge">Pro</span>
                </span>
                </a>
             </li>

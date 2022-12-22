@@ -46,7 +46,7 @@ class OrderController extends Controller
 
 
 
-    
+
     public function exportOrder()
     {
         return Excel::download(new OrderExport, 'order.xlsx');

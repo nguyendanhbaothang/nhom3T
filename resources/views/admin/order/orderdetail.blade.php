@@ -7,17 +7,17 @@
                 <div class="container">
                     <main id="main" class="main">
                         <div class="pagetitle">
-                            <h1>Orderdetail</h1>
-                            <a class="btn btn-primary" href="{{ route('order.index') }}">Order</a>
+                            <h1>Chi tiết đơn hàng</h1>
+                            <a class="btn btn-primary" href="{{ route('order.index') }}">Đơn hàng</a>
                         </div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">Name Product</th>
-                                    <th scope="col">Price(VND)</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total Money(VND)</th>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th scope="col">Giá (VND)</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Tổng tiền (VND)</th>
                                 </tr>
                             </thead>
                             <tbody>
