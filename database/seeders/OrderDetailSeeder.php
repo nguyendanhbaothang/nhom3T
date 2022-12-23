@@ -27,8 +27,20 @@ class OrderDetailSeeder extends Seeder
             'total' => 200000000,
             'order_id' => 2,
             'product_id'=>2
-            ]
-        ]);
+            ],
+            [
+                'quantity' => 10,
+                'total' => 200000000,
+                'order_id' => 4,
+                'product_id'=>4
+                ],
+                [
+                'quantity' => 10,
+                'total' => 200000000,
+                'order_id' => 3,
+                'product_id'=>3
+                ],
+            ]);
 
     }
 }
