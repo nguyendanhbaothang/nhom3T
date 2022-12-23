@@ -84,8 +84,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
     Route::delete('/delete/{id}',[UserController::class, 'force_destroy'])->name('user.delete');
     Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
-
-    Route::put('/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
+    Route::get('/restore/{id}',[UserController::class, 'restore'])->name('user.restore');
 
  });
 

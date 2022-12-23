@@ -31,7 +31,6 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->position }}</td>
-
                         <td>
                             <form action="{{ route('user.delete', $user->id) }}" method="post" >
                                 @method('DELETE')
@@ -45,11 +44,11 @@
                                     @endif
                                     @if (Auth::user()->hasPermission('User_forceDelete'))
                                 <button onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');"
-                                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xóa</i></button>
+                                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xoá</i></button>
                                     @endif
                 
                             </form>
-                        </td>
+                          </td>
                     </tr>
                 @endforeach
             </tbody>

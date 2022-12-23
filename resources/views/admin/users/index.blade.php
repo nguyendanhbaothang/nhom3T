@@ -84,7 +84,7 @@ border-radius:50%;
                                         @endif
                                             <form onclick="return confirm('Bạn có muốn chuyển nó vào thùng rác?')" action="{{ route('user.destroy', $user->id) }}"
                                                   style="display:inline"  method="post">
-                                        @if (Auth::user()->hasPermission('User_update'))
+                                        @if (Auth::user()->hasPermission('User_delete'))
                                             <button type="submit"class="btn btn-danger">Delete</button>
                                         @endif
                                         @csrf

@@ -17,7 +17,7 @@ class OrderSeeder extends Seeder
 
              [   'customer_id'=>1,
                 'total' => 200000000,
-               'date_at' => '2003/11/11'
+               'date_at' => '2003/11/11',
         ],
         [
             'customer_id'=>2,
