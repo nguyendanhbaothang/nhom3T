@@ -98,4 +98,9 @@ class GroupPolicy
        return $user->hasPermission('Group_delete');
        //
     }
+    public function viewtrash(User $user)
+    {
+        return $user->hasPermission('Group_viewtrash');
+        //
+    }
 }

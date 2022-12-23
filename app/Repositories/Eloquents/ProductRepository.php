@@ -117,11 +117,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
         return $product->save();
     }
-    public function force_destroy($id)
-    {
-        $products = Product::onlyTrashed()->findOrFail($id);
-        return $products->forceDelete();
-    }
+
     public function trashedItems()
     {
         return Product::onlyTrashed()->get();
@@ -135,8 +131,13 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
     }
     public function restoredelete($id)
     {
-        $product = Product::withTrashed()->where('id', $id);
-        return $product->restore();
+        $product = $this->model->withTrashed()->findOrFail($id);
+        return  $product->restore();
+    }
+    public function force_destroy($id)
+    {
+        $products = $this->model->onlyTrashed()->findOrFail($id);
+        return $products->forceDelete();
     }
     public function edit($id)
     {

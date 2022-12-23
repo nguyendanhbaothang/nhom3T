@@ -119,6 +119,8 @@ class CategoryController extends Controller
     }
     public function getTrashed()
     {
+        $this->authorize('viewtrash', Category::class);
+
         $categories = $this->categoryService->getTrashed();
         return view('admin.categories.trash', compact('categories'));
     }

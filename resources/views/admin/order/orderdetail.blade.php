@@ -59,8 +59,7 @@
                                            </select>
                                         </form>
                                         @endif
-                                </tr>
-
+                                    </td>
                             @endforeach
                         </tbody>
                     </table>
@@ -84,7 +83,7 @@
                 var thongbao = 'Thay đổi trạng thái thành đã giao';
             }
             $.ajax({
-                url:"{{url('/trangthaidon')}}",
+                url:"{{url('/orders/trangthaidon')}}",
                 method:"POST",
                 data:{trangthai:trangthai, order_id:order_id, _token:_token},
                 success:function(data)

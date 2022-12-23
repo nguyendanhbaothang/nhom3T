@@ -150,7 +150,13 @@ class ProductController extends Controller
     public function force_destroy($id)
     {
         $this->authorize('forceDelete', Product::class);
-        $this->productService->force_destroy($id);
+
+        try {
+            $product = $this->productService->force_destroy($id);;
+            return redirect()->route('product.trash')->with('status','Xóa thành công!' );
+        } catch (\Exception $e) {
+            return redirect()->route('product.trash')->with('error','Xóa không thành công!' );
+        }
     }
 
     public function trashedItems(Request $request)
@@ -165,14 +171,16 @@ class ProductController extends Controller
 
     public function restoredelete($id)
     {
-        $this->authorize('restore', Product::class);
+        $this->authorize('restore',Product::class);
+    try {
         $this->productService->restoredelete($id);
-        return redirect()->route('product.trash')->with('status', 'Khôi phục thành công!');
+        return redirect()->route('product.trash')->with('status','Khôi phục thành công!' );
+    } catch (\Exception $e) {
+        return redirect()->route('product.trash')->with('error','Khôi phục không thành công!' );
     }
+}
     public function exportExcel()
     {
         return Excel::download(new ProductExport, 'products.xlsx');
     }
-
-
 }

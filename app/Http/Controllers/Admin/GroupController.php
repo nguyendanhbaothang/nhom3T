@@ -157,12 +157,14 @@ class GroupController extends Controller
     }
     public function Garbage()
     {
+        $this->authorize('viewtrash', Group::class);
         $groups = $this->groupService->Garbage();
         return view('admin.layout.trash');
     }
 
     public function group_detail(Request $request, $id)
     {
+        
         $this->groupService->group_detail($id, $request);
         return redirect()->route('group.index')->with('status','Cấp quyền thành công!');
     }
