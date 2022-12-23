@@ -42,7 +42,7 @@
                         </td>
 
                         <td>
-                            <form action="{{ route('product.restoredelete', $team->id) }}" method="POST">
+                            {{-- <form action="{{ route('product.restoredelete', $team->id) }}" method="POST">
                                 @csrf
                                 @method('put')
                                 @if (Auth::user()->hasPermission('Product_restore'))
@@ -52,20 +52,33 @@
                                     <a  data-href="{{ route('product.delete', $team->id) }}"
                                         id="{{ $team->id }}" class="btn btn-danger deleteIcon">Xóa</a>
                                     @endif
+                            </form> --}}
+
+                            <form action="{{ route('product.delete', $team->id) }}" method="post" >
+                                @method('DELETE')
+                                @csrf
+                                @if (Auth::user()->hasPermission('Product_restore'))
+
+                                <a onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này không?');"
+                                    style='color:rgb(52,136,245)' class='btn'
+                                    href="{{ route('product.restoredelete', $team->id) }}"><i
+                                    class='btn btn-primary'>Khôi phục</i></a>
+                                    @endif
+                                    @if (Auth::user()->hasPermission('Product_forceDelete'))
+                                <button onclick="return confirm('Bạn có chắc muốn xóa danh mục này không?');"
+                                    class ='btn' style='color:rgb(52,136,245)' type="submit" ><i class='btn btn-danger'>Xoá</i></button>
+                                    @endif
+
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="col-6">
-            <div class="pagination float-right">
-            </div>
-        </div>
-</main>
+
 </section>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-{{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
+{{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -110,5 +123,5 @@ $(document).on('click', '.deleteIcon', function(e) {
         }
     })
 });
-</script>
+</script> --}}
 @endsection

@@ -99,6 +99,12 @@ class UserPolicy
     }
     public function adminUpdatePass(User $user)
     {
+
         return $user->hasPermission('User_adminUpdatePass');
+    }
+    public function viewtrash(User $user)
+    {
+        return $user->hasPermission('User_viewtrash');
+        //
     }
 }

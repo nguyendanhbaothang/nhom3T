@@ -3,11 +3,7 @@
 <main class="page-content">
     <a   class="btn btn-warning" href="{{route('orders.xuat')}}">Xuất</a>
 <section class="wrapper">
-    <div class="panel-panel-default">
-        <div class="market-updates">
             <div class="container">
-<main id="main" class="main">
-    <div class="pagetitle">
       <h1>Đơn hàng</h1>
       <hr>
     </div>
@@ -57,14 +53,10 @@
       </table>
       <div class="col-6">
         <div class="pagination float-right">
-
             {{ $orders->appends(request()->input())->links() }}
         </div>
     </div>
-</main>
-</div>
-</div>
-</div>
 </section>
 </main>
 @endsection
+
