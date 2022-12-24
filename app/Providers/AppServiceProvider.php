@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
+/* Api*/
+use App\Repositories\Api\Product\ApiProductRepository;
+use App\Repositories\Api\Product\ApiProductRepositoryInterface;
+
 /* Product */
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\Eloquents\ProductRepository;
@@ -67,6 +71,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(GroupServiceInterface::class, GroupService::class);
         $this->app->singleton(GroupRepositoryInterface::class, GroupRepository::class);
 
+        /* Api*/
+        $this->app->bind(ApiProductRepositoryInterface::class, ApiProductRepository::class);
+        $this->app->bind(ApiProductServiceInterface::class, ApiProductService::class);
     }
 
     /**
