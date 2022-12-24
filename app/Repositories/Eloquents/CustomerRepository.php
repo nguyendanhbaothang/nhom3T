@@ -71,4 +71,10 @@ class CustomerRepository extends EloquentRepository implements CustomerRepositor
         return Customer::orderBy('id', 'DESC')->paginate(1);
 
     }
+    public function create($data){
+
+
+        return $this->model->create($data);
+    }
+
 }
