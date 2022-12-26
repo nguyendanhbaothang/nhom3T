@@ -62,7 +62,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
             $query->orWhere('category_id', 'LIKE', '%' . $key . '%');
         }
 
-        $products = $query->paginate(3);
+        $products = $query->paginate(9);
         return $products;
         return Product::with('category')->orderBy('id', 'DESC')->get();
     }

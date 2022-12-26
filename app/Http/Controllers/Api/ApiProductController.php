@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\Api\Product\ApiProductServiceInterface;
 use App\Services\Interfaces\ProductServiceInterface;
@@ -29,7 +30,7 @@ class ApiProductController extends Controller
     }
     public function product_detail($id)
     {
-        $product = $this->productService->find($id);
+        $product = Product::with('category')->find($id);
         return response()->json($product, 200);
     }
     public function category_list()
@@ -39,3 +40,4 @@ class ApiProductController extends Controller
     }
 
 }
+
