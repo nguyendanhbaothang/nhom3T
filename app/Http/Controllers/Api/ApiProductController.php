@@ -27,5 +27,15 @@ class ApiProductController extends Controller
         $products = $this->productService->all($request);
         return response()->json($products);
     }
+    public function product_detail($id)
+    {
+        $product = $this->productService->find($id);
+        return response()->json($product, 200);
+    }
+    public function category_list()
+    {
+        $categories = Category::with('products')->take(10)->get();
+        return response()->json($categories, 200);
+    }
 
 }
