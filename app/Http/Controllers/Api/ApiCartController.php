@@ -95,6 +95,7 @@ class ApiCartController extends Controller
             $carts = Cache::get('carts');
             unset($carts[$id]);
             Cache::put('carts', $carts);
+            $message = 'Xóa thành công';
         }catch(\Exception $e){
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }

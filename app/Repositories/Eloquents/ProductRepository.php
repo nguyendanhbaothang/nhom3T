@@ -34,7 +34,6 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
 
     public function all($request)
     {
-        $categories = Category::all();
         $key        = $request->key ?? '';
         $name      = $request->name ?? '';
         $price      = $request->price ?? '';
@@ -62,10 +61,16 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
             $query->orWhere('category_id', 'LIKE', '%' . $key . '%');
         }
 
-        $products = $query->paginate(9);
-        return $products;
-        return Product::with('category')->orderBy('id', 'DESC')->get();
+        $products = $query->with('category')->orderBy('id', 'DESC')->paginate(9);
+        $getStatusAction = Product::with('category')->where('status', 0)->paginate(9);
+        $param = [
+            'products' => $products,
+            'getStatusAction' => $getStatusAction
+        ];
+
+        return $param;
     }
+
     public function store($request)
     {
         $product = new Product();
@@ -122,6 +127,7 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
     {
         return Product::onlyTrashed()->get();
     }
+
     public function destroy($id)
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
@@ -134,11 +140,13 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         $product = $this->model->withTrashed()->findOrFail($id);
         return  $product->restore();
     }
+
     public function force_destroy($id)
     {
         $products = $this->model->onlyTrashed()->findOrFail($id);
         return $products->forceDelete();
     }
+
     public function edit($id)
     {
         $product = Product::find($id);

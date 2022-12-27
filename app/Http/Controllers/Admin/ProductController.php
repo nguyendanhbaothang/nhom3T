@@ -48,7 +48,7 @@ class ProductController extends Controller
             'f_category_id'     => $category_id,
             'f_key'       => $key,
             'f_categories' => $categories,
-            'products'    => $products,
+            'products'    => $products['products'],
         ];
         return view('admin.product.index', $params);
     }
