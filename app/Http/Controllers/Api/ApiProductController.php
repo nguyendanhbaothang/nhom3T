@@ -26,7 +26,7 @@ class ApiProductController extends Controller
     public function index(Request $request)
     {
         $products = $this->productService->all($request);
-        return response()->json($products);
+        return response()->json($products['getStatusAction']);
     }
     public function product_detail($id)
     {
