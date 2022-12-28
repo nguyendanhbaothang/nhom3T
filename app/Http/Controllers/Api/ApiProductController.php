@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\Api\Product\ApiProductServiceInterface;
 use App\Services\Interfaces\ProductServiceInterface;
+use Illuminate\Support\Facades\DB;
 
 class ApiProductController extends Controller
 {
@@ -37,6 +38,23 @@ class ApiProductController extends Controller
     {
         $categories = Category::with('products')->take(10)->get();
         return response()->json($categories, 200);
+    }
+    public function trendingProduct()
+    {
+        $products = DB::table('orderdetail')
+        ->leftJoin('products', 'products.id', '=', 'orderdetail.product_id')
+        ->selectRaw('products.*, sum(orderdetail.quantity) total_Product, sum(orderdetail.total) total_Price')
+        ->groupBy('orderdetail.product_id')
+        ->orderBy('total_Product', 'desc')
+        ->take(10)
+        ->get(); 
+        return response()->json($products, 200);
+
+    }
+    public function product_new()
+    {
+        $product = Product::take(10)->get();
+        return response()->json($product, 200);
     }
 
 }
