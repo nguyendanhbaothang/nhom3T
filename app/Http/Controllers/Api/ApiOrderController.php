@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
+
 class ApiOrderController extends Controller
 {
     function __construct(OrderServiceInterface $orderService)
@@ -46,60 +47,7 @@ class ApiOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     try{
-    //         $order = new Order;
-    //         $order->name = $request->name;
-    //         $order->email = $request->email;
-    //         $order->phone = $request->phone;
-    //         $order->address = $request->address;
-    //         $order->customer_id = $request->customer_id;
-    //         $order->date_at = $request->date_at;
-    //         $order->status = $request->status;
-    //         $order->total = 0;
-    //         $order->save();
-    //         $carts = Cache::get('carts');
-    //         $order_total_price = 0;
-    //         foreach ($carts as $productId => $cart) {
-    //             $order_total_price += $cart['price'] * $cart['quantity'];
-    //             OrderDetail::create([
-    //                 'price_at_time' => $cart['price'],
-    //                 'quantity' => $cart['quantity'],
-    //                 'product_id' => $productId,
-    //                 'total' => $cart['price'] * $cart['quantity'],
-    //                 'order_id' => $order->id,
-    //             ]);
-    //             Product::where('id', $productId)->decrement('quantity', $cart['quantity']);
-    //         }
-    //         $id_order = $order->id;
-    //         $order->total= $order_total_price;
-    //         $order->save();
-    //         Cache::forget('carts');
-    //         $carts = Cache::get('carts');
-    //         $order = $this->orderService->find($id_order);
-    //         $customer = Customer::findOrFail($request->customer_id);
-    //         $orderDetails = $order->orderDetails;
-    //         $orderStatus = 'Bạn Đã Đặt Mua Những Sản Phẩm Sau:';
-    //         $params = [
-    //             'orderStatus' => $orderStatus,
-    //             'order' => $order,
-    //             'orderDetails' => $orderDetails,
-    //         ];
-
-    //         Mail::send('admin.emails.orders', compact('params'), function ($email) use($customer) {
-    //             $email->subject('3TShop');
-    //             $email->to($customer->email,$customer->name);
-    //         });
-
-    //         return response()->json(Order::with(['orderDetails'])->find($order->id));
-
-
-    //         }catch(\Exception $e){
-    //             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
-    //         }
-    //     }
-
+    // 
 
     /**
      * Display the specified resource.
@@ -109,19 +57,35 @@ class ApiOrderController extends Controller
      */
     public function store(Request $request) {
         try{
+            // kiêm tra email có trong bảng customer
+            $customer = Customer::where('email','=',$request->email)->first();
+            if(!$customer){
+                //tao moi customer
+                $customer = new Customer();
+                $customer->name = $request->name_customer;
+                $customer->address =$request->address;
+                $customer->phone = $request->phone;
+                $customer->email = $request->email;
+                $customer->password = bcrypt(123456) ;
+
+                $customer->save();
+
+                $customer_id = $customer->id;
+            }else{
+                $customer_id = $customer->id;
+            }
+
         $order = new Order;
-        $order->address = $request->address;
-        $order->name_customer = $request->name_customer;
-        $order->customer_id = $request->customer_id;
-        $order->phone = $request->phone;
+        $order->customer_id = $customer_id;
+        $order->date_at = date('Y-m-d H:i:s');
         $order->total = 0;
+        $order->status = 0;
         $order->save();
         $carts = Cache::get('carts');
         $order_total_price = 0;
         foreach ($carts as $productId => $cart) {
             $order_total_price += $cart['price'] * $cart['quantity'];
             OrderDetail::create([
-                'price_at_time' => $cart['price'],
                 'quantity' => $cart['quantity'],
                 'product_id' => $productId,
                 'total' => $cart['price'] * $cart['quantity'],
@@ -135,7 +99,7 @@ class ApiOrderController extends Controller
         Cache::forget('carts');
         $carts = Cache::get('carts');
         $order = $this->orderService->find($id_order);
-        $customer = Customer::findOrFail($request->customer_id);
+        // $customer = Customer::findOrFail($customer_id);
         $orderDetails = $order->orderDetails;
         $orderStatus = 'Bạn Đã Đặt Mua Những Sản Phẩm Sau:';
         $params = [
@@ -151,6 +115,11 @@ class ApiOrderController extends Controller
 
         }catch(\Exception $e){
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
+            return response()->json([
+                'status' => 0,
+                'msg' => $e->getMessage()
+            ]);
+        
         }
     }
 
