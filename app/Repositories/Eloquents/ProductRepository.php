@@ -61,8 +61,8 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
             $query->orWhere('category_id', 'LIKE', '%' . $key . '%');
         }
 
-        $products = $query->with('category')->orderBy('id', 'DESC')->paginate(9);
-        $getStatusAction = Product::with('category')->where('status', 0)->paginate(9);
+        $products = $query->with('category')->orderBy('id', 'DESC')->paginate(6);
+        $getStatusAction = Product::with('category')->where('status', 0)->paginate(6);
         $param = [
             'products' => $products,
             'getStatusAction' => $getStatusAction
