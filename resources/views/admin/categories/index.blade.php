@@ -1,43 +1,51 @@
+@extends('admin.layout.master')
+@section('content')
 <!DOCTYPE html>
 <html>
-<style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-     table, th, td {
-                border:1px solid black;
-                }
-
-</style>
+<h1>Danh mục</h1>
 <main id="main">
 <body>
-<table style="width:100%" class="table">
-<a href="{{route('categories.create')}}" class="btn btn-success">Thêm mới</a>
-<a class='btn btn-secondary mb-2 float-right'  href="{{route('categories.getTrashed')}}">Thùng rác</a>
+<table  class="table">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+       {{ session('status') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
+    @if(Auth::user()->hasPermission('Category_create'))
+<a href="{{route('categories.create')}}" class="btn btn-success">Thêm danh mục</a>
+@endif
     <tr>
-    <th>id</th>
+    <th>STT</th>
     <th>Tên danh mục</th>
     <th>Tuỳ chỉnh</th>
     </tr>
     @foreach ($categories as $key => $value )
     <tr>
         <td>
-            {{$key++ }}
+            {{++$key }}
          </td>
           <td>
             {{$value->name}}
          </td>
          <td>
-
-                 {{-- <a href="{{ route('categories.show', $value->id) }}"
-                    class="btn btn-sm btn-icon btn-secondary"><i class="bi bi-eye-fill"></i></a> --}}
-                <a href="{{ route('categories.edit', $value->id) }}"
-                    class="btn btn-sm btn-icon btn-secondary"><i
-                        class="bi bi-pencil-square">Chỉnh sửa</i></a>
-                        <form onclick="return confirm('Bạn có chắc chắn muốn xoá không?')" action="{{ route('categories.destroy', $value->id) }}"
+            @if (Auth::user()->hasPermission('Category_update'))
+                <a href="{{ route('categories.edit', $value->id) }}">
+                    <i
+                        class="btn btn-primary">Chỉnh sửa</i></a>
+                        @endif
+                        <form onclick="return confirm('Bạn có muốn chuyển nó vào thùng rác?')" action="{{ route('categories.destroy', $value->id) }}"
                             style="display:inline"  method="post">
-                <button
-                    type="submit"  class="btn btn-sm btn-icon btn-secondary"><i
-                        class="bi bi-trash">Xoá</i></button>
+                            @if (Auth::user()->hasPermission('Category_delete'))
+                            <button
+                    type="submit"
+                        class="btn btn-danger">Xoá</button>
+                        @endif
                 @csrf
                 @method('DELETE')
             </form>
@@ -46,7 +54,14 @@
     @endforeach
 
   </table>
+  <div class="col-6">
+    <div class="pagination float-right">
+        {{ $categories->appends(request()->query()) }}
+    </div>
+</div>
 </body>
-</html>
 
+
+</html>
 </main>
+@endsection

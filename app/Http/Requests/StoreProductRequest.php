@@ -13,7 +13,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,29 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'quantity' => 'required|max:11',
+            'price' => 'required|max:11',
+            'description' => 'required',
+            'category_id' => 'required',
+            'image' => 'required',
+            'status' => 'required',
+            'product_hot' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Không được để trống!',
+            'quantity.required' => 'Không được để trống!',
+            'quantity.max' => 'Không được quá :max',
+            'price.required' => 'Không được để trống!',
+            'price.max' => 'Không được quá :max',
+            'description.required' => 'Không được để trống!',
+            'category_id.required' => 'Không được để trống!',
+            'image.required' => 'Không được để trống!',
+            'status.required' => 'Không được để trống!',
+            'product_hot.required' => 'Không được để trống!',
         ];
     }
 }

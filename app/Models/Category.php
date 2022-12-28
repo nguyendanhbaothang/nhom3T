@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    
     use HasFactory,SoftDeletes;
+    public function products()
+    {
+        return $this->hasMany(Product::class,'category_id', 'id');
+    }
 }

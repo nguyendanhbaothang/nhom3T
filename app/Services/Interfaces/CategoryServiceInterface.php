@@ -7,5 +7,4 @@ interface CategoryServiceInterface extends ServiceInterface{
     public function getTrashed();
     public function force_destroy($id);
     public function restore($id);
-    public function all($request);
 }
