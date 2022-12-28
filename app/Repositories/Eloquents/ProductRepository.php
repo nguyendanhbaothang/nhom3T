@@ -157,4 +157,16 @@ class ProductRepository extends EloquentRepository implements ProductRepositoryI
         ];
         return $param;
     }
+    public function search($request)
+    {
+        $query = $this->model::query();
+        $data = $request->input('search');
+        if ($data) {
+            $query->whereRaw("name Like '%" . $data . "%' ")
+                ->orWhereRaw("price Like '%" .$data . "%' ")
+                ->orWhereRaw("description Like '%" .$data . "%' ")
+            ;
+        }
+        return $query->get();
+    }
 }
