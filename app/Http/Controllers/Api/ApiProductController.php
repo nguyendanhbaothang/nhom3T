@@ -41,7 +41,7 @@ class ApiProductController extends Controller
     }
     public function search(Request $request)
     {
-            $products = $this->FeproductService->search($request);
+            $products = $this->productService->search($request);
             return response()->json($products, 200);
     }
 
@@ -53,7 +53,7 @@ class ApiProductController extends Controller
         ->groupBy('orderdetail.product_id')
         ->orderBy('total_Product', 'desc')
         ->take(10)
-        ->get(); 
+        ->get();
         return response()->json($products, 200);
 
     }

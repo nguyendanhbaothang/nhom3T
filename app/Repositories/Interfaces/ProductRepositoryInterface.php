@@ -10,4 +10,5 @@ interface ProductRepositoryInterface extends RepositoryInterface
     function force_destroy($id);
     function restoredelete($id);
     function edit($id);
+    public function search($request);
 }

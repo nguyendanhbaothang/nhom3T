@@ -44,5 +44,9 @@ class ProductService implements ProductServiceInterface
     public function edit($id){
         return $this->productRepository->edit($id);
     }
+    public function search($request)
+    {
+        return $this->productRepository->search($request);
+    }
 
 }
