@@ -90,6 +90,7 @@ class ApiCartController extends Controller
                 Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
             }
         }
+
         function removeToCart($id){
         try{
             $carts = Cache::get('carts');
@@ -100,6 +101,7 @@ class ApiCartController extends Controller
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }
         }
+
         function removeAllCart(){
         try{
             Cache::forget('carts');
@@ -107,6 +109,7 @@ class ApiCartController extends Controller
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }
         }
+
         function updateCart($id, $quantity){
         try{
             $carts = Cache::get('carts');
@@ -116,5 +119,6 @@ class ApiCartController extends Controller
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
         }
         }
+        
 
 }

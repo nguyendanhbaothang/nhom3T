@@ -39,6 +39,12 @@ class ApiProductController extends Controller
         $categories = Category::with('products')->take(10)->get();
         return response()->json($categories, 200);
     }
+    public function search(Request $request)
+    {
+            $products = $this->FeproductService->search($request);
+            return response()->json($products, 200);
+    }
+
     public function trendingProduct()
     {
         $products = DB::table('orderdetail')
