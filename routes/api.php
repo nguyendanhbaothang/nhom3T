@@ -26,6 +26,7 @@ Route::get('products',[ApiProductController::class,'index']);
 Route::get('category_list',[ApiProductController::class,'category_list']);
 Route::get('product_detail/{id}',[ApiProductController::class,'product_detail']);
 Route::get('product_list/search',[ApiProductController::class,'search']);
+Route::get('product_new',[ApiProductController::class,'product_new']);
 
 Route::get('order/create', [ApiOrderController::class, 'create']);
 // Route::get('order/list-province', [OrderController::class, 'getAllProvince']);
