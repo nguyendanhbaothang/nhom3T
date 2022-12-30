@@ -28,5 +28,17 @@ class UserSeeder extends Seeder
         $item->group_id ='1';
         // $item->image ='thang.ipg';
         $item->save();
+        $item = new User();
+        $item->name = "Nguyễn Thi Thao Tam11";
+        $item->email = "nguyendanhbaothang9a@gmail.com";
+        $item->password = Hash::make('123456');
+        $item->address = 'Quảng Trị';
+        $item->phone  = "0901170242";
+        $item->image ='tam.jpg';
+        $item->gender ='Nữ';
+        $item->birthday ='1997/02/24';
+        $item->group_id ='1';
+        // $item->image ='thang.ipg';
+        $item->save();
     }
 }

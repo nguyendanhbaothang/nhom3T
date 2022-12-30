@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+// use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 class User extends Authenticatable
@@ -18,13 +19,18 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $table = 'users';
-    protected $fillable = [
-        'image',
-        'name',
-        'phone',
-        'position',
+    // protected $fillable = [
+    //     'image',
+    //     'name',
+    //     'phone',
+    // ];
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
-
+   protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id', 'id');

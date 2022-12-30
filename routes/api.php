@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiCartController;
 use App\Http\Controllers\Api\ApiOrderController;
 use App\Http\Controllers\Api\ApiProductController;
 use App\Http\Controllers\Api\AuthCustomerController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function () {
+    Route::post('/login-customer', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
 });
+
+
+
+
+
+
+
+
 
 Route::get('products',[ApiProductController::class,'index']);
 Route::get('category_list',[ApiProductController::class,'category_list']);
@@ -29,9 +49,6 @@ Route::get('product_list/search',[ApiProductController::class,'search']);
 Route::get('product_new',[ApiProductController::class,'product_new']);
 
 Route::get('order/create', [ApiOrderController::class, 'create']);
-// Route::get('order/list-province', [OrderController::class, 'getAllProvince']);
-// Route::get('order/list-district/{id}', [OrderController::class, 'getAllDistrictByProvinceId']);
-// Route::get('order/list-ward/{id}', [OrderController::class, 'getAllWardByDistrictId']);
 Route::post('order/store', [ApiOrderController::class, 'store']);
 Route::get('order/show/{id}', [ApiOrderController::class, 'show']);
 Route::get('listorder/{id}', [ApiOrderController::class, 'listorder']);
@@ -44,10 +61,7 @@ Route::get('list-cart', [ApiCartController::class, 'getAllCart']);
     Route::get('update-cart/{id}/{quantity}', [ApiCartController::class, 'updateCart']);
 
 
-    Route::post('/login-customer', [AuthCustomerController::class, 'login']);
-    Route::post('/register', [AuthCustomerController::class, 'register']);
-    Route::post('/logout', [AuthCustomerController::class, 'logout']);
-    Route::get('/profile', [AuthCustomerController::class, 'userProfile']);
+
 
 
 

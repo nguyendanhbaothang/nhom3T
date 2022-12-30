@@ -53,7 +53,7 @@
             <!-- ========== title-wrapper end ========== -->
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="icon-card mb-30" style="background-color: rgb(136, 226, 248)">
+                    <div class="icon-card mb-30" >
                         <div class="icon primary">
                         </div>
                         <div class="content">
@@ -71,7 +71,7 @@
                 </div>
                 <!-- End Col -->
                 <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="icon-card mb-30" style="background-color: rgb(243, 84, 84)">
+                    <div class="icon-card mb-30" >
                         <div class="icon primary">
                         </div>
                         <div class="content">
@@ -89,7 +89,7 @@
                 </div>
                 <!-- End Col -->
                 <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="icon-card mb-30" style="background-color: rgb(238, 231, 135)">
+                    <div class="icon-card mb-30" >
                         <div class="icon primary">
                         </div>
                         <div class="content">
@@ -106,7 +106,7 @@
                     <!-- End Icon Cart -->
                 </div>
                 <!-- End Col -->
-                <div class="col-xl-3 col-lg-4 col-sm-6">
+                {{-- <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" style="background-color: rgb(140, 248, 136)">
                         <div class="icon primary">
                         </div>
@@ -122,9 +122,9 @@
                         </div>
                     </div>
                     <!-- End Icon Cart -->
-                </div>
+                </div> --}}
                 <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <div class="icon-card mb-30" style="background-color: rgb(248, 167, 244)">
+                    <div class="icon-card mb-30" >
                         <div class="icon primary">
                         </div>
                         <div class="content">
@@ -140,7 +140,7 @@
                     </div>
                     <!-- End Icon Cart -->
                 </div>
-                <div class="col-xl-3 col-lg-4 col-sm-6">
+                {{-- <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" style="background-color: rgb(241, 153, 94)">
                         <div class="icon primary">
                         </div>
@@ -156,7 +156,7 @@
                         </div>
                     </div>
                     <!-- End Icon Cart -->
-                </div>
+                </div> --}}
                 <!-- End Col -->
             </div>
             <!-- End Row -->

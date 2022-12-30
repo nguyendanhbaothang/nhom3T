@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Route::get('/', [UserController::class, 'viewLogin'])->name('login');
 Route::get('login', [UserController::class, 'viewLogin'])->name('login');
 
 Route::post('handdle-login', [UserController::class, 'login'])->name('handdle-login');
