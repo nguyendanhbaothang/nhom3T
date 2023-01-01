@@ -56,8 +56,11 @@
                   class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="profile"
                 >
-
-
+                <li>
+                    <a href="{{ route('user.show', Auth::User()->id) }}">
+                      Thông tin cá nhân
+                    </a>
+                  </li>
                   <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
