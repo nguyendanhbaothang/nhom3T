@@ -31,6 +31,7 @@ class OrderController extends Controller
         $this->authorize('viewAny', Order::class);
 
             $orders = $this->orderService->all($request);
+            
             return view('admin.order.index', compact('orders'));
     }
 
