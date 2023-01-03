@@ -39,7 +39,7 @@ class HomeController extends Controller
         ->selectRaw('products.*, sum(orderdetail.quantity) total_Product, sum(orderdetail.total) total_Price')
         ->groupBy('orderdetail.product_id')
         ->orderBy('total_Product', 'desc')
-        ->take(5)
+        ->take(200)
         ->get();
         // dd($topproduct);
        

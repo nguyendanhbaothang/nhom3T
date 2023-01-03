@@ -47,19 +47,22 @@ class ApiProductController extends Controller
 
     public function trendingProduct()
     {
-        $products = DB::table('orderdetail')
-        ->leftJoin('products', 'products.id', '=', 'orderdetail.product_id')
-        ->selectRaw('products.*, sum(orderdetail.quantity) total_Product, sum(orderdetail.total) total_Price')
-        ->groupBy('orderdetail.product_id')
-        ->orderBy('total_Product', 'desc')
-        ->take(10)
+        // $products = DB::table('orderdetail')
+        // ->leftJoin('products', 'products.id', '=', 'orderdetail.product_id')
+        // ->selectRaw('products.*, sum(orderdetail.quantity) total_Product, sum(orderdetail.total) total_Price')
+        // ->groupBy('orderdetail.product_id')
+        // ->orderBy('total_Product', 'desc')
+        // ->take(10)
+        // ->get();
+        $products = Product::where('product_hot','=',0)
+         ->take(8)
         ->get();
         return response()->json($products, 200);
 
     }
     public function product_new()
     {
-        $product = Product::take(10)->get();
+        $product = Product::take(6)->get();
         return response()->json($product, 200);
     }
 
