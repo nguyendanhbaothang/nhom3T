@@ -55,6 +55,10 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" >
                         <div class="icon primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-watch" viewBox="0 0 16 16">
+                                <path d="M8.5 5a.5.5 0 0 0-1 0v2.5H6a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V5z"/>
+                                <path d="M5.667 16C4.747 16 4 15.254 4 14.333v-1.86A5.985 5.985 0 0 1 2 8c0-1.777.772-3.374 2-4.472V1.667C4 .747 4.746 0 5.667 0h4.666C11.253 0 12 .746 12 1.667v1.86a5.99 5.99 0 0 1 1.918 3.48.502.502 0 0 1 .582.493v1a.5.5 0 0 1-.582.493A5.99 5.99 0 0 1 12 12.473v1.86c0 .92-.746 1.667-1.667 1.667H5.667zM13 8A5 5 0 1 0 3 8a5 5 0 0 0 10 0z"/>
+                              </svg>
                         </div>
                         <div class="content">
                             <h6 class="mb-10">Sản phẩm</h6>
@@ -73,6 +77,11 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" >
                         <div class="icon primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                                <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                                <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+                              </svg>
                         </div>
                         <div class="content">
                             <h6 class="mb-10">Danh mục</h6>
@@ -91,6 +100,9 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" >
                         <div class="icon primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                              </svg>
                         </div>
                         <div class="content">
                             <h6 class="mb-10">Đơn hàng</h6>
@@ -126,6 +138,9 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="icon-card mb-30" >
                         <div class="icon primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
+                              </svg>
                         </div>
                         <div class="content">
                             <h6 class="mb-10">Khách hàng</h6>
@@ -171,7 +186,7 @@
                     <div class="card-style mb-30">
                         <div class="title d-flex flex-wrap align-items-center justify-content-between">
                             <div class="left">
-                                <h6  class="text-medium mb-30" style="color: rgb(130, 41, 214)">Sản phẩm mới nhất</h6>
+                                <h4  class="text-medium mb-30" style="color: blue">Sản phẩm mới nhất</h4>
                             </div>
                             <div class="right">
 
@@ -217,7 +232,7 @@
                                                 {{ $product->category->name }}
                                             </td>
                                             <td>
-                                                {{ number_format($product->price) }} <h5 style="color: rgb(130, 41, 214)">VND</h5>
+                                                {{ number_format($product->price) }} <h5 style="color: blue">VND</h5>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -231,7 +246,7 @@
                     <div class="card-style mb-30">
                         <div class="title d-flex flex-wrap align-items-center justify-content-between">
                             <div class="left">
-                                <h6 class="text-medium mb-30" style="color: rgb(130, 41, 214)">Khách hàng</h6>
+                                <h4 class="text-medium mb-30" style="color: blue">Khách hàng</h4>
                             </div>
                             <div class="right">
 
@@ -284,7 +299,7 @@
                     <div class="card-style mb-30">
                         <div class="title d-flex flex-wrap align-items-center justify-content-between">
                             <div class="left">
-                                <h6 class="text-medium mb-30" style="color: rgb(130, 41, 214)">Top sản phẩm bán chạy</h6>
+                                <h4 class="text-medium mb-30" style="color: blue">Top sản phẩm bán chạy</h4>
                             </div>
                             <div class="right">
 
@@ -340,13 +355,13 @@
                                             </td>
 
                                             <td>
-                                                {{ number_format($product->price) }} <h5 style="color: rgb(130, 41, 214)">VND</h5>
+                                                {{ number_format($product->price) }} <h5 style="color: blue">VND</h5>
                                             </td>
                                             <td>
                                                 {{ $product->total_Product}} Cái
                                             </td>
                                             <td>
-                                                {{ number_format($product->total_Product * $product->price)}} <h5 style="color: rgb(130, 41, 214)">VND</h5>
+                                                {{ number_format($product->total_Product * $product->price)}} <h5 style="color: blue">VND</h5>
                                             </td>
                                         </tr>
                                     @endforeach
